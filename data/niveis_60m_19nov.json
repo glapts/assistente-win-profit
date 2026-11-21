@@ -1,0 +1,48 @@
+{
+  "versao_contrato": "2.0",
+  "ativo": "WINZ26",
+  "data_referencia": "2026-11-19",
+  "dealing_range": {
+    "topo_estrutural": 170000.0,
+    "fundo_estrutural": 168560.0,
+    "equilibrium_50": 169280.0
+  },
+  "zonas_fvg": [
+    {
+      "id": "ZONA_01_TOPO_REJEICAO_169500",
+      "tipo_original": "BEARISH",
+      "top": 169600.0,
+      "ce_50": 169550.0,
+      "bottom": 169500.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Teto da tarde de 18/nov / Teste do Ajuste (168.847 até 169.500). Rejeição com CHoCH de baixa no 2m/5m."
+    },
+    {
+      "id": "ZONA_02_BOS_MINIMA_18NOV_168450",
+      "tipo_original": "BREAKER",
+      "top": 168560.0,
+      "ce_50": 168500.0,
+      "bottom": 168450.0,
+      "setup_primario": "INVERSION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Se perder a mínima de 18/nov (168.560) com candle cheio de 5m abaixo de 168.450, vender o reteste."
+    },
+    {
+      "id": "ZONA_03_PERDA_SUPORTE_167900",
+      "tipo_original": "BREAKER",
+      "top": 168000.0,
+      "ce_50": 167950.0,
+      "bottom": 167900.0,
+      "setup_primario": "INVERSION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "VENDA em 167.900: Se perder os 168.000 com candle cheio de 5m abaixo de 167.900 e rejeitar o reteste."
+    }
+  ]
+}

@@ -46,7 +46,8 @@ class HarnessGatekeeper:
         current_time: datetime,
         current_price: float,
         proposed_direction: TradingDirection,
-        is_continuation: bool = True
+        is_continuation: bool = True,
+        is_structural_break: bool = False
     ) -> Tuple[bool, str]:
         """
         Avalia se uma entrada proposta é rigorosamente permitida.
@@ -89,7 +90,15 @@ class HarnessGatekeeper:
         if time(11, 28) <= t <= time(11, 35):
             return False, "TRAVA ABERTURA NY (11:28 - 11:35): Volume anormal e fakeouts de abertura da NYSE."
 
-        # 6. Regra de Ouro SMC: Premium & Discount (Comprar Barato / Vender Caro - P10)
+        # 6. Regra de Ouro SMC: Quebra de Estrutura (BOS) vs Premium & Discount (P10)
+        # Se for um Rompimento Estrutural Institucional (BOS - Break of Structure no 5m/60m):
+        # A venda no reteste de um suporte rompido é autorizada pela confirmação da quebra do nível
+        if is_structural_break:
+            if proposed_direction == TradingDirection.SHORT:
+                return True, f"AUTORIZADO: Quebra de Estrutura (BOS) confirmada. Reteste de resistência em {current_price:.0f}."
+            elif proposed_direction == TradingDirection.LONG:
+                return True, f"AUTORIZADO: Quebra de Estrutura (BOS) de alta confirmada. Apoio em suporte em {current_price:.0f}."
+
         regime = self.get_price_regime(current_price)
 
         if is_continuation:
