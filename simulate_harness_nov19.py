@@ -160,7 +160,9 @@ def run_full_simulation():
     print(f"Sinais de setup avaliados pelo assistente  : {len(signals)} operações")
 
     # Contrato de 60m do dia 19/11 (extraído do gráfico oficial do usuário)
-    niveis_path = "data/niveis_60m_19nov.json" if os.path.exists("data/niveis_60m_19nov.json") else "data/niveis_60m.json"
+    p1 = os.path.join(base_dir, "data", "niveis_60m_19nov.json")
+    p2 = os.path.join(base_dir, "data", "niveis_60m.json")
+    niveis_path = p1 if os.path.exists(p1) else p2
     with open(niveis_path, "r", encoding="utf-8") as f:
         niveis = Niveis60mContract(**eval(f.read().replace('true', 'True').replace('false', 'False').replace('null', 'None')))
 
