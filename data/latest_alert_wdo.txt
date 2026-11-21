@@ -1,0 +1,85 @@
+[36m[2m==================================================================[0m
+[37m[1m5. RASTREABILIDADE & METADADOS DA SESSÃO:[0m
+  * DATA/HORA                   : 19/11/2026 16:38:12 (America/Sao_Paulo)
+  * ATIVO/VENCIMENTO            : WDOZ26
+  * FONTE                       : Nelogica ProfitPro (DDE)
+  * ATRASO E QUALIDADE          : 0.1ms | ÍNTEGRO (FLUXO + ESTRUTURA)
+  * MACRO S&P 500               : [36m[1mWSPZ26 (NY): 7241.00 (Open: 7318.00 | -77.00 pts - BAIXA) [SLOW TICKS][0m
+  [37m[1mFATOS OBSERVADOS:[0m
+    - Preço atual: 5.920,50
+    - Estrutura: Sweep de Mínima (5905): violou 5900 e fechou em 5911
+    - Modo de cálculo: FIXO (Stop: 5.00 pts | Alvo: 8.00 pts)
+    - Fluxo recente: DELTA=+11769 | Padrão=Agressão com Continuidade Compradora ([34m[1mDELTA[0m positivo acompanhado de avanço do preço)
+    - Score SMC Institucional: 50/100
+    - [⚠️ S&P 500 OFFLINE (FAIL-SAFE)] S&P 500: OFFLINE (FAIL-SAFE) — Feed WSPZ26 ausente ou sem ticks recentes (>120s). Motor WIN operando normalmente em modo autônomo.
+  [37m[1mINTERPRETAÇÕES:[0m
+    - Setup a favor em relação ao contexto macro.
+    - Relação Retorno/Risco bruto: 1.60 (R$ 50.00 de risco / R$ 80.00 de retorno por contrato).
+  [37m[1mLIMITAÇÕES:[0m
+    - Não há garantia de execução nos preços exatos (sujeito a slippage e latência).
+    - Níveis estruturais não comprovam localização de stops institucionais.
+[36m[2m------------------------------------------------------------------[0m
+[37m[1m4. GESTÃO DE RISCO E INVALIDAÇÃO:[0m
+  * RETORNO/RISCO               : [37m[1m1.60[0m
+  * VALIDADE                    : Até 17:23:12
+  * INVALIDAÇÃO                 : Superação do nível 5.915,50 ou quebra da premissa estrutural.
+[36m[2m------------------------------------------------------------------[0m
+[37m[1m2. ESTRUTURA E CONTEXTO SMC:[0m
+  * SETUP                       : [35m[1mOperação Longa após Sweep em 15m[0m
+  * DIREÇÃO                     : [32m[1m>>> COMPRA <<<[0m
+  * CONTEXTO MACRO              : Alinhado com Contexto Macro (A FAVOR)
+  * A FAVOR OU CONTRA O CONTEXTO: A FAVOR
+  * CHoCH/BOS                   : Sweep de Mínima (5905): violou 5900 e fechou em 5911
+  * FVG                         : [33m[1mNenhum FVG ativo no gatilho[0m
+  * NÍVEL E HORÁRIO DO SWEEP    : 5905
+  * REGIME                      : 240m:[32m[1mALTA[0m | 60m:[32m[1mALTA[0m | 30m:[32m[1mALTA[0m | 15m:[32m[1mALTA[0m | 10m:[31m[1mBAIXA[0m | 5m:[31m[1mBAIXA[0m | 2m:[32m[1mALTA[0m | 1m:[33mCONSOLIDAÇÃO[0m
+[36m[2m==================================================================[0m
+[42m[37m[1m╔══════════════════════════════════════════════════════════════════════════╗[0m
+[42m[37m[1m║         ⚡ EXECUÇÃO NO SUPERDOM — 1 CLIQUE (SEM DIGITAR NADA) ⚡         ║[0m
+[42m[37m[1m╠══════════════════════════════════════════════════════════════════════════╣[0m
+[42m[37m[1m║  👉 CLIQUE NA COLUNA : [33m[1mCOMPRA (COLUNA AZUL)                           [37m[1m║[0m
+[42m[37m[1m║  👉 PREÇO DO TICK    : [33m[1m>>>   5.920,50   <<<[37m[1m (NÍVEL EXATO DE ENTRADA)    ║[0m
+[42m[37m[1m║  ESTRATÉGIA OCO      : Stop 10 ticks (5.915,50) | Alvo 16 ticks (5.928,50) ║[0m
+[42m[37m[1m║  QUANTIDADE          : CONTRATOS FIXOS PRÉ-CONFIGURADOS NO DOM           ║[0m
+[42m[37m[1m╚══════════════════════════════════════════════════════════════════════════╝[0m
+[36m[2m==================================================================[0m
+[37m[1m1. COMANDO DE EXECUÇÃO:[0m
+  * AÇÃO NO SUPERDOM            : [32m[1m>>> COMPRA <<<[0m
+  * ENTRADA                     : [36m[1m5.920,50[0m
+  * GATILHO PENDENTE OU CONFIRMADO: CONFIRMADO
+  * STOP EM PREÇO E PONTOS      : [31m[1m5.915,50 (5.00 pontos)[0m
+  * ALVOS EM PREÇO E PONTOS     : [32m[1m5.928,50 (8.00 pontos)[0m
+  * STATUS                      : [30m[42m[1m CONFIRMADO [0m
+  * SCORE SMC INSTITUCIONAL     : 75/100
+  * OBSTÁCULOS / PASSAGEM       : [33m[1m[ALERTA] OBSTÁCULO INSTITUCIONAL: Resistência FVG de 10m em 5.914,00 - 5.927,00 (50% CE: 5.920,50) a 0.00 pts da entrada (no caminho do alvo); [ALERTA] OBSTÁCULO INSTITUCIONAL: Resistência FVG de 10m em 5.914,50 - 5.920,50 (50% CE: 5.917,50) a 0.00 pts da entrada (no caminho do alvo); [ALERTA] OBSTÁCULO INSTITUCIONAL: Resistência FVG de 5m em 5.919,00 - 5.930,50 (50% CE: 5.924,75) a 0.00 pts da entrada (no caminho do alvo); [ALERTA] OBSTÁCULO INSTITUCIONAL: Resistência FVG de 5m em 5.919,00 - 5.921,00 (50% CE: 5.920,00) a 0.00 pts da entrada (no caminho do alvo)[0m
+======================================================================
+[RADAR FVG ANTECIPADO] - MINI-DÓLAR B3 SE APROXIMANDO DE ZONA DE LIQUIDEZ
+======================================================================
+ Preço Atual       : 5.920,50
+ Timeframe do FVG  : 10 Minutos (Aberto / Não Liquidado)
+ Direção / Ação    : [1;91m[VENDA - RESISTÊNCIA][0m
+ Início da Zona    : 5.914,00 (Testando Zona | Faltam 0.00 pts p/ 50% CE)
+ [1;93mPonto de 50% (CE)[0m : [1;91m5.920,50 (VENDA)[0m [1;93m[IMINÊNCIA DE TOQUE NO 50% CE - PREPARAR CLIQUE][0m
+ Fim da Zona       : 5.927,00
+ Objetivo Estimado : Reversão de 5.00 a 8.00 pontos
+======================================================================
+[37m[1m3. CONFIRMAÇÃO DE FLUXO & BOOK (TAPE READING):[0m
+  * TIMES & TRADES:[0m
+[32m[1m- Agressão compradora: 12,384 contratos[0m
+[31m[1m- Agressão vendedora: 615 contratos[0m
+- Janela de cálculo: 300 segundos
+- [34m[1mDELTA[0m: [32m[1m+11.769 contratos[0m
+[38;5;208m[1m- Reação do preço: Deslocamento de [32m[1m+4.0[38;5;208m[1m pontos[0m
+- [34m[1mGrandes Execuções:[0m
+  [31m[1m100ct@5.921,0 (SELL)[0m
+  [31m[1m56ct@5.920,5 (SELL)[0m
+  [31m[1m41ct@5.920,0 (SELL)[0m
+- [34m[1mPossível Absorção:[0m [32m[1mAgressão com Continuidade Compradora (Delta positivo acompanhado de avanço do preço)[0m
+- Agentes, quando disponíveis: Identificados nos negócios registrados
+- Origem institucional: não confirmada, salvo evidência específica.
+  [37m[1mBOOK:[0m
+    - Comportamento observado   : Nenhum snapshot de livro recebido até o momento
+    - Métricas                  : Spread: N/D pts | Imbalance Top5: N/D
+    - Possível blefe ou evidência insuficiente: Análise indisponível por limitação dos dados
+    - Limitações                : Feed de profundidade de mercado L2 ausente ou não configurado; Impossível verificar ordens individuais sem identificador estável; Cancelamentos rápidos não rastreáveis sem eventos atômicos da B3
+[36m[2m==================================================================[0m

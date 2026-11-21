@@ -1,0 +1,129 @@
+﻿session_date;entry_time;exit_time;setup_name;direction;entry_price;exit_price;result;points_bruto;points_liquido;pnl_bruto_1ct;pnl_liq_1ct;pnl_liq_custom;duration_min
+01/10/2026;09:01;11:01;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;168580.0;168980.0;ALVO;400.0;395.0;80.0;78.4;78.4;120
+01/10/2026;11:01;13:48;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;168950.0;168700.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;167
+01/10/2026;13:48;14:21;Venda com Reversão Confirmada (CHoCH 5m);VENDA;168705.0;168305.0;ALVO;400.0;395.0;80.0;78.4;78.4;33
+01/10/2026;14:21;15:21;Venda com Reversão Confirmada (CHoCH 5m);VENDA;168330.0;167930.0;ALVO;400.0;395.0;80.0;78.4;78.4;60
+01/10/2026;15:21;16:09;Venda com Reversão Confirmada (CHoCH 5m);VENDA;167960.0;167560.0;ALVO;400.0;395.0;80.0;78.4;78.4;48
+01/10/2026;16:09;17:00;Venda com Reversão Confirmada (CHoCH 5m);VENDA;167600.0;167285.0;ZERAGEM (GAIN);315.0;310.0;63.0;61.4;61.4;51
+02/10/2026;09:01;09:40;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168695.0;168295.0;ALVO;400.0;395.0;80.0;78.4;78.4;39
+02/10/2026;09:40;11:35;Venda de Rompimento de Fundo com Continuidade (Breakdown 10m);VENDA;168350.0;168600.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;115
+02/10/2026;11:35;14:35;Compra com Reversão Confirmada (CHoCH 10m);COMPRA;168550.0;168950.0;ALVO;400.0;395.0;80.0;78.4;78.4;180
+02/10/2026;14:35;15:22;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;168915.0;169315.0;ALVO;400.0;395.0;80.0;78.4;78.4;47
+02/10/2026;15:22;16:03;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169275.0;169675.0;ALVO;400.0;395.0;80.0;78.4;78.4;41
+02/10/2026;16:03;16:40;Operação no Extremo Superior do Caixote (5m);VENDA;169625.0;169875.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;37
+02/10/2026;16:40;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169850.0;169920.0;ZERAGEM (GAIN);70.0;65.0;14.0;12.4;12.4;20
+05/10/2026;09:01;09:25;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168495.0;168745.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;24
+05/10/2026;09:25;13:53;Compra de Rompimento de Topo com Continuidade (Breakout 5m);COMPRA;168720.0;169120.0;ALVO;400.0;395.0;80.0;78.4;78.4;268
+05/10/2026;13:53;14:43;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;169090.0;169490.0;ALVO;400.0;395.0;80.0;78.4;78.4;50
+05/10/2026;14:43;15:31;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;169470.0;169870.0;ALVO;400.0;395.0;80.0;78.4;78.4;48
+05/10/2026;15:31;16:26;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;169830.0;170230.0;ALVO;400.0;395.0;80.0;78.4;78.4;55
+05/10/2026;16:26;17:00;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;170180.0;170450.0;ZERAGEM (GAIN);270.0;265.0;54.0;52.4;52.4;34
+06/10/2026;09:01;14:37;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168830.0;168430.0;ALVO;400.0;395.0;80.0;78.4;78.4;336
+06/10/2026;14:37;15:28;Operação Longa após Sweep em 30m;VENDA;168440.0;168040.0;ALVO;400.0;395.0;80.0;78.4;78.4;51
+06/10/2026;15:28;16:13;Operação Longa após Sweep em 30m;VENDA;168080.0;167680.0;ALVO;400.0;395.0;80.0;78.4;78.4;45
+06/10/2026;16:13;17:00;Venda com Reversão Confirmada (CHoCH 5m);VENDA;167700.0;167490.0;ZERAGEM (GAIN);210.0;205.0;42.0;40.4;40.4;47
+07/10/2026;09:01;13:39;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;169130.0;169530.0;ALVO;400.0;395.0;80.0;78.4;78.4;278
+07/10/2026;13:39;14:24;Compra de Rompimento Estrutural (BOS 5m / Breakout com Continuidade);COMPRA;169495.0;169895.0;ALVO;400.0;395.0;80.0;78.4;78.4;45
+07/10/2026;14:24;15:09;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169855.0;170255.0;ALVO;400.0;395.0;80.0;78.4;78.4;45
+07/10/2026;15:09;15:52;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170220.0;170620.0;ALVO;400.0;395.0;80.0;78.4;78.4;43
+07/10/2026;15:52;16:31;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170595.0;170995.0;ALVO;400.0;395.0;80.0;78.4;78.4;39
+07/10/2026;16:31;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170965.0;171175.0;ZERAGEM (GAIN);210.0;205.0;42.0;40.4;40.4;29
+08/10/2026;09:01;09:39;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169305.0;168905.0;ALVO;400.0;395.0;80.0;78.4;78.4;38
+08/10/2026;09:39;12:45;Venda de Rompimento de Fundo com Continuidade (Breakdown 5m);VENDA;168915.0;169165.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;186
+08/10/2026;12:45;14:35;Compra de Rompimento Estrutural (BOS 10m / Breakout com Continuidade);COMPRA;169130.0;169530.0;ALVO;400.0;395.0;80.0;78.4;78.4;110
+08/10/2026;14:35;15:19;Compra de Rompimento Estrutural (BOS 5m / Breakout com Continuidade);COMPRA;169525.0;169925.0;ALVO;400.0;395.0;80.0;78.4;78.4;44
+08/10/2026;15:19;16:13;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169925.0;170325.0;ALVO;400.0;395.0;80.0;78.4;78.4;54
+08/10/2026;16:13;16:50;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170290.0;170690.0;ALVO;400.0;395.0;80.0;78.4;78.4;37
+08/10/2026;16:50;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170645.0;170740.0;ZERAGEM (GAIN);95.0;90.0;19.0;17.4;17.4;10
+09/10/2026;09:01;09:19;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169510.0;169760.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;18
+09/10/2026;09:19;10:14;Compra de Rompimento de Topo com Continuidade (Breakout 2m);COMPRA;169730.0;170130.0;ALVO;400.0;395.0;80.0;78.4;78.4;55
+09/10/2026;10:14;13:52;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170120.0;169870.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;218
+09/10/2026;13:52;15:00;Operação Longa após Sweep em 15m;VENDA;169910.0;169510.0;ALVO;400.0;395.0;80.0;78.4;78.4;68
+09/10/2026;15:00;15:46;Venda com Reversão Confirmada (CHoCH 10m);VENDA;169520.0;169120.0;ALVO;400.0;395.0;80.0;78.4;78.4;46
+09/10/2026;15:46;16:39;Venda com Reversão Confirmada (CHoCH 10m);VENDA;169150.0;168750.0;ALVO;400.0;395.0;80.0;78.4;78.4;53
+09/10/2026;16:39;17:00;Compra após Falso Rompimento da Mínima (Sweep 1m);COMPRA;168800.0;168635.0;ZERAGEM (LOSS);-165.0;-170.0;-33.0;-34.6;-34.6;21
+13/10/2026;09:01;14:11;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169250.0;169500.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;310
+13/10/2026;14:11;14:48;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169470.0;169870.0;ALVO;400.0;395.0;80.0;78.4;78.4;37
+13/10/2026;14:48;15:27;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169845.0;170245.0;ALVO;400.0;395.0;80.0;78.4;78.4;39
+13/10/2026;15:27;15:59;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170235.0;170635.0;ALVO;400.0;395.0;80.0;78.4;78.4;32
+13/10/2026;15:59;16:36;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170600.0;171000.0;ALVO;400.0;395.0;80.0;78.4;78.4;37
+13/10/2026;16:36;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170960.0;171210.0;ZERAGEM (GAIN);250.0;245.0;50.0;48.4;48.4;24
+14/10/2026;09:01;10:05;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;169140.0;169540.0;ALVO;400.0;395.0;80.0;78.4;78.4;64
+14/10/2026;10:05;12:33;Compra de Rompimento de Topo com Continuidade (Breakout 2m);COMPRA;169510.0;169260.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;148
+14/10/2026;12:33;13:44;Venda com Reversão Confirmada (CHoCH 5m);VENDA;169300.0;169550.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;71
+14/10/2026;13:44;14:44;Compra de Continuidade em Tendência de Alta;COMPRA;169510.0;169910.0;ALVO;400.0;395.0;80.0;78.4;78.4;60
+14/10/2026;14:44;15:34;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169885.0;170285.0;ALVO;400.0;395.0;80.0;78.4;78.4;50
+14/10/2026;15:34;16:26;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170265.0;170665.0;ALVO;400.0;395.0;80.0;78.4;78.4;52
+14/10/2026;16:26;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170635.0;170775.0;ZERAGEM (GAIN);140.0;135.0;28.0;26.4;26.4;34
+15/10/2026;09:01;09:39;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169145.0;168745.0;ALVO;400.0;395.0;80.0;78.4;78.4;38
+15/10/2026;09:39;11:07;Venda de Rompimento de Fundo com Continuidade (Breakdown 5m);VENDA;168795.0;169045.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;88
+15/10/2026;11:07;14:05;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169010.0;168760.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;178
+15/10/2026;14:05;14:44;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;168810.0;168410.0;ALVO;400.0;395.0;80.0;78.4;78.4;39
+15/10/2026;14:44;15:28;Venda com Reversão Confirmada (CHoCH 10m);VENDA;168440.0;168040.0;ALVO;400.0;395.0;80.0;78.4;78.4;44
+15/10/2026;15:28;16:17;Venda com Reversão Confirmada (CHoCH 10m);VENDA;168050.0;167650.0;ALVO;400.0;395.0;80.0;78.4;78.4;49
+15/10/2026;16:17;17:00;Venda com Reversão Confirmada (CHoCH 10m);VENDA;167675.0;167320.0;ZERAGEM (GAIN);355.0;350.0;71.0;69.4;69.4;43
+16/10/2026;09:01;09:25;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169185.0;169435.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;24
+16/10/2026;09:25;13:33;Compra de Rompimento de Topo com Continuidade (Breakout 5m);COMPRA;169390.0;169790.0;ALVO;400.0;395.0;80.0;78.4;78.4;248
+16/10/2026;13:36;14:02;Operação Longa após Sweep em 30m;VENDA;169745.0;169995.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;26
+16/10/2026;14:02;15:00;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;169960.0;170360.0;ALVO;400.0;395.0;80.0;78.4;78.4;58
+16/10/2026;15:00;15:48;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;170320.0;170720.0;ALVO;400.0;395.0;80.0;78.4;78.4;48
+16/10/2026;15:48;16:31;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;170655.0;171055.0;ALVO;400.0;395.0;80.0;78.4;78.4;43
+16/10/2026;16:31;17:00;Compra com Reversão Confirmada (CHoCH 5m);COMPRA;171005.0;171295.0;ZERAGEM (GAIN);290.0;285.0;58.0;56.4;56.4;29
+19/10/2026;09:01;09:44;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168860.0;168460.0;ALVO;400.0;395.0;80.0;78.4;78.4;43
+19/10/2026;09:44;14:30;Venda de Rompimento de Fundo com Continuidade (Breakdown 5m);VENDA;168510.0;168760.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;286
+19/10/2026;14:30;15:12;Operação Longa após Sweep em 30m;COMPRA;168715.0;169115.0;ALVO;400.0;395.0;80.0;78.4;78.4;42
+19/10/2026;15:12;15:53;Operação Longa após Sweep em 30m;COMPRA;169095.0;169495.0;ALVO;400.0;395.0;80.0;78.4;78.4;41
+19/10/2026;15:53;16:32;Operação Longa após Sweep em 30m;COMPRA;169455.0;169855.0;ALVO;400.0;395.0;80.0;78.4;78.4;39
+19/10/2026;16:32;17:00;Compra com Reversão Confirmada (CHoCH 15m);COMPRA;169800.0;169945.0;ZERAGEM (GAIN);145.0;140.0;29.0;27.4;27.4;28
+20/10/2026;09:01;14:21;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;168615.0;168365.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;320
+20/10/2026;14:21;14:59;Venda com Reversão Confirmada (CHoCH 2m);VENDA;168380.0;167980.0;ALVO;400.0;395.0;80.0;78.4;78.4;38
+20/10/2026;14:59;15:51;Venda com Reversão Confirmada (CHoCH 2m);VENDA;168005.0;167605.0;ALVO;400.0;395.0;80.0;78.4;78.4;52
+20/10/2026;15:51;16:40;Venda com Reversão Confirmada (CHoCH 10m);VENDA;167640.0;167240.0;ALVO;400.0;395.0;80.0;78.4;78.4;49
+20/10/2026;16:40;17:00;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;167280.0;167205.0;ZERAGEM (LOSS);-75.0;-80.0;-15.0;-16.6;-16.6;20
+21/10/2026;09:01;14:09;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168630.0;168880.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;308
+21/10/2026;14:09;15:07;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;168840.0;169240.0;ALVO;400.0;395.0;80.0;78.4;78.4;58
+21/10/2026;15:07;15:50;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169210.0;169610.0;ALVO;400.0;395.0;80.0;78.4;78.4;43
+21/10/2026;15:50;16:34;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169570.0;169970.0;ALVO;400.0;395.0;80.0;78.4;78.4;44
+21/10/2026;16:34;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169945.0;170120.0;ZERAGEM (GAIN);175.0;170.0;35.0;33.4;33.4;26
+22/10/2026;09:01;09:38;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;168495.0;168895.0;ALVO;400.0;395.0;80.0;78.4;78.4;37
+22/10/2026;09:38;14:10;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;168850.0;169250.0;ALVO;400.0;395.0;80.0;78.4;78.4;272
+22/10/2026;14:10;15:04;Venda após Falso Rompimento da Máxima (Sweep 1m);VENDA;169210.0;169460.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;54
+22/10/2026;15:04;15:51;Compra com Reversão Confirmada (CHoCH 10m);COMPRA;169455.0;169855.0;ALVO;400.0;395.0;80.0;78.4;78.4;47
+22/10/2026;15:51;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169820.0;170145.0;ZERAGEM (GAIN);325.0;320.0;65.0;63.4;63.4;69
+23/10/2026;09:01;09:41;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;168860.0;168460.0;ALVO;400.0;395.0;80.0;78.4;78.4;40
+23/10/2026;09:41;10:59;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;168485.0;168735.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;78
+23/10/2026;11:05;13:46;Compra de Rompimento Estrutural (BOS 5m / Breakout com Continuidade);COMPRA;168740.0;168490.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;161
+23/10/2026;13:46;14:21;Operação no Extremo Inferior do Caixote (5m);COMPRA;168525.0;168275.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;35
+23/10/2026;14:21;15:07;Venda com Reversão Confirmada (CHoCH 15m);VENDA;168315.0;167915.0;ALVO;400.0;395.0;80.0;78.4;78.4;46
+23/10/2026;15:07;16:01;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;167940.0;167540.0;ALVO;400.0;395.0;80.0;78.4;78.4;54
+23/10/2026;16:01;16:57;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;167590.0;167190.0;ALVO;400.0;395.0;80.0;78.4;78.4;56
+23/10/2026;16:57;17:00;Compra após Falso Rompimento da Mínima (Sweep 1m);COMPRA;167230.0;167185.0;ZERAGEM (LOSS);-45.0;-50.0;-9.0;-10.6;-10.6;3
+26/10/2026;09:01;09:35;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;169205.0;169605.0;ALVO;400.0;395.0;80.0;78.4;78.4;34
+26/10/2026;09:35;11:53;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169560.0;169960.0;ALVO;400.0;395.0;80.0;78.4;78.4;138
+26/10/2026;11:53;14:45;Compra de Rompimento Estrutural (BOS 10m / Breakout com Continuidade);COMPRA;169910.0;170310.0;ALVO;400.0;395.0;80.0;78.4;78.4;172
+26/10/2026;14:45;15:20;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170260.0;170660.0;ALVO;400.0;395.0;80.0;78.4;78.4;35
+26/10/2026;15:20;16:10;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;170620.0;171020.0;ALVO;400.0;395.0;80.0;78.4;78.4;50
+26/10/2026;16:10;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;171010.0;171295.0;ZERAGEM (GAIN);285.0;280.0;57.0;55.4;55.4;50
+27/10/2026;09:01;09:44;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169520.0;169120.0;ALVO;400.0;395.0;80.0;78.4;78.4;43
+27/10/2026;09:44;13:29;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;169170.0;169570.0;ALVO;400.0;395.0;80.0;78.4;78.4;225
+27/10/2026;13:29;14:18;Compra de Rompimento Estrutural (BOS 5m / Breakout com Continuidade);COMPRA;169530.0;169930.0;ALVO;400.0;395.0;80.0;78.4;78.4;49
+27/10/2026;14:18;15:05;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169880.0;170280.0;ALVO;400.0;395.0;80.0;78.4;78.4;47
+27/10/2026;15:05;16:28;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;170225.0;170625.0;ALVO;400.0;395.0;80.0;78.4;78.4;83
+27/10/2026;16:28;17:00;Compra de Rompimento Estrutural (BOS 5m / Breakout com Continuidade);COMPRA;170595.0;170765.0;ZERAGEM (GAIN);170.0;165.0;34.0;32.4;32.4;32
+28/10/2026;09:01;10:07;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;169720.0;170120.0;ALVO;400.0;395.0;80.0;78.4;78.4;66
+28/10/2026;10:07;13:42;Compra de Rompimento de Topo com Continuidade (Breakout 10m);COMPRA;170075.0;169825.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;215
+28/10/2026;13:42;14:26;Operação Longa após Sweep em 15m;VENDA;169870.0;169470.0;ALVO;400.0;395.0;80.0;78.4;78.4;44
+28/10/2026;14:26;15:28;Operação Longa após Sweep em 15m;VENDA;169495.0;169095.0;ALVO;400.0;395.0;80.0;78.4;78.4;62
+28/10/2026;15:28;16:23;Venda com Reversão Confirmada (CHoCH 10m);VENDA;169120.0;168720.0;ALVO;400.0;395.0;80.0;78.4;78.4;55
+28/10/2026;16:23;17:00;Venda com Reversão Confirmada (CHoCH 10m);VENDA;168760.0;168520.0;ZERAGEM (GAIN);240.0;235.0;48.0;46.4;46.4;37
+29/10/2026;09:01;13:56;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169615.0;169865.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;295
+29/10/2026;13:56;14:43;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169820.0;170220.0;ALVO;400.0;395.0;80.0;78.4;78.4;47
+29/10/2026;14:43;15:53;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170195.0;170595.0;ALVO;400.0;395.0;80.0;78.4;78.4;70
+29/10/2026;15:53;16:55;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170565.0;170965.0;ALVO;400.0;395.0;80.0;78.4;78.4;62
+29/10/2026;16:55;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170915.0;170950.0;ZERAGEM (GAIN);35.0;30.0;7.0;5.4;5.4;5
+30/10/2026;09:01;09:40;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;169670.0;169920.0;STOP;-250.0;-255.0;-50.0;-51.6;-51.6;39
+30/10/2026;09:40;13:36;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;169915.0;170315.0;ALVO;400.0;395.0;80.0;78.4;78.4;236
+30/10/2026;13:36;14:38;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170280.0;170680.0;ALVO;400.0;395.0;80.0;78.4;78.4;62
+30/10/2026;14:38;15:29;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170635.0;171035.0;ALVO;400.0;395.0;80.0;78.4;78.4;51
+30/10/2026;15:29;16:18;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;171000.0;171400.0;ALVO;400.0;395.0;80.0;78.4;78.4;49
+30/10/2026;16:18;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;171370.0;171680.0;ZERAGEM (GAIN);310.0;305.0;62.0;60.4;60.4;42

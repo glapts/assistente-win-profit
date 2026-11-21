@@ -1,0 +1,21 @@
+[
+  {
+    "id": "SIG_0BFB97DA",
+    "timestamp": "2026-11-21T10:20:00",
+    "ativo": "WINZ26",
+    "direction": "LONG",
+    "entry_price": 170100.0,
+    "stop_loss": 169850.0,
+    "take_profit": 170500.0,
+    "risk_points": 250.0,
+    "gain_points": 400.0,
+    "rr_ratio": 1.6,
+    "zone_id": "FVG_60M_10_SWEEP_170100",
+    "setup_name": "CONTINUIDADE FVG (FVG_60M_10_SWEEP_170100)",
+    "regime": "DISCOUNT",
+    "confidence_score": 0.77,
+    "execution_mode": "COPILOT",
+    "institutional_volume_detected": 120,
+    "explanation": "Entrada de LONG em 170100. Regime: DISCOUNT (50% Eq: 171205). Absorção de 120 contratos confirmada na defesa."
+  }
+]

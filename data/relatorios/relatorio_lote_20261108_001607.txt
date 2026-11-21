@@ -1,0 +1,81 @@
+================================================================================
+  RELATÓRIO DE REPLAY EM LOTE & BACKTEST MULTI-SESSÕES (SMC + TAPE READING)
+  Ativo: WINZ26 (Mini-Índice B3) | Modo: FIXO
+  Custos Computados: Slippage 5.0 pts/trade + Taxas B3 R$ 0.60/trade
+================================================================================
+
+1. RESUMO EXECUTIVO DIÁRIO:
+--------------------------------------------------------------------------------
+   Data    | Barras | Trades | Vitórias | Derrotas |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+01/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1635 pts | R$    323.40
+02/10/2026 |  480   |   7    |    5     |    2     |  71.4% | +    1135 pts | R$    222.80
+05/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1590 pts | R$    314.40
+06/10/2026 |  480   |   4    |    4     |    0     | 100.0% | +    1390 pts | R$    275.60
+07/10/2026 |  480   |   6    |    6     |    0     | 100.0% | +    2180 pts | R$    432.40
+08/10/2026 |  480   |   7    |    6     |    1     |  85.7% | +    1810 pts | R$    357.80
+09/10/2026 |  480   |   7    |    4     |    3     |  57.1% | +     900 pts | R$    175.80
+13/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1570 pts | R$    310.40
+14/10/2026 |  480   |   7    |    5     |    2     |  71.4% | +    1205 pts | R$    236.80
+15/10/2026 |  480   |   7    |    5     |    2     |  71.4% | +    1420 pts | R$    279.80
+16/10/2026 |  480   |   7    |    5     |    2     |  71.4% | +    1355 pts | R$    266.80
+19/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1465 pts | R$    289.40
+20/10/2026 |  480   |   5    |    3     |    2     |  60.0% | +     850 pts | R$    167.00
+21/10/2026 |  480   |   5    |    4     |    1     |  80.0% | +    1100 pts | R$    217.00
+22/10/2026 |  480   |   5    |    4     |    1     |  80.0% | +    1250 pts | R$    247.00
+23/10/2026 |  480   |   8    |    4     |    4     |  50.0% | +     765 pts | R$    148.20
+26/10/2026 |  480   |   6    |    6     |    0     | 100.0% | +    2255 pts | R$    447.40
+27/10/2026 |  480   |   6    |    6     |    0     | 100.0% | +    2140 pts | R$    424.40
+28/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1560 pts | R$    308.40
+29/10/2026 |  480   |   5    |    4     |    1     |  80.0% | +     960 pts | R$    189.00
+30/10/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1630 pts | R$    322.40
+--------------------------------------------------------------------------------
+
+2. MÉTRICAS CONSOLIDADAS DE PERFORMANCE:
+--------------------------------------------------------------------------------
+Total de Pregões Testados     : 21 dias (21 Positivos | 0 Negativos | 0 Neutros)
+Taxa de Dias Lucrativos        : 100.0%
+Total de Operações Disparadas  : 128 trades (101 Alvos / 27 Stops)
+Média de Trades por Pregão    : 6.1 trades/dia
+Taxa de Acerto Global (WinRate): 78.9% (Breakeven R:R 1.6 é 38.5%)
+Saldo Total em Pontos (Bruto)  : +30,805 pontos
+Saldo Total em Pontos (Líquido): +30,165 pontos (com 5.0 pts de derrapagem)
+Resultado Líquido (1 contrato) : R$ +5,956.20
+Resultado Líquido ( 1 contratos): R$ +5,956.20
+Fator de Lucro (Profit Factor) : 5.58
+Relação Payoff (Gain / Loss)   : 1.52
+Expectativa Matemática / Trade : +235.7 pontos | R$ +46.53 por trade
+Drawdown Máximo Estimado       : R$ 154.80 (774 pts)
+--------------------------------------------------------------------------------
+
+3. DETALHAMENTO DE PERFORMANCE POR SETUP SMC:
+--------------------------------------------------------------------------------
+Setup SMC                              | Trades |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+Compra de Rompimento Estrutural (BOS 2 |   39   |  92.3% | +   11350 pts | R$   2246.60
+Compra por Defesa Institucional no Fun |   12   |  83.3% | +    3615 pts | R$    715.80
+Venda com Reversão Confirmada (CHoCH 1 |   8    | 100.0% | +    2955 pts | R$    586.20
+Compra com Reversão Confirmada (CHoCH  |   8    | 100.0% | +    2920 pts | R$    579.20
+Operação Longa após Sweep em 30m       |   6    |  83.3% | +    1720 pts | R$    340.40
+Venda com Reversão Confirmada (CHoCH 5 |   6    |  83.3% | +    1445 pts | R$    285.40
+Operação Longa após Sweep em 15m       |   3    | 100.0% | +    1185 pts | R$    235.20
+Compra de Rompimento Estrutural (BOS 5 |   5    |  80.0% | +    1095 pts | R$    216.00
+Venda por Defesa Institucional no Topo |   14   |  50.0% | +     980 pts | R$    187.60
+Venda de Rompimento Estrutural (BOS 2m |   4    |  75.0% | +     930 pts | R$    183.60
+Compra com Reversão Confirmada (CHoCH  |   2    | 100.0% | +     790 pts | R$    156.80
+Compra de Rompimento de Topo com Conti |   2    | 100.0% | +     790 pts | R$    156.80
+Compra de Rompimento Estrutural (BOS 1 |   2    | 100.0% | +     790 pts | R$    156.80
+Venda com Reversão Confirmada (CHoCH 2 |   2    | 100.0% | +     790 pts | R$    156.80
+Compra de Continuidade em Tendência de |   1    | 100.0% | +     395 pts | R$     78.40
+Venda com Reversão Confirmada (CHoCH 1 |   1    | 100.0% | +     395 pts | R$     78.40
+Compra de Rompimento de Topo com Conti |   2    |  50.0% | +     140 pts | R$     26.80
+Compra com Reversão Confirmada (CHoCH  |   1    | 100.0% | +     140 pts | R$     27.40
+Compra após Falso Rompimento da Mínima |   2    |   0.0% |     -220 pts | R$    -45.20
+Venda de Rompimento de Fundo com Conti |   1    |   0.0% |     -255 pts | R$    -51.60
+Operação no Extremo Superior do Caixot |   1    |   0.0% |     -255 pts | R$    -51.60
+Venda após Falso Rompimento da Máxima  |   1    |   0.0% |     -255 pts | R$    -51.60
+Operação no Extremo Inferior do Caixot |   1    |   0.0% |     -255 pts | R$    -51.60
+Compra de Rompimento de Topo com Conti |   1    |   0.0% |     -255 pts | R$    -51.60
+Venda de Rompimento de Fundo com Conti |   3    |   0.0% |     -765 pts | R$   -154.80
+--------------------------------------------------------------------------------
+================================================================================

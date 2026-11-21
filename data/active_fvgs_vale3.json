@@ -1,0 +1,189 @@
+{
+  "240": [],
+  "60": [
+    {
+      "fvg_id": "3f3dccc3cc824d6a",
+      "timeframe": 60,
+      "direction": "BULLISH",
+      "top": 63.6,
+      "bottom": 63.41,
+      "ce_50": 63.504999999999995,
+      "formed_time": "2026-11-06T15:00:16.331312-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    }
+  ],
+  "30": [
+    {
+      "fvg_id": "5e1eed4e95fae6f0",
+      "timeframe": 30,
+      "direction": "BEARISH",
+      "top": 64.97,
+      "bottom": 64.54,
+      "ce_50": 64.755,
+      "formed_time": "2026-11-11T14:30:30.074698-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "eb15eed629476d61",
+      "timeframe": 30,
+      "direction": "BEARISH",
+      "top": 63.91,
+      "bottom": 63.81,
+      "ce_50": 63.86,
+      "formed_time": "2026-11-13T12:00:37.183222-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "32dd3e44d3ad171a",
+      "timeframe": 30,
+      "direction": "BULLISH",
+      "top": 63.68,
+      "bottom": 63.41,
+      "ce_50": 63.545,
+      "formed_time": "2026-11-06T13:30:09.251885-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    }
+  ],
+  "15": [
+    {
+      "fvg_id": "c2f185d9d968764d",
+      "timeframe": 15,
+      "direction": "BULLISH",
+      "top": 63.26,
+      "bottom": 62.88,
+      "ce_50": 63.07,
+      "formed_time": "2026-11-06T12:30:51.689446-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "a16e314fade9dfa6",
+      "timeframe": 15,
+      "direction": "BEARISH",
+      "top": 65.12,
+      "bottom": 64.77,
+      "ce_50": 64.945,
+      "formed_time": "2026-11-11T12:15:18.266928-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "a401377c17dce668",
+      "timeframe": 15,
+      "direction": "BULLISH",
+      "top": 65.98,
+      "bottom": 65.87,
+      "ce_50": 65.92500000000001,
+      "formed_time": "2026-11-09T18:30:57.589596-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    }
+  ],
+  "10": [
+    {
+      "fvg_id": "b805f7b48838f787",
+      "timeframe": 10,
+      "direction": "BULLISH",
+      "top": 63.02,
+      "bottom": 62.63,
+      "ce_50": 62.825,
+      "formed_time": "2026-11-06T12:00:01.457100-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "8453ca8ee290b5b8",
+      "timeframe": 10,
+      "direction": "BEARISH",
+      "top": 64.97,
+      "bottom": 64.68,
+      "ce_50": 64.825,
+      "formed_time": "2026-11-11T11:40:00.407951-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "5a5cc64f2d7b58d2",
+      "timeframe": 10,
+      "direction": "BULLISH",
+      "top": 64.87,
+      "bottom": 63.62,
+      "ce_50": 64.245,
+      "formed_time": "2026-11-09T10:40:35.132325-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "f2b312fc5366dbd4",
+      "timeframe": 10,
+      "direction": "BULLISH",
+      "top": 63.74,
+      "bottom": 63.67,
+      "ce_50": 63.705,
+      "formed_time": "2026-11-12T11:10:01.756462-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    }
+  ],
+  "5": [
+    {
+      "fvg_id": "3ee80235737147fb",
+      "timeframe": 5,
+      "direction": "BEARISH",
+      "top": 64.14,
+      "bottom": 64.04,
+      "ce_50": 64.09,
+      "formed_time": "2026-11-13T11:10:48.989674-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "a95cac9d48ae65b5",
+      "timeframe": 5,
+      "direction": "BEARISH",
+      "top": 66.17,
+      "bottom": 66.08,
+      "ce_50": 66.125,
+      "formed_time": "2026-11-09T16:55:16.619926-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "2cecbed1723f6cf5",
+      "timeframe": 5,
+      "direction": "BULLISH",
+      "top": 62.81,
+      "bottom": 62.63,
+      "ce_50": 62.72,
+      "formed_time": "2026-11-06T11:50:32.418544-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "e7eb264cfc306d3e",
+      "timeframe": 5,
+      "direction": "BEARISH",
+      "top": 64.93,
+      "bottom": 64.88,
+      "ce_50": 64.905,
+      "formed_time": "2026-11-10T17:25:43.827984-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    },
+    {
+      "fvg_id": "079c86047478e55b",
+      "timeframe": 5,
+      "direction": "BEARISH",
+      "top": 64.43,
+      "bottom": 63.67,
+      "ce_50": 64.05000000000001,
+      "formed_time": "2026-11-12T10:15:27.469782-03:00",
+      "is_liquidated": true,
+      "tested_count": 0
+    }
+  ]
+}

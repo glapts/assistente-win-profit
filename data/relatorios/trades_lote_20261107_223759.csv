@@ -1,0 +1,30 @@
+﻿session_date;entry_time;exit_time;setup_name;direction;entry_price;exit_price;result;points_bruto;points_liquido;pnl_bruto_1ct;pnl_liq_1ct;pnl_liq_custom;duration_min
+02/11/2026;09:01;10:22;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;170410.0;170810.0;ALVO;400.0;395.0;80.0;78.4;392.0;81
+02/11/2026;10:22;14:27;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;170780.0;170530.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;245
+02/11/2026;14:27;15:02;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;170570.0;170170.0;ALVO;400.0;395.0;80.0;78.4;392.0;35
+02/11/2026;15:02;15:58;Venda com Reversão Confirmada (CHoCH 15m);VENDA;170205.0;169805.0;ALVO;400.0;395.0;80.0;78.4;392.0;56
+02/11/2026;15:58;16:51;Venda com Reversão Confirmada (CHoCH 15m);VENDA;169835.0;169435.0;ALVO;400.0;395.0;80.0;78.4;392.0;53
+02/11/2026;16:51;17:00;Venda com Reversão Confirmada (CHoCH 15m);VENDA;169490.0;169395.0;ZERAGEM (GAIN);95.0;90.0;19.0;17.4;87.0;9
+03/11/2026;09:01;13:48;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;170260.0;169860.0;ALVO;400.0;395.0;80.0;78.4;392.0;287
+03/11/2026;13:48;14:55;Compra após Falso Rompimento da Mínima (Sweep 1m);COMPRA;169905.0;170305.0;ALVO;400.0;395.0;80.0;78.4;392.0;67
+03/11/2026;14:55;15:45;Operação Longa após Sweep em 15m;COMPRA;170270.0;170670.0;ALVO;400.0;395.0;80.0;78.4;392.0;50
+03/11/2026;15:45;16:23;Compra com Reversão Confirmada (CHoCH 30m);COMPRA;170665.0;171065.0;ALVO;400.0;395.0;80.0;78.4;392.0;38
+03/11/2026;16:23;16:59;Compra com Reversão Confirmada (CHoCH 30m);COMPRA;171030.0;171430.0;ALVO;400.0;395.0;80.0;78.4;392.0;36
+03/11/2026;16:59;17:00;Compra de Rompimento Estrutural (BOS 2m / Breakout com Continuidade);COMPRA;171380.0;171395.0;ZERAGEM (GAIN);15.0;10.0;3.0;1.4;7.0;1
+04/11/2026;09:01;09:20;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;170415.0;170665.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;19
+04/11/2026;09:20;14:12;Compra de Rompimento de Topo com Continuidade (Breakout 2m);COMPRA;170635.0;170385.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;292
+04/11/2026;14:12;15:05;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;170430.0;170030.0;ALVO;400.0;395.0;80.0;78.4;392.0;53
+04/11/2026;15:05;15:34;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;170070.0;169820.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;29
+04/11/2026;15:34;16:19;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;169855.0;169455.0;ALVO;400.0;395.0;80.0;78.4;392.0;45
+04/11/2026;16:19;17:00;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;169490.0;169290.0;ZERAGEM (GAIN);200.0;195.0;40.0;38.4;192.0;41
+05/11/2026;09:01;09:34;Venda por Defesa Institucional no Topo (Tape Reading + Desbalanceamento 1m);VENDA;171230.0;170830.0;ALVO;400.0;395.0;80.0;78.4;392.0;33
+05/11/2026;09:34;12:56;Venda de Rompimento de Fundo com Continuidade (Breakdown 5m);VENDA;170860.0;170460.0;ALVO;400.0;395.0;80.0;78.4;392.0;202
+05/11/2026;12:56;14:42;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;170475.0;170725.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;106
+05/11/2026;14:42;15:06;Compra com Reversão Confirmada (CHoCH 2m);COMPRA;170710.0;171110.0;ALVO;400.0;395.0;80.0;78.4;392.0;24
+05/11/2026;15:06;16:12;Compra com Reversão Confirmada (CHoCH 2m);COMPRA;171080.0;171480.0;ALVO;400.0;395.0;80.0;78.4;392.0;66
+05/11/2026;16:12;17:00;Compra com Reversão Confirmada (CHoCH 10m);COMPRA;171460.0;171670.0;ZERAGEM (GAIN);210.0;205.0;42.0;40.4;202.0;48
+06/11/2026;09:01;11:29;Compra por Defesa Institucional no Fundo (Tape Reading + Desbalanceamento 1m);COMPRA;171585.0;171985.0;ALVO;400.0;395.0;80.0;78.4;392.0;148
+06/11/2026;11:29;14:18;Compra após Falso Rompimento da Mínima (Sweep 5m);COMPRA;171955.0;171705.0;STOP;-250.0;-255.0;-50.0;-51.6;-258.0;169
+06/11/2026;14:18;15:17;Venda de Rompimento Estrutural (BOS 2m / Breakdown com Continuidade);VENDA;171735.0;171335.0;ALVO;400.0;395.0;80.0;78.4;392.0;59
+06/11/2026;15:17;15:53;Venda com Reversão Confirmada (CHoCH 10m);VENDA;171390.0;170990.0;ALVO;400.0;395.0;80.0;78.4;392.0;36
+06/11/2026;15:53;17:00;Venda com Reversão Confirmada (CHoCH 10m);VENDA;171020.0;170700.0;ZERAGEM (GAIN);320.0;315.0;64.0;62.4;312.0;67

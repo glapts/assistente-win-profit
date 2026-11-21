@@ -1,0 +1,144 @@
+{
+  "versao_contrato": "2.0",
+  "ativo": "WINZ26",
+  "data_referencia": "2026-11-21",
+  "dealing_range": {
+    "topo_estrutural": 173850.0,
+    "fundo_estrutural": 168560.0,
+    "equilibrium_50": 171205.0
+  },
+  "zonas_fvg": [
+    {
+      "id": "FVG_60M_01_TOPO",
+      "tipo_original": "BEARISH",
+      "top": 173850.0,
+      "ce_50": 173750.0,
+      "bottom": 173650.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "FVG 13/nov. Se perder 173.850 com candle cheio de 5m e testar por baixo."
+    },
+    {
+      "id": "FVG_60M_02_172800",
+      "tipo_original": "BEARISH",
+      "top": 172900.0,
+      "ce_50": 172800.0,
+      "bottom": 172700.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "FVG topo 16 e 17/nov. Rejeitar com absorção e CHoCH no 2m/5m."
+    },
+    {
+      "id": "FVG_60M_03_BREAKER_172200",
+      "tipo_original": "BREAKER",
+      "top": 172300.0,
+      "ce_50": 172200.0,
+      "bottom": 172100.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Breaker/FVG 17/nov. Origem da queda da tarde."
+    },
+    {
+      "id": "FVG_60M_04_PULLBACK_171850",
+      "tipo_original": "BULLISH",
+      "top": 171950.0,
+      "ce_50": 171850.0,
+      "bottom": 171750.0,
+      "setup_primario": "CONTINUATION_BUY_IF_CONFIRMED",
+      "stop_sugerido_pts": 200.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Candle cheio 5m/15m acima de 171.750/171.850 segurando pullback por cima."
+    },
+    {
+      "id": "FVG_60M_05_MAX_171750",
+      "tipo_original": "BEARISH",
+      "top": 171800.0,
+      "ce_50": 171750.0,
+      "bottom": 171700.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Máxima da última hora de 17/nov (171.720-171.750). Rejeição com CHoCH 2m/5m."
+    },
+    {
+      "id": "FVG_60M_06_AJUSTE_171200",
+      "tipo_original": "BULLISH",
+      "top": 171300.0,
+      "ce_50": 171200.0,
+      "bottom": 171100.0,
+      "setup_primario": "CONTINUATION_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Abaixo do Ajuste até perda da tarde 17/nov. Absorver vendas >= 100 contratos."
+    },
+    {
+      "id": "FVG_60M_07_ROMP_171000",
+      "tipo_original": "BEARISH",
+      "top": 171100.0,
+      "ce_50": 171000.0,
+      "bottom": 170900.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "FVG 17/nov. Rompimento do fundo da tarde, venda no reteste."
+    },
+    {
+      "id": "FVG_60M_08_CE_170550",
+      "tipo_original": "BULLISH",
+      "top": 170650.0,
+      "ce_50": 170550.0,
+      "bottom": 170450.0,
+      "setup_primario": "CONTINUATION_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "50% FVG 16/nov. Absorver vendas >= 100 com CHoCH de alta."
+    },
+    {
+      "id": "FVG_60M_09_PISO_170450",
+      "tipo_original": "BEARISH",
+      "top": 170500.0,
+      "ce_50": 170450.0,
+      "bottom": 170400.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Piso do FVG. Candle cheio de 5m abaixo, venda no reteste."
+    },
+    {
+      "id": "FVG_60M_10_SWEEP_170100",
+      "tipo_original": "SWEEP_SSL",
+      "top": 170150.0,
+      "ce_50": 170100.0,
+      "bottom": 170050.0,
+      "setup_primario": "LIQUIDITY_SWEEP_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Sweep da mínima de 16/nov (170.100). Absorver vendas >= 100."
+    },
+    {
+      "id": "FVG_60M_11_BREAKDOWN_169950",
+      "tipo_original": "BEARISH",
+      "top": 170050.0,
+      "ce_50": 169950.0,
+      "bottom": 169850.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "Rompimento da mínima com candle cheio de 5m abaixo de 170.000, reteste."
+    }
+  ]
+}

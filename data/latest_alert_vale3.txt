@@ -1,0 +1,48 @@
+[36m[2m==================================================================[0m
+[37m[1mDATA/HORA:[0m 19/11/2026 16:38:13 (America/Sao_Paulo)
+[37m[1mATIVO/VENCIMENTO:[0m VALE3 (Vale S.A. (Ações B3))
+[37m[1mFONTE:[0m Nelogica ProfitPro (DDE)
+[37m[1mATRASO E QUALIDADE:[0m 0.6ms | Qualidade: ÍNTEGRO (FLUXO + ESTRUTURA)
+[37m[1mSTATUS:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mREGIME:[0m
+240m: [32m[1mALTA[0m
+60m : [32m[1mALTA[0m
+30m : [32m[1mALTA[0m
+15m : [32m[1mALTA[0m
+10m : [31m[1mBAIXA[0m
+5m  : [33mCONSOLIDAÇÃO[0m
+2m  : [32m[1mALTA[0m
+1m  : [37mTRANSIÇÃO[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mTIMES & TRADES:[0m
+[32m[1m- Agressão compradora: 21,000 ações[0m
+[31m[1m- Agressão vendedora: 6,900 ações[0m
+- Janela de cálculo: 300 segundos
+- [34m[1mDELTA[0m: [32m[1m+14.100 ações[0m
+[38;5;208m[1m- Reação do preço: Deslocamento de R$ [38;5;208m[1m+0.00[38;5;208m[1m[0m
+- [34m[1mGrandes Execuções:[0m
+  [32m[1m1.000 ações @ R$ 58,70 (BUY)[0m
+  [32m[1m1.100 ações @ R$ 58,70 (BUY)[0m
+  [31m[1m1.000 ações @ R$ 58,70 (SELL)[0m
+- [34m[1mPossível Absorção:[0m [31m[1mPossível Absorção Vendedora (Forte compra absorvida passivamente sem deslocamento de alta)[0m
+- Agentes, quando disponíveis: Identificados nos negócios registrados
+- Origem institucional: não confirmada, salvo evidência específica.
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mMACRO S&P 500:[0m [36m[1mWSPZ26 (NY): 7240.75 (Open: 7318.00 | -77.25 pts - BAIXA) [SLOW TICKS][0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mDIAGNÓSTICO:[0m Sem confluência determinística para os setups canônicos.
+[37m[1mDECISÃO DETERMINÍSTICA:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR.[0m
+[36m[2m==================================================================[0m
+
+======================================================================
+[RADAR FVG ANTECIPADO] - VALE S.A. (AÇÕES B3) SE APROXIMANDO DE ZONA DE LIQUIDEZ
+======================================================================
+ Preço Atual       : 58,69
+ Timeframe do FVG  : 10 Minutos (Aberto / Não Liquidado)
+ Direção / Ação    : [1;92m[COMPRA - SUPORTE][0m
+ Início da Zona    : 58,70 (Testando Zona | Faltam 0.05 reais p/ 50% CE)
+ [1;93mPonto de 50% (CE)[0m : [1;92m58,64 (COMPRA)[0m
+ Fim da Zona       : 58,58
+ Objetivo Estimado : Reversão de 0.35 a 0.56 reais
+======================================================================

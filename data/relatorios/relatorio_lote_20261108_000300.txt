@@ -1,0 +1,54 @@
+================================================================================
+  RELATÓRIO DE REPLAY EM LOTE & BACKTEST MULTI-SESSÕES (SMC + TAPE READING)
+  Ativo: WINZ26 (Mini-Índice B3) | Modo: FIXO
+  Custos Computados: Slippage 5.0 pts/trade + Taxas B3 R$ 0.60/trade
+================================================================================
+
+1. RESUMO EXECUTIVO DIÁRIO:
+--------------------------------------------------------------------------------
+   Data    | Barras | Trades | Vitórias | Derrotas |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+02/11/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1415 pts | R$    279.40
+03/11/2026 |  480   |   6    |    6     |    0     | 100.0% | +    1985 pts | R$    393.40
+04/11/2026 |  480   |   6    |    3     |    3     |  50.0% | +     220 pts | R$     40.40
+05/11/2026 |  480   |   6    |    5     |    1     |  83.3% | +    1530 pts | R$    302.40
+06/11/2026 |  480   |   5    |    4     |    1     |  80.0% | +    1245 pts | R$    246.00
+--------------------------------------------------------------------------------
+
+2. MÉTRICAS CONSOLIDADAS DE PERFORMANCE:
+--------------------------------------------------------------------------------
+Total de Pregões Testados     : 5 dias (5 Positivos | 0 Negativos | 0 Neutros)
+Taxa de Dias Lucrativos        : 100.0%
+Total de Operações Disparadas  : 29 trades (23 Alvos / 6 Stops)
+Média de Trades por Pregão    : 5.8 trades/dia
+Taxa de Acerto Global (WinRate): 79.3% (Breakeven R:R 1.6 é 38.5%)
+Saldo Total em Pontos (Bruto)  : +6,540 pontos
+Saldo Total em Pontos (Líquido): +6,395 pontos (com 5.0 pts de derrapagem)
+Resultado Líquido (1 contrato) : R$ +1,261.60
+Resultado Líquido ( 5 contratos): R$ +6,308.00
+Fator de Lucro (Profit Factor) : 5.07
+Relação Payoff (Gain / Loss)   : 1.35
+Expectativa Matemática / Trade : +220.5 pontos | R$ +43.50 por trade
+Drawdown Máximo Estimado       : R$ 103.20 (516 pts)
+--------------------------------------------------------------------------------
+
+3. DETALHAMENTO DE PERFORMANCE POR SETUP SMC:
+--------------------------------------------------------------------------------
+Setup SMC                              | Trades |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+Venda de Rompimento Estrutural (BOS 2m |   6    |  83.3% | +    1520 pts | R$    300.40
+Venda com Reversão Confirmada (CHoCH 1 |   3    | 100.0% | +     880 pts | R$    174.20
+Compra com Reversão Confirmada (CHoCH  |   2    | 100.0% | +     790 pts | R$    156.80
+Compra com Reversão Confirmada (CHoCH  |   2    | 100.0% | +     790 pts | R$    156.80
+Venda com Reversão Confirmada (CHoCH 1 |   2    | 100.0% | +     710 pts | R$    140.80
+Compra por Defesa Institucional no Fun |   3    |  66.7% | +     535 pts | R$    105.20
+Venda por Defesa Institucional no Topo |   3    |  66.7% | +     535 pts | R$    105.20
+Compra após Falso Rompimento da Mínima |   1    | 100.0% | +     395 pts | R$     78.40
+Operação Longa após Sweep em 15m       |   1    | 100.0% | +     395 pts | R$     78.40
+Venda de Rompimento de Fundo com Conti |   1    | 100.0% | +     395 pts | R$     78.40
+Compra com Reversão Confirmada (CHoCH  |   1    | 100.0% | +     205 pts | R$     40.40
+Compra de Rompimento Estrutural (BOS 2 |   2    |  50.0% |     -245 pts | R$    -50.20
+Compra de Rompimento de Topo com Conti |   1    |   0.0% |     -255 pts | R$    -51.60
+Compra após Falso Rompimento da Mínima |   1    |   0.0% |     -255 pts | R$    -51.60
+--------------------------------------------------------------------------------
+================================================================================

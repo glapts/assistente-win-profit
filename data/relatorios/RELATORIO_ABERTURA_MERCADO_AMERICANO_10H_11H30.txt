@@ -1,0 +1,98 @@
+### 📅 AGOSTO DE 2026
+
+| Data | Janela 10:00 - 10:15 (Abertura À Vista / NY) | Janela 11:30 - 11:45 (Abertura NYSE / S&P) | Saldo do Dia (5 Contratos) |
+| :---: | :--- | :--- | :---: |
+| **03/08/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🟢 **ALVO (+400)** | `11:35` COMPRA: 🔴 **STOP (-250)**<br>`11:44` VENDA: 🔴 **STOP (-250)** | **R$ -382.00** 🔴 |
+| **04/08/2026** | `10:04` VENDA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🔴 **STOP (-250)** | Sem disparo | **R$ -516.00** 🔴 |
+| **05/08/2026** | `10:01` VENDA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)** | `11:31` VENDA: 🔴 **STOP (-250)**<br>`11:38` COMPRA: 🔴 **STOP (-250)** | **R$ -382.00** 🔴 |
+| **06/08/2026** | `10:03` VENDA: 🔴 **STOP (-250)**<br>`10:06` VENDA: 🔴 **STOP (-250)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)** | `11:36` COMPRA: 🔴 **STOP (-250)** | **R$ -382.00** 🔴 |
+| **07/08/2026** | `10:10` VENDA: 🔴 **STOP (-250)** | `11:31` VENDA: 🟢 **ALVO (+400)** | **+R$ 134.00** 🟢 |
+| **10/08/2026** | `10:04` VENDA: 🔴 **STOP (-250)**<br>`10:09` COMPRA: 🔴 **STOP (-250)**<br>`10:10` VENDA: 🔴 **STOP (-250)** | `11:36` COMPRA: 🟢 **ALVO (+400)** | **R$ -382.00** 🔴 |
+| **11/08/2026** | Sem disparo | Sem disparo | R$ 0,00 ⚪ |
+| **12/08/2026** | `10:08` VENDA: 🟢 **ALVO (+400)** | `11:36` COMPRA: 🔴 **STOP (-250)** | **+R$ 134.00** 🟢 |
+| **13/08/2026** | `10:00` COMPRA: 🟢 **ALVO (+400)**<br>`10:09` COMPRA: 🟢 **ALVO (+400)** | Sem disparo | **+R$ 784.00** 🟢 |
+| **14/08/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:02` COMPRA: 🟢 **ALVO (+400)**<br>`10:08` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🟢 **ALVO (+400)** | `11:31` COMPRA: 🔴 **STOP (-250)** | **+R$ 10.00** 🟢 |
+| **17/08/2026** | `10:03` COMPRA: 🟢 **ALVO (+400)**<br>`10:10` COMPRA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)**<br>`10:14` COMPRA: 🟢 **ALVO (+400)** | `11:33` VENDA: 🟢 **ALVO (+400)**<br>`11:39` VENDA: 🔴 **STOP (-250)**<br>`11:43` COMPRA: 🟢 **ALVO (+400)** | **+R$ 1444.00** 🟢 |
+| **18/08/2026** | `10:03` COMPRA: 🟢 **ALVO (+400)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)** | `11:37` VENDA: 🟢 **ALVO (+400)** | **+R$ 1176.00** 🟢 |
+| **19/08/2026** | `10:01` COMPRA: 🟢 **ALVO (+400)**<br>`10:05` COMPRA: 🟢 **ALVO (+400)**<br>`10:11` COMPRA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🔴 **STOP (-250)** | Sem disparo | **+R$ 10.00** 🟢 |
+| **20/08/2026** | `10:02` COMPRA: 🟢 **ALVO (+400)** | `11:40` COMPRA: 🟢 **ALVO (+400)**<br>`11:44` COMPRA: 🔴 **STOP (-250)** | **+R$ 526.00** 🟢 |
+| **21/08/2026** | `10:10` VENDA: 🔴 **STOP (-250)**<br>`10:11` VENDA: 🔴 **STOP (-250)** | `11:36` VENDA: 🔴 **STOP (-250)**<br>`11:38` VENDA: 🔴 **STOP (-250)** | **R$ -1032.00** 🔴 |
+| **24/08/2026** | Sem disparo | `11:33` COMPRA: 🟢 **ALVO (+400)** | **+R$ 392.00** 🟢 |
+| **25/08/2026** | `10:06` COMPRA: 🔴 **STOP (-250)**<br>`10:08` VENDA: 🔴 **STOP (-250)**<br>`10:10` COMPRA: 🔴 **STOP (-250)** | `11:43` COMPRA: 🟢 **ALVO (+400)**<br>`11:45` COMPRA: 🔴 **STOP (-250)** | **R$ -640.00** 🔴 |
+| **26/08/2026** | `10:01` VENDA: 🔴 **STOP (-250)**<br>`10:02` VENDA: 🔴 **STOP (-250)**<br>`10:05` COMPRA: 🟢 **ALVO (+400)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)**<br>`10:15` COMPRA: 🟢 **ALVO (+400)** | `11:37` COMPRA: 🔴 **STOP (-250)**<br>`11:43` VENDA: 🟢 **ALVO (+400)** | **+R$ 794.00** 🟢 |
+| **27/08/2026** | `10:02` VENDA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)** | `11:38` COMPRA: 🟢 **ALVO (+400)** | **+R$ 526.00** 🟢 |
+| **28/08/2026** | `10:03` COMPRA: 🟢 **ALVO (+400)**<br>`10:15` COMPRA: 🔴 **STOP (-250)** | Sem disparo | **+R$ 134.00** 🟢 |
+| **31/08/2026** | `10:02` VENDA: 🔴 **STOP (-250)**<br>`10:03` VENDA: 🔴 **STOP (-250)**<br>`10:04` COMPRA: 🟢 **ALVO (+400)**<br>`10:07` COMPRA: 🟢 **ALVO (+400)**<br>`10:11` COMPRA: 🔴 **STOP (-250)** | `11:32` COMPRA: 🟢 **ALVO (+400)** | **+R$ 402.00** 🟢 |
+| **RESUMO 08/2026** | **51 trades (23W / 28L)** | **24 trades (11W / 13L)** | **+R$ 2750.00** (45.3% WR) 🟢 |
+
+### 📅 SETEMBRO DE 2026
+
+| Data | Janela 10:00 - 10:15 (Abertura À Vista / NY) | Janela 11:30 - 11:45 (Abertura NYSE / S&P) | Saldo do Dia (5 Contratos) |
+| :---: | :--- | :--- | :---: |
+| **01/09/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:02` COMPRA: 🔴 **STOP (-250)**<br>`10:05` VENDA: 🟢 **ALVO (+400)** | Sem disparo | **R$ -124.00** 🔴 |
+| **02/09/2026** | `10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:05` COMPRA: 🔴 **STOP (-250)**<br>`10:10` VENDA: 🟢 **ALVO (+400)** | `11:33` COMPRA: 🔴 **STOP (-250)** | **R$ -382.00** 🔴 |
+| **03/09/2026** | `10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:05` COMPRA: 🔴 **STOP (-250)**<br>`10:07` VENDA: 🟢 **ALVO (+400)**<br>`10:09` VENDA: 🔴 **STOP (-250)**<br>`10:10` VENDA: 🟢 **ALVO (+400)** | Sem disparo | **R$ -248.00** 🔴 |
+| **04/09/2026** | `10:15` COMPRA: 🔴 **STOP (-250)** | Sem disparo | **R$ -258.00** 🔴 |
+| **08/09/2026** | `10:00` COMPRA: 🟢 **ALVO (+400)**<br>`10:02` COMPRA: 🔴 **STOP (-250)**<br>`10:05` COMPRA: 🟢 **ALVO (+400)**<br>`10:12` COMPRA: 🔴 **STOP (-250)**<br>`10:14` COMPRA: 🔴 **STOP (-250)** | `11:45` VENDA: 🔴 **STOP (-250)** | **R$ -248.00** 🔴 |
+| **09/09/2026** | Sem disparo | `11:37` COMPRA: 🔴 **STOP (-250)**<br>`11:41` VENDA: 🟢 **ALVO (+400)** | **+R$ 134.00** 🟢 |
+| **10/09/2026** | `10:08` COMPRA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🔴 **STOP (-250)** | `11:37` COMPRA: 🟢 **ALVO (+400)** | **R$ -382.00** 🔴 |
+| **11/09/2026** | `10:00` COMPRA: 🟢 **ALVO (+400)**<br>`10:01` COMPRA: 🟢 **ALVO (+400)**<br>`10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:08` COMPRA: 🔴 **STOP (-250)**<br>`10:09` VENDA: 🟢 **ALVO (+400)**<br>`10:14` VENDA: 🟢 **ALVO (+400)** | Sem disparo | **+R$ 1052.00** 🟢 |
+| **14/09/2026** | `10:03` VENDA: 🔴 **STOP (-250)**<br>`10:08` COMPRA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)**<br>`10:12` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🔴 **STOP (-250)** | `11:36` COMPRA: 🟢 **ALVO (+400)**<br>`11:42` COMPRA: 🟢 **ALVO (+400)** | **+R$ 144.00** 🟢 |
+| **15/09/2026** | `10:03` VENDA: 🟢 **ALVO (+400)**<br>`10:10` VENDA: 🟢 **ALVO (+400)** | `11:30` VENDA: 🔴 **STOP (-250)**<br>`11:31` VENDA: 🔴 **STOP (-250)**<br>`11:34` COMPRA: 🔴 **STOP (-250)**<br>`11:45` VENDA: 🔴 **STOP (-250)** | **R$ -248.00** 🔴 |
+| **16/09/2026** | `10:01` VENDA: 🔴 **STOP (-250)**<br>`10:09` COMPRA: 🔴 **STOP (-250)** | `11:41` VENDA: 🔴 **STOP (-250)** | **R$ -774.00** 🔴 |
+| **17/09/2026** | `10:03` VENDA: 🟢 **ALVO (+400)**<br>`10:05` VENDA: 🔴 **STOP (-250)**<br>`10:07` VENDA: 🟢 **ALVO (+400)**<br>`10:15` VENDA: 🔴 **STOP (-250)** | `11:31` COMPRA: 🟢 **ALVO (+400)**<br>`11:38` COMPRA: 🟢 **ALVO (+400)** | **+R$ 1052.00** 🟢 |
+| **18/09/2026** | `10:03` VENDA: 🔴 **STOP (-250)**<br>`10:04` VENDA: 🔴 **STOP (-250)**<br>`10:07` COMPRA: 🔴 **STOP (-250)**<br>`10:09` VENDA: 🟢 **ALVO (+400)** | Sem disparo | **R$ -382.00** 🔴 |
+| **21/09/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:03` VENDA: 🟢 **ALVO (+400)** | `11:42` COMPRA: 🔴 **STOP (-250)** | **R$ -124.00** 🔴 |
+| **22/09/2026** | Sem disparo | `11:33` VENDA: 🔴 **STOP (-250)**<br>`11:39` COMPRA: 🟢 **ALVO (+400)** | **+R$ 134.00** 🟢 |
+| **23/09/2026** | `10:06` COMPRA: 🟢 **ALVO (+400)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)**<br>`10:13` COMPRA: 🔴 **STOP (-250)** | `11:40` VENDA: 🔴 **STOP (-250)**<br>`11:42` COMPRA: 🔴 **STOP (-250)** | **+R$ 10.00** 🟢 |
+| **24/09/2026** | `10:02` COMPRA: 🔴 **STOP (-250)**<br>`10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:07` VENDA: 🟢 **ALVO (+400)**<br>`10:10` VENDA: 🔴 **STOP (-250)**<br>`10:12` VENDA: 🔴 **STOP (-250)** | `11:45` VENDA: 🟢 **ALVO (+400)** | **R$ -248.00** 🔴 |
+| **25/09/2026** | `10:00` VENDA: 🔴 **STOP (-250)**<br>`10:05` COMPRA: 🟢 **ALVO (+400)**<br>`10:09` COMPRA: 🟢 **ALVO (+400)**<br>`10:11` COMPRA: 🔴 **STOP (-250)**<br>`10:13` COMPRA: 🔴 **STOP (-250)** | `11:31` VENDA: 🔴 **STOP (-250)**<br>`11:38` COMPRA: 🟢 **ALVO (+400)** | **+R$ 144.00** 🟢 |
+| **28/09/2026** | `10:03` VENDA: 🔴 **STOP (-250)**<br>`10:08` COMPRA: 🔴 **STOP (-250)**<br>`10:11` VENDA: 🔴 **STOP (-250)** | `11:38` COMPRA: 🔴 **STOP (-250)**<br>`11:43` VENDA: 🟢 **ALVO (+400)** | **R$ -640.00** 🔴 |
+| **29/09/2026** | `10:05` VENDA: 🔴 **STOP (-250)**<br>`10:10` COMPRA: 🔴 **STOP (-250)** | `11:31` VENDA: 🔴 **STOP (-250)**<br>`11:41` COMPRA: 🟢 **ALVO (+400)** | **R$ -382.00** 🔴 |
+| **30/09/2026** | `10:10` VENDA: 🟢 **ALVO (+400)**<br>`10:13` VENDA: 🟢 **ALVO (+400)** | Sem disparo | **+R$ 784.00** 🟢 |
+| **RESUMO 09/2026** | **66 trades (24W / 42L)** | **26 trades (11W / 15L)** | **R$ -986.00** (38.0% WR) 🔴 |
+
+### 📅 OUTUBRO DE 2026
+
+| Data | Janela 10:00 - 10:15 (Abertura À Vista / NY) | Janela 11:30 - 11:45 (Abertura NYSE / S&P) | Saldo do Dia (5 Contratos) |
+| :---: | :--- | :--- | :---: |
+| **01/10/2026** | `10:01` VENDA: 🟢 **ALVO (+400)**<br>`10:05` VENDA: 🔴 **STOP (-250)** | `11:44` VENDA: 🔴 **STOP (-250)** | **R$ -124.00** 🔴 |
+| **02/10/2026** | `10:11` VENDA: 🟢 **ALVO (+400)**<br>`10:13` VENDA: 🟢 **ALVO (+400)** | `11:30` COMPRA: 🟢 **ALVO (+400)**<br>`11:38` COMPRA: 🔴 **STOP (-250)**<br>`11:45` VENDA: 🟢 **ALVO (+400)** | **+R$ 1310.00** 🟢 |
+| **05/10/2026** | `10:01` COMPRA: 🟢 **ALVO (+400)**<br>`10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:05` VENDA: 🟢 **ALVO (+400)**<br>`10:06` COMPRA: 🔴 **STOP (-250)**<br>`10:08` VENDA: 🟢 **ALVO (+400)**<br>`10:13` VENDA: 🟢 **ALVO (+400)**<br>`10:14` VENDA: 🔴 **STOP (-250)** | `11:30` VENDA: 🔴 **STOP (-250)**<br>`11:31` COMPRA: 🔴 **STOP (-250)**<br>`11:32` COMPRA: 🔴 **STOP (-250)**<br>`11:33` COMPRA: 🟢 **ALVO (+400)**<br>`11:36` COMPRA: 🔴 **STOP (-250)**<br>`11:37` COMPRA: 🔴 **STOP (-250)**<br>`11:39` VENDA: 🔴 **STOP (-250)**<br>`11:40` VENDA: 🔴 **STOP (-250)**<br>`11:41` VENDA: 🔴 **STOP (-250)**<br>`11:42` COMPRA: 🔴 **STOP (-250)**<br>`11:43` COMPRA: 🔴 **STOP (-250)**<br>`11:45` VENDA: 🔴 **STOP (-250)** | **R$ -1652.00** 🔴 |
+| **06/10/2026** | `10:04` VENDA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)** | `11:35` COMPRA: 🔴 **STOP (-250)**<br>`11:40` VENDA: 🟢 **ALVO (+400)**<br>`11:44` VENDA: 🟢 **ALVO (+400)** | **+R$ 402.00** 🟢 |
+| **07/10/2026** | `10:01` COMPRA: 🟢 **ALVO (+400)**<br>`10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:09` VENDA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🔴 **STOP (-250)** | `11:38` VENDA: 🟢 **ALVO (+400)**<br>`11:45` VENDA: 🔴 **STOP (-250)** | **R$ -506.00** 🔴 |
+| **08/10/2026** | `10:08` VENDA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)** | `11:32` COMPRA: 🟢 **ALVO (+400)**<br>`11:34` COMPRA: 🔴 **STOP (-250)**<br>`11:36` COMPRA: 🟢 **ALVO (+400)**<br>`11:40` COMPRA: 🔴 **STOP (-250)**<br>`11:42` COMPRA: 🟢 **ALVO (+400)**<br>`11:45` VENDA: 🔴 **STOP (-250)** | **+R$ 536.00** 🟢 |
+| **09/10/2026** | `10:01` VENDA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)**<br>`10:15` COMPRA: 🔴 **STOP (-250)** | `11:31` COMPRA: 🟢 **ALVO (+400)**<br>`11:35` COMPRA: 🔴 **STOP (-250)**<br>`11:39` VENDA: 🔴 **STOP (-250)**<br>`11:41` VENDA: 🔴 **STOP (-250)**<br>`11:43` COMPRA: 🔴 **STOP (-250)** | **R$ -764.00** 🔴 |
+| **13/10/2026** | `10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:07` VENDA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🟢 **ALVO (+400)** | `11:33` VENDA: 🔴 **STOP (-250)**<br>`11:42` COMPRA: 🔴 **STOP (-250)** | **R$ -1156.00** 🔴 |
+| **14/10/2026** | `10:01` VENDA: 🟢 **ALVO (+400)**<br>`10:06` VENDA: 🔴 **STOP (-250)**<br>`10:07` VENDA: 🟢 **ALVO (+400)**<br>`10:08` VENDA: 🟢 **ALVO (+400)**<br>`10:11` VENDA: 🔴 **STOP (-250)** | `11:33` COMPRA: 🟢 **ALVO (+400)**<br>`11:43` COMPRA: 🔴 **STOP (-250)** | **+R$ 794.00** 🟢 |
+| **15/10/2026** | `10:04` COMPRA: 🟢 **ALVO (+400)** | `11:34` COMPRA: 🟢 **ALVO (+400)**<br>`11:36` COMPRA: 🟢 **ALVO (+400)** | **+R$ 1176.00** 🟢 |
+| **16/10/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:06` VENDA: 🟢 **ALVO (+400)**<br>`10:09` VENDA: 🔴 **STOP (-250)**<br>`10:12` VENDA: 🔴 **STOP (-250)** | `11:34` VENDA: 🟢 **ALVO (+400)**<br>`11:36` VENDA: 🔴 **STOP (-250)**<br>`11:41` COMPRA: 🔴 **STOP (-250)**<br>`11:44` VENDA: 🔴 **STOP (-250)** | **R$ -764.00** 🔴 |
+| **19/10/2026** | `10:11` COMPRA: 🟢 **ALVO (+400)** | `11:35` COMPRA: 🔴 **STOP (-250)**<br>`11:39` VENDA: 🟢 **ALVO (+400)** | **+R$ 526.00** 🟢 |
+| **20/10/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:10` VENDA: 🔴 **STOP (-250)**<br>`10:12` COMPRA: 🔴 **STOP (-250)** | `11:37` COMPRA: 🔴 **STOP (-250)**<br>`11:38` COMPRA: 🔴 **STOP (-250)** | **R$ -1548.00** 🔴 |
+| **21/10/2026** | Sem disparo | `11:33` VENDA: 🔴 **STOP (-250)**<br>`11:37` COMPRA: 🔴 **STOP (-250)**<br>`11:43` VENDA: 🔴 **STOP (-250)** | **R$ -774.00** 🔴 |
+| **22/10/2026** | `10:07` COMPRA: 🟢 **ALVO (+400)**<br>`10:13` COMPRA: 🟢 **ALVO (+400)** | `11:33` COMPRA: 🔴 **STOP (-250)**<br>`11:34` VENDA: 🟢 **ALVO (+400)**<br>`11:36` VENDA: 🔴 **STOP (-250)** | **+R$ 660.00** 🟢 |
+| **23/10/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:09` VENDA: 🔴 **STOP (-250)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)** | Sem disparo | **R$ -124.00** 🔴 |
+| **26/10/2026** | `10:01` VENDA: 🔴 **STOP (-250)**<br>`10:04` VENDA: 🔴 **STOP (-250)**<br>`10:05` VENDA: 🔴 **STOP (-250)**<br>`10:08` COMPRA: 🟢 **ALVO (+400)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)**<br>`10:11` COMPRA: 🟢 **ALVO (+400)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)**<br>`10:13` COMPRA: 🔴 **STOP (-250)**<br>`10:14` COMPRA: 🔴 **STOP (-250)**<br>`10:15` COMPRA: 🔴 **STOP (-250)** | `11:32` COMPRA: 🟢 **ALVO (+400)**<br>`11:37` COMPRA: 🟢 **ALVO (+400)**<br>`11:38` COMPRA: 🔴 **STOP (-250)**<br>`11:39` COMPRA: 🟢 **ALVO (+400)**<br>`11:41` COMPRA: 🟢 **ALVO (+400)**<br>`11:42` COMPRA: 🔴 **STOP (-250)**<br>`11:44` COMPRA: 🟢 **ALVO (+400)**<br>`11:45` COMPRA: 🔴 **STOP (-250)** | **+R$ 1206.00** 🟢 |
+| **27/10/2026** | `10:07` VENDA: 🔴 **STOP (-250)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)** | `11:30` VENDA: 🟢 **ALVO (+400)**<br>`11:33` VENDA: 🟢 **ALVO (+400)**<br>`11:36` VENDA: 🟢 **ALVO (+400)** | **+R$ 1310.00** 🟢 |
+| **28/10/2026** | `10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:07` COMPRA: 🔴 **STOP (-250)**<br>`10:12` VENDA: 🔴 **STOP (-250)**<br>`10:14` VENDA: 🟢 **ALVO (+400)** | `11:34` VENDA: 🟢 **ALVO (+400)**<br>`11:42` VENDA: 🔴 **STOP (-250)**<br>`11:45` VENDA: 🔴 **STOP (-250)** | **R$ -506.00** 🔴 |
+| **29/10/2026** | `10:04` COMPRA: 🔴 **STOP (-250)**<br>`10:08` VENDA: 🟢 **ALVO (+400)** | `11:30` VENDA: 🔴 **STOP (-250)** | **R$ -124.00** 🔴 |
+| **30/10/2026** | `10:03` COMPRA: 🔴 **STOP (-250)**<br>`10:13` VENDA: 🔴 **STOP (-250)** | `11:30` COMPRA: 🔴 **STOP (-250)**<br>`11:33` VENDA: 🔴 **STOP (-250)**<br>`11:35` VENDA: 🔴 **STOP (-250)**<br>`11:44` COMPRA: 🔴 **STOP (-250)** | **R$ -1548.00** 🔴 |
+| **RESUMO 10/2026** | **69 trades (28W / 41L)** | **71 trades (25W / 46L)** | **R$ -1670.00** (37.9% WR) 🔴 |
+
+### 📅 NOVEMBRO DE 2026 (03/11 a 06/11)
+
+| Data | Janela 10:00 - 10:15 (Abertura À Vista / NY) | Janela 11:30 - 11:45 (Abertura NYSE / S&P) | Saldo do Dia (5 Contratos) |
+| :---: | :--- | :--- | :---: |
+| **03/11/2026** | `10:09` COMPRA: 🟢 **ALVO (+400)** | `11:31` COMPRA: 🔴 **STOP (-250)**<br>`11:35` COMPRA: 🟢 **ALVO (+400)**<br>`11:39` COMPRA: 🔴 **STOP (-250)**<br>`11:41` VENDA: 🟢 **ALVO (+400)**<br>`11:44` VENDA: 🔴 **STOP (-250)** | **+R$ 402.00** 🟢 |
+| **04/11/2026** | `10:08` COMPRA: 🟢 **ALVO (+400)**<br>`10:12` COMPRA: 🟢 **ALVO (+400)**<br>`10:14` COMPRA: 🔴 **STOP (-250)** | `11:36` VENDA: 🟢 **ALVO (+400)** | **+R$ 918.00** 🟢 |
+| **05/11/2026** | `10:01` COMPRA: 🟢 **ALVO (+400)**<br>`10:14` COMPRA: 🟢 **ALVO (+400)** | `11:37` VENDA: 🟢 **ALVO (+400)**<br>`11:44` VENDA: 🟢 **ALVO (+400)** | **+R$ 1568.00** 🟢 |
+| **06/11/2026** | `10:01` COMPRA: 🔴 **STOP (-250)**<br>`10:10` COMPRA: 🟢 **ALVO (+400)** | `11:34` COMPRA: 🟢 **ALVO (+400)** | **+R$ 526.00** 🟢 |
+| **RESUMO 11/2026** | **8 trades (6W / 2L)** | **9 trades (6W / 3L)** | **+R$ 3414.00** (70.6% WR) 🟢 |
+
+### 🏆 CONSOLIDAÇÃO GERAL NAS ABERTURAS (AGOSTO A NOVEMBRO/2026)
+
+| Janela de Horário | Total Trades | Alvos (+400 pts) | Stops (-250 pts) | Taxa de Acerto (WR) | Saldo Financeiro (5 Contratos) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Janela 10:00 - 10:15 (À Vista B3 / NY)** | **194** | **81** | **113** | **41.8%** | (Abertura de Ações/ADRs) |
+| **Janela 11:30 - 11:45 (NYSE / S&P)** | **130** | **53** | **77** | **40.8%** | (Início do Cash Session NY) |
+| **TOTAL GERAL DAS DUAS JANELAS** | **324** | **134** | **190** | **41.4%** | **+R$ 3508.00** (+4480 pts) 🟢 |

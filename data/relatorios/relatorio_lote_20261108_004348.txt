@@ -1,0 +1,214 @@
+================================================================================
+  RELATÓRIO DE REPLAY EM LOTE & BACKTEST MULTI-SESSÕES (SMC + TAPE READING)
+  Ativo: WINZ26 (Mini-Índice B3) | Modo: FIXO
+  Custos Computados: Slippage 5.0 pts/trade + Taxas B3 R$ 0.60/trade
+================================================================================
+
+1. RESUMO EXECUTIVO DIÁRIO:
+--------------------------------------------------------------------------------
+   Data    | Barras | Trades | Vitórias | Derrotas |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+18/06/2026 |   30   |   0    |    0     |    0     |   0.0% |        0 pts | R$      0.00
+19/06/2026 |  562   |   20   |    7     |    13    |  35.0% |     -900 pts | R$   -192.00
+22/06/2026 |  565   |   28   |    15    |    13    |  53.6% | +    2610 pts | R$    505.20
+23/06/2026 |  562   |   38   |    15    |    23    |  39.5% | +     190 pts | R$     15.20
+24/06/2026 |  562   |   35   |    15    |    20    |  42.9% | +     825 pts | R$    144.00
+25/06/2026 |  562   |   42   |    17    |    25    |  40.5% | +      75 pts | R$    -10.20
+26/06/2026 |  565   |   36   |    12    |    24    |  33.3% |    -1380 pts | R$   -297.60
+29/06/2026 |  563   |   26   |    12    |    14    |  46.2% | +     930 pts | R$    170.40
+30/06/2026 |  562   |   34   |    14    |    20    |  41.2% | +     205 pts | R$     20.60
+01/07/2026 |  565   |   26   |    13    |    13    |  50.0% | +    1820 pts | R$    348.40
+02/07/2026 |  565   |   40   |    15    |    25    |  37.5% |     -450 pts | R$   -114.00
+03/07/2026 |  563   |   21   |    8     |    13    |  38.1% |      -65 pts | R$    -25.60
+06/07/2026 |  565   |   24   |    10    |    14    |  41.7% | +     120 pts | R$      9.60
+07/07/2026 |  562   |   29   |    10    |    19    |  34.5% |     -895 pts | R$   -196.40
+08/07/2026 |  565   |   27   |    7     |    20    |  25.9% |    -2335 pts | R$   -483.20
+09/07/2026 |  565   |   22   |    8     |    14    |  36.4% |     -675 pts | R$   -148.20
+10/07/2026 |  564   |   35   |    16    |    19    |  45.7% | +    1475 pts | R$    274.00
+13/07/2026 |  562   |   27   |    9     |    18    |  33.3% |    -1035 pts | R$   -223.20
+14/07/2026 |  563   |   33   |    13    |    20    |  39.4% |     -210 pts | R$    -61.80
+15/07/2026 |  563   |   20   |    6     |    14    |  30.0% |     -945 pts | R$   -201.00
+16/07/2026 |  563   |   26   |    13    |    13    |  50.0% | +    2040 pts | R$    392.40
+17/07/2026 |  562   |   14   |    4     |    10    |  28.6% |     -970 pts | R$   -202.40
+20/07/2026 |  563   |   23   |    9     |    14    |  39.1% |      -15 pts | R$    -16.80
+21/07/2026 |  563   |   19   |    6     |    13    |  31.6% |     -945 pts | R$   -200.40
+22/07/2026 |  562   |   30   |    18    |    12    |  60.0% | +    4050 pts | R$    792.00
+23/07/2026 |  563   |   36   |    8     |    28    |  22.2% |    -3845 pts | R$   -790.60
+24/07/2026 |  562   |   21   |    8     |    13    |  38.1% |     -435 pts | R$    -99.60
+27/07/2026 |  562   |   15   |    4     |    11    |  26.7% |    -1335 pts | R$   -276.00
+28/07/2026 |  565   |   31   |    15    |    16    |  48.4% | +    1845 pts | R$    350.40
+29/07/2026 |  565   |   29   |    15    |    14    |  51.7% | +    2355 pts | R$    453.60
+30/07/2026 |  565   |   24   |    9     |    15    |  37.5% |     -270 pts | R$    -68.40
+31/07/2026 |  351   |   13   |    7     |    6     |  53.8% | +    1085 pts | R$    209.20
+03/08/2026 |  562   |   19   |    10    |    9     |  52.6% | +    1655 pts | R$    319.60
+04/08/2026 |  563   |   23   |    10    |    13    |  43.5% | +     365 pts | R$     59.20
+05/08/2026 |  562   |   34   |    13    |    21    |  38.2% | +       5 pts | R$    -19.40
+06/08/2026 |  563   |   26   |    10    |    16    |  38.5% |     -130 pts | R$    -41.60
+07/08/2026 |  562   |   20   |    11    |    9     |  55.0% | +    2140 pts | R$    416.00
+10/08/2026 |  563   |   27   |    4     |    23    |  14.8% |    -4575 pts | R$   -931.20
+11/08/2026 |  562   |   20   |    10    |    10    |  50.0% | +    1400 pts | R$    268.00
+12/08/2026 |  565   |   34   |    9     |    25    |  26.5% |    -2820 pts | R$   -584.40
+13/08/2026 |  562   |   24   |    13    |    11    |  54.2% | +    2525 pts | R$    490.60
+14/08/2026 |  565   |   23   |    10    |    13    |  43.5% | +     415 pts | R$     69.20
+17/08/2026 |  562   |   27   |    11    |    16    |  40.7% | +     265 pts | R$     36.80
+18/08/2026 |  563   |   19   |    9     |    10    |  47.4% | +     650 pts | R$    118.60
+19/08/2026 |  565   |   44   |    17    |    27    |  38.6% |     -170 pts | R$    -60.40
+20/08/2026 |  565   |   32   |    15    |    17    |  46.9% | +    1365 pts | R$    253.80
+21/08/2026 |  565   |   37   |    11    |    26    |  29.7% |    -2285 pts | R$   -479.20
+24/08/2026 |  565   |   34   |    14    |    20    |  41.2% | +     115 pts | R$      2.60
+25/08/2026 |  565   |   33   |    11    |    22    |  33.3% |    -1465 pts | R$   -312.80
+26/08/2026 |  562   |   38   |    17    |    21    |  44.7% | +    1360 pts | R$    249.20
+27/08/2026 |  562   |   36   |    12    |    24    |  33.3% |    -1565 pts | R$   -334.60
+28/08/2026 |  563   |   25   |    14    |    11    |  56.0% | +    2725 pts | R$    530.00
+31/08/2026 |  562   |   35   |    10    |    25    |  28.6% |    -2425 pts | R$   -506.00
+01/09/2026 |  563   |   41   |    18    |    23    |  43.9% | +    1245 pts | R$    224.40
+02/09/2026 |  562   |   45   |    23    |    22    |  51.1% | +    3475 pts | R$    668.00
+03/09/2026 |  563   |   43   |    21    |    22    |  48.8% | +    2495 pts | R$    473.20
+04/09/2026 |  563   |   37   |    15    |    22    |  40.5% | +     315 pts | R$     40.80
+08/09/2026 |  563   |   48   |    23    |    25    |  47.9% | +    2710 pts | R$    513.20
+09/09/2026 |  562   |   37   |    13    |    24    |  35.1% |     -985 pts | R$   -219.20
+10/09/2026 |  562   |   46   |    17    |    29    |  37.0% |     -680 pts | R$   -163.60
+11/09/2026 |  562   |   46   |    17    |    29    |  37.0% |     -680 pts | R$   -163.60
+14/09/2026 |  562   |   55   |    24    |    31    |  43.6% | +    1575 pts | R$    282.00
+15/09/2026 |  562   |   37   |    15    |    22    |  40.5% | +      30 pts | R$    -16.20
+16/09/2026 |  563   |   36   |    15    |    21    |  41.7% | +     810 pts | R$    140.40
+17/09/2026 |  563   |   50   |    23    |    27    |  46.0% | +    2455 pts | R$    461.00
+18/09/2026 |  562   |   26   |    7     |    19    |  26.9% |    -1860 pts | R$   -387.60
+21/09/2026 |  563   |   32   |    13    |    19    |  40.6% | +     290 pts | R$     38.80
+22/09/2026 |  563   |   34   |    11    |    23    |  32.4% |    -1275 pts | R$   -275.40
+23/09/2026 |  563   |   55   |    23    |    32    |  41.8% | +     580 pts | R$     83.00
+24/09/2026 |  563   |   39   |    14    |    25    |  35.9% |     -845 pts | R$   -192.40
+25/09/2026 |  563   |   28   |    13    |    15    |  46.4% | +    1150 pts | R$    213.20
+28/09/2026 |  563   |   29   |    13    |    16    |  44.8% | +     935 pts | R$    169.60
+29/09/2026 |  563   |   31   |    13    |    18    |  41.9% | +     255 pts | R$     32.40
+30/09/2026 |  562   |   58   |    26    |    32    |  44.8% | +    2110 pts | R$    387.20
+01/10/2026 |  565   |   61   |    28    |    33    |  45.9% | +    2440 pts | R$    451.40
+02/10/2026 |  563   |   73   |    29    |    44    |  39.7% | +     235 pts | R$      3.20
+05/10/2026 |  552   |  196   |    67    |   129    |  34.2% |    -6430 pts | R$  -1403.60
+06/10/2026 |  565   |   89   |    38    |    51    |  42.7% | +    2005 pts | R$    347.60
+07/10/2026 |  565   |   62   |    22    |    40    |  35.5% |    -1815 pts | R$   -400.20
+08/10/2026 |  565   |   63   |    27    |    36    |  42.9% | +    1485 pts | R$    259.20
+09/10/2026 |  563   |   65   |    24    |    41    |  36.9% |     -975 pts | R$   -234.00
+13/10/2026 |  565   |   47   |    11    |    36    |  23.4% |    -5140 pts | R$  -1056.20
+14/10/2026 |  565   |   56   |    19    |    37    |  33.9% |    -1675 pts | R$   -368.60
+15/10/2026 |  560   |   56   |    24    |    32    |  42.9% | +    1320 pts | R$    230.40
+16/10/2026 |  565   |   62   |    16    |    46    |  25.8% |    -5410 pts | R$  -1119.20
+19/10/2026 |  565   |   47   |    15    |    32    |  31.9% |    -2235 pts | R$   -475.20
+20/10/2026 |  565   |   58   |    15    |    43    |  25.9% |    -4790 pts | R$   -992.80
+21/10/2026 |  565   |   33   |    12    |    21    |  36.4% |     -615 pts | R$   -142.80
+22/10/2026 |  565   |   41   |    16    |    25    |  39.0% | +      95 pts | R$     -5.60
+23/10/2026 |  563   |   39   |    10    |    29    |  25.6% |    -3445 pts | R$   -712.40
+26/10/2026 |  553   |  213   |    81    |   132    |  38.0% |    -1665 pts | R$   -460.80
+27/10/2026 |  565   |   67   |    32    |    35    |  47.8% | +    3715 pts | R$    702.80
+28/10/2026 |  564   |   89   |    37    |    52    |  41.6% | +    1355 pts | R$    217.60
+29/10/2026 |  565   |   58   |    16    |    42    |  27.6% |    -4390 pts | R$   -912.80
+30/10/2026 |  565   |   54   |    20    |    34    |  37.0% |     -770 pts | R$   -186.40
+03/11/2026 |  565   |   51   |    16    |    35    |  31.4% |    -2435 pts | R$   -517.60
+04/11/2026 |  562   |   35   |    14    |    21    |  40.0% | +     345 pts | R$     48.00
+05/11/2026 |  565   |   28   |    15    |    13    |  53.6% | +    2610 pts | R$    505.20
+06/11/2026 |  565   |   28   |    12    |    16    |  42.9% | +     320 pts | R$     47.20
+--------------------------------------------------------------------------------
+
+2. MÉTRICAS CONSOLIDADAS DE PERFORMANCE:
+--------------------------------------------------------------------------------
+Total de Pregões Testados     : 99 dias (53 Positivos | 45 Negativos | 1 Neutros)
+Taxa de Dias Lucrativos        : 53.5%
+Total de Operações Disparadas  : 3978 trades (1552 Alvos / 2426 Stops)
+Média de Trades por Pregão    : 40.2 trades/dia
+Taxa de Acerto Global (WinRate): 39.0% (Breakeven R:R 1.6 é 38.5%)
+Saldo Total em Pontos (Bruto)  : +10,600 pontos
+Saldo Total em Pontos (Líquido): -9,290 pontos (com 5.0 pts de derrapagem)
+Resultado Líquido (1 contrato) : R$ -4,244.80
+Resultado Líquido ( 5 contratos): R$ -21,224.00
+Fator de Lucro (Profit Factor) : 0.97
+Relação Payoff (Gain / Loss)   : 1.54
+Expectativa Matemática / Trade : -2.3 pontos | R$ -1.07 por trade
+Drawdown Máximo Estimado       : R$ 7,768.20 (38,841 pts)
+--------------------------------------------------------------------------------
+
+3. DETALHAMENTO DE PERFORMANCE POR SETUP SMC:
+--------------------------------------------------------------------------------
+Setup SMC                              | Trades |  WR %  | Saldo Pts  |   Líq. 1ct  
+--------------------------------------------------------------------------------
+Compra de Continuidade em Tendência de |  439   |  41.9% | +    7275 pts | R$   1191.60
+Venda com Reversão Confirmada (CHoCH 5 |   78   |  46.2% | +    3240 pts | R$    601.20
+Compra de Continuidade da Abertura (Op |   52   |  48.1% | +    2990 pts | R$    566.80
+Venda de Rompimento Estrutural (BOS 2m |  152   |  42.8% | +    2815 pts | R$    471.80
+Venda de Continuidade da Abertura (Ope |   72   |  44.4% | +    2440 pts | R$    444.80
+Venda de Rompimento de Fundo com Conti |   6    | 100.0% | +    2370 pts | R$    470.40
+Venda com Reversão Confirmada (CHoCH 2 |   73   |  43.8% | +    2185 pts | R$    393.20
+Compra com Reversão Confirmada (CHoCH  |  125   |  41.6% | +    1870 pts | R$    299.00
+Compra de Continuidade da Abertura (Op |  206   |  40.3% | +    1420 pts | R$    160.40
+Compra após Falso Rompimento da Mínima |  101   |  40.6% | +    1390 pts | R$    217.40
+Venda com Reversão Confirmada (CHoCH 1 |  104   |  41.3% | +    1165 pts | R$    170.60
+Venda após Falso Rompimento da Máxima  |   85   |  41.2% | +    1075 pts | R$    164.00
+Venda de Sweep da Máxima de Abertura ( |   38   |  42.1% | +     710 pts | R$    119.20
+Operação Longa após Sweep em 15m       |  140   |  40.0% | +     695 pts | R$     55.00
+Venda no Reteste de 50% do FVG de Desl |   8    |  50.0% | +     695 pts | R$    134.20
+Compra no Reteste de 50% do FVG de Des |   23   |  43.5% | +     635 pts | R$    113.20
+Compra no Reteste de 50% do FVG de Des |   41   |  41.5% | +     595 pts | R$     94.40
+Operação no Extremo Superior do Caixot |   8    |  50.0% | +     560 pts | R$    107.20
+Compra após Falso Rompimento da Mínima |   26   |  42.3% | +     520 pts | R$     88.40
+Compra com Reversão Confirmada (CHoCH  |   16   |  43.8% | +     470 pts | R$     84.40
+Compra de Rompimento Estrutural (BOS 1 |   6    |  50.0% | +     420 pts | R$     80.40
+Compra de Rompimento de Topo com Conti |   1    | 100.0% | +     395 pts | R$     78.40
+Venda por Defesa Institucional no Topo |   75   |  40.0% | +     375 pts | R$     30.00
+Compra de Sweep da Mínima de Abertura  |   47   |  40.4% | +     365 pts | R$     44.80
+Compra de Rompimento Estrutural (BOS 5 |   37   |  40.5% | +     355 pts | R$     48.80
+Compra no Reteste de 50% do FVG de Des |   27   |  40.7% | +     265 pts | R$     36.80
+Venda no Reteste de 50% do FVG de Desl |   12   |  41.7% | +     190 pts | R$     30.80
+Operação no Extremo Inferior do Caixot |   2    |  50.0% | +     140 pts | R$     26.80
+Compra de Rompimento de Topo com Conti |   2    |  50.0% | +     140 pts | R$     26.80
+Compra de Rompimento de Topo com Conti |   2    |  50.0% | +     140 pts | R$     26.80
+Venda no Reteste de 50% do FVG de Desl |   25   |  40.0% | +     125 pts | R$     10.00
+Venda com Reversão Confirmada (CHoCH 3 |   2    |  50.0% | +      85 pts | R$     15.80
+Operação no Extremo Inferior do Caixot |   10   |  40.0% | +      50 pts | R$      4.00
+Venda de Sweep da Máxima de Abertura ( |   5    |  40.0% | +      25 pts | R$      2.00
+Compra no Reteste de 50% do FVG de Des |   28   |  39.3% | +      10 pts | R$    -14.80
+Operação Longa após Sweep em 30m       |   79   |  39.2% |      -35 pts | R$    -54.40
+Venda de Rompimento de Fundo com Conti |   3    |  33.3% |     -115 pts | R$    -24.80
+Operação no Extremo Superior do Caixot |   3    |  33.3% |     -115 pts | R$    -24.80
+Operação no Extremo Inferior do Caixot |   11   |  36.4% |     -205 pts | R$    -47.60
+Venda de Rompimento de Fundo com Conti |   6    |  33.3% |     -230 pts | R$    -49.60
+Compra com Reversão Confirmada (CHoCH  |   28   |  39.3% |     -235 pts | R$    -63.80
+Compra com Reversão Confirmada (CHoCH  |   1    |   0.0% |     -255 pts | R$    -51.60
+Compra de Sweep da Mínima de Abertura  |   1    |   0.0% |     -255 pts | R$    -51.60
+Venda de Rompimento Estrutural (BOS 15 |   1    |   0.0% |     -255 pts | R$    -51.60
+Venda no Reteste de 50% do FVG de Desl |   14   |  35.7% |     -320 pts | R$    -72.40
+Compra no Reteste de 50% do FVG de Des |   9    |  33.3% |     -345 pts | R$    -74.40
+Venda de Rompimento de Fundo com Conti |   4    |  25.0% |     -370 pts | R$    -76.40
+Compra após Falso Rompimento da Mínima |   78   |  38.5% |     -390 pts | R$   -124.80
+Compra de Rompimento Estrutural (BOS 2 |  294   |  39.5% |     -515 pts | R$   -279.40
+Venda com Reversão Confirmada (CHoCH 1 |   13   |  30.8% |     -715 pts | R$   -150.80
+Venda no Reteste de 50% do FVG de Desl |   26   |  34.6% |     -780 pts | R$   -171.60
+Venda no Reteste de 50% do FVG de Desl |   19   |  31.6% |     -945 pts | R$   -200.40
+Venda de Rompimento Estrutural (BOS 5m |   9    |  22.2% |     -995 pts | R$   -204.40
+Compra após Falso Rompimento da Mínima |   83   |  37.3% |    -1015 pts | R$   -252.80
+Compra de Rompimento de Topo com Conti |   4    |   0.0% |    -1020 pts | R$   -206.40
+Compra por Defesa Institucional no Fun |   86   |  37.2% |    -1130 pts | R$   -277.60
+Venda no Reteste de 50% do FVG de Desl |   28   |  32.1% |    -1290 pts | R$   -274.80
+Venda de Rompimento de Fundo com Conti |   36   |  33.3% |    -1380 pts | R$   -297.60
+Venda após Falso Rompimento da Máxima  |   86   |  37.2% |    -1445 pts | R$   -340.60
+Compra no Reteste de 50% do FVG de Des |   34   |  32.4% |    -1520 pts | R$   -324.40
+Venda com Reversão Confirmada (CHoCH 1 |   42   |  33.3% |    -1610 pts | R$   -347.20
+Venda após Falso Rompimento da Máxima  |   43   |  34.9% |    -1720 pts | R$   -369.80
+Compra no Reteste de 50% do FVG de Des |   20   |  25.0% |    -1850 pts | R$   -382.00
+Compra de Rompimento de Topo com Conti |   25   |  20.0% |    -3125 pts | R$   -640.00
+Venda após Falso Rompimento da Máxima  |   84   |  33.3% |    -3565 pts | R$   -763.40
+Compra com Reversão Confirmada (CHoCH  |   66   |  30.3% |    -3830 pts | R$   -805.60
+Venda de Continuidade da Abertura (Ope |  227   |  34.8% |    -6535 pts | R$  -1443.20
+Venda de Continuidade em Tendência de  |  441   |  36.1% |    -9375 pts | R$  -2139.60
+--------------------------------------------------------------------------------
+
+4. RESUMO CONSOLIDADO MÊS A MÊS:
+-----------------------------------------------------------------------------------------------
+Mês / Ano        | Pregões | Trades | Gains  | Stops  |  WR %  |  Saldo Pts  |   Líq. 1ct    | Líq. 5cts
+-----------------------------------------------------------------------------------------------
+Junho / 2026     |    9    |  259   |  107   |  152   |  41.3% | +     2555 pts | R$     355.60 | R$    1778.00
+Julho / 2026     |   23    |  585   |  231   |  354   |  39.5% | +      365 pts | R$    -278.00 | R$   -1390.00
+Agosto / 2026    |   21    |  610   |  241   |  369   |  39.5% |      -450 pts | R$    -456.00 | R$   -2280.00
+Setembro / 2026  |   21    |  853   |  357   |  496   |  41.9% | +    14105 pts | R$    2309.20 | R$   11546.00
+Outubro / 2026   |   21    |  1529  |  559   |  970   |  36.6% |    -26705 pts | R$   -6258.40 | R$  -31292.00
+Novembro / 2026  |    4    |  142   |   57   |   85   |  40.1% | +      840 pts | R$      82.80 | R$     414.00
+-----------------------------------------------------------------------------------------------
+===============================================================================================
