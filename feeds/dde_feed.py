@@ -209,8 +209,17 @@ class ProfitDDEFeed(BaseMarketFeed):
                         raw_max = query_item(f"{self.symbol}.MAX")
                         raw_min = query_item(f"{self.symbol}.MIN")
                         raw_neg = query_item(f"{self.symbol}.NEG")
-                        raw_agr_c = query_item(f"{self.symbol}.AGRVOLC")
-                        raw_agr_v = query_item(f"{self.symbol}.AGRVOLV")
+                        # Resiliência de tags de agressão (AGRVOLC / AGRCOMP / AGRC)
+                        raw_agr_c = (
+                            query_item(f"{self.symbol}.AGRVOLC") or 
+                            query_item(f"{self.symbol}.AGRCOMP") or 
+                            query_item(f"{self.symbol}.AGRC")
+                        )
+                        raw_agr_v = (
+                            query_item(f"{self.symbol}.AGRVOLV") or 
+                            query_item(f"{self.symbol}.AGRVEND") or 
+                            query_item(f"{self.symbol}.AGRV")
+                        )
 
                         open_p = float(raw_abe.replace('.', '').replace(',', '.')) if raw_abe else price
                         high_p = float(raw_max.replace('.', '').replace(',', '.')) if raw_max else price

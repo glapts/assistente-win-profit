@@ -59,6 +59,9 @@ def test_contracts_loading():
 
 def test_gatekeeper_premium_discount(niveis, state):
     print("\n--- [TESTE 2] Regra de Ouro: Premium & Discount (50% Equilibrium) ---")
+    state.allowed_direction = TradingDirection.BOTH
+    state.trading_enabled = True
+    state.macro_regime.event_lockout = False
     gatekeeper = HarnessGatekeeper(dealing_range=niveis.dealing_range, runtime_state=state)
     
     eq = niveis.dealing_range.equilibrium_50 # 171.205
