@@ -2,8 +2,9 @@
 core/harness/execution_harness.py
 Motor Central do Execution Harness Determinístico.
 Opera nos modos:
-  - COPILOT   : Emite alertas sonoros, visuais e estruturados (Recomendado para início).
-  - FULL_AUTO : Despacha ordens OCO diretamente via ProfitDLL (Fase 2 / Futuro).
+  - COPILOT   : Emite alertas sonoros, visuais e estruturados (Modo padrão).
+  - FULL_AUTO : Ponto de integração seguro (consultivo / sem envio de ordens reais).
+Gerencia o ciclo de vida rigoroso de sinais e zonas (prevenção de queima prematura).
 """
 
 import os
@@ -34,11 +35,13 @@ class ExecutionHarness:
         niveis_contract: Niveis60mContract,
         runtime_state: Optional[RuntimeStateContract] = None,
         mode: ExecutionMode = ExecutionMode.COPILOT,
-        signals_output_path: str = "data/sinais_copiloto.json"
+        signals_output_path: str = "data/sinais_copiloto.json",
+        session_storage_path: Optional[str] = "data/state_machine_session.json"
     ):
         self.niveis = niveis_contract
         self.mode = mode
         self.signals_output_path = signals_output_path
+        self.session_storage_path = session_storage_path
         
         # Componentes do Harness
         self.gatekeeper = HarnessGatekeeper(
@@ -50,7 +53,8 @@ class ExecutionHarness:
             min_institutional_absorption=100
         )
         self.state_machine = FVGStateMachine(
-            zones=self.niveis.zonas_fvg
+            zones=self.niveis.zonas_fvg,
+            session_storage_path=self.session_storage_path
         )
 
         self.last_signal: Optional[TradeSignal] = None
@@ -95,7 +99,7 @@ class ExecutionHarness:
                         proposed_dir = TradingDirection.SHORT
                         expected_defense = "SELL_DEFENSE"
 
-                # Gatekeeper: Valida regras rígidas (Premium/Discount, horários, circuit breaker)
+                # Gatekeeper: Valida regras rígidas (Fail-closed, Premium/Discount, horários, circuit breaker)
                 allowed, gate_msg = self.gatekeeper.evaluate_entry_permission(
                     current_time=timestamp,
                     current_price=price,
@@ -183,20 +187,31 @@ class ExecutionHarness:
             )
         )
 
-        self.last_signal = signal
-        self.generated_signals.append(signal)
+        previous_status = zone.status
+        zone.status = ZoneStatus.EMITTING
 
-        # Trata conforme o modo configurado
-        if self.mode == ExecutionMode.COPILOT:
-            self._handle_copilot_alert(signal)
-        elif self.mode == ExecutionMode.FULL_AUTO:
-            self._handle_full_auto_dispatch(signal)
+        try:
+            self.last_signal = signal
+            self.generated_signals.append(signal)
 
-        # Salva em disco para trilha de auditoria
-        self._persist_signals()
-        
-        # Marca a zona como em execução para não duplicar entradas no mesmo candle
-        zone.status = ZoneStatus.EXHAUSTED
+            # Trata conforme o modo configurado
+            if self.mode == ExecutionMode.COPILOT:
+                self._handle_copilot_alert(signal)
+            elif self.mode == ExecutionMode.FULL_AUTO:
+                self._handle_full_auto_dispatch(signal)
+
+            # Salva em disco para trilha de auditoria
+            self._persist_signals()
+            
+            # Marca a zona como EXHAUSTED somente após emissão e persistência confirmadas
+            zone.status = ZoneStatus.EXHAUSTED
+            self.state_machine.save_session()
+
+        except Exception as e:
+            # Em caso de falha de persistência ou alerta, reverte status da zona
+            zone.status = previous_status
+            print(f"[HARNESS ERRO] Falha na emissão/persistência do sinal: {e}. Zona {zone.id} revertida para {previous_status.value}.")
+            raise
 
         return signal
 
@@ -225,7 +240,6 @@ class ExecutionHarness:
 """
         print(card)
 
-        # Emite beeps sonoros diferenciados (agudo para compra, grave para venda)
         try:
             if signal.direction == TradingDirection.LONG:
                 winsound.Beep(1200, 150)
@@ -237,16 +251,16 @@ class ExecutionHarness:
             pass
 
     def _handle_full_auto_dispatch(self, signal: TradeSignal):
-        """Modo Full-Auto (Futuro): Envia a ordem OCO diretamente na corretora."""
-        print(f"\n[FULL_AUTO] DISPARANDO ORDEM OCO VIA PROFIT PRO:")
+        """Modo Full-Auto (Consultivo / Stub Seguro): Ponto de integração sem envio de ordens reais."""
+        print(f"\n[FULL_AUTO CONSULTIVO] SINAL REGISTRADO (SEM ENVIO DE ORDENS REAIS):")
         print(f"  -> {signal.direction.value} @ {signal.entry_price:.0f} | Stop: {signal.stop_loss:.0f} | Alvo: {signal.take_profit:.0f}")
-        # Hook para envio via ProfitDLL ou bridge de automação
 
     def _persist_signals(self):
         """Grava histórico de sinais em JSON."""
         try:
-            os.makedirs(os.path.dirname(self.signals_output_path), exist_ok=True)
+            os.makedirs(os.path.dirname(os.path.abspath(self.signals_output_path)), exist_ok=True)
             with open(self.signals_output_path, "w", encoding="utf-8") as f:
                 json.dump([s.model_dump() for s in self.generated_signals], f, indent=2, ensure_ascii=False)
         except Exception as e:
             print(f"[HARNESS WARN] Falha ao persistir sinais: {e}")
+            raise

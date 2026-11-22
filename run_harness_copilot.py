@@ -2,9 +2,9 @@
 run_harness_copilot.py
 Execução Oficial do Execution Harness no Modo Copiloto (Assistido).
 Conecta-se ao Profit Pro via DDE/RTD ou executa em modo monitoramento ativo.
-Carrega os contratos:
+Carrega e monitora os contratos:
   - data/niveis_60m.json (Zonas FVG e Dealing Range 50%)
-  - data/runtime_state.json (Estado do Orquestrador e Circuit Breakers)
+  - data/runtime_state.json (Estado do Orquestrador e Circuit Breakers, com hot-reload Fail-Closed)
 """
 
 import os
@@ -62,6 +62,7 @@ def main():
     state.execution_mode = exec_mode
 
     symbol = resolve_symbol(args.symbol or niveis.ativo)
+    state_path = os.path.join(base_dir, "data", "runtime_state.json")
 
     print("=" * 80)
     print(f"🚀 INICIANDO EXECUTION HARNESS — {exec_mode.value} (MINI-ÍNDICE B3)")
@@ -76,7 +77,7 @@ def main():
     if exec_mode == ExecutionMode.COPILOT:
         print("  -> Alertas sonoros e visuais habilitados. Ordens confirmadas pelo trader.")
     else:
-        print("  -> ENVIO AUTOMÁTICO DE ORDENS OCO ATIVO.")
+        print("  -> MODO CONSULTIVO / STUB SEGURO (Sem envio de ordens reais).")
     print("=" * 80)
 
     harness = ExecutionHarness(
@@ -91,7 +92,6 @@ def main():
     def on_trade_event(trade):
         aggr = trade.aggressor.value if hasattr(trade.aggressor, 'value') else str(trade.aggressor)
         harness.on_trade(trade.price, trade.quantity, aggr, trade.timestamp)
-        # Tick de avaliação
         harness.on_tick(trade.price, trade.timestamp)
 
     def on_candle_event(candle):
@@ -109,8 +109,33 @@ def main():
         print("[FEED] Conexão iniciada! Monitorando fluxo institucional em tempo real...")
         print("[HARNESS] Aguardando preço atingir zonas de 60m com confirmação de fluxo...\n")
         
+        last_state_check = 0.0
+        last_version_seen = state.state_version
+
         while True:
-            time.sleep(1)
+            t_now = time.time()
+            if t_now - last_state_check >= 1.0:
+                last_state_check = t_now
+                # Hot-reload de runtime_state com Fail-Closed imediato
+                try:
+                    if os.path.exists(state_path):
+                        with open(state_path, "r", encoding="utf-8") as f:
+                            fresh_data = json.load(f)
+                        fresh_state = RuntimeStateContract(**fresh_data)
+                        fresh_state.execution_mode = exec_mode
+                        
+                        if fresh_state.state_version != last_version_seen:
+                            last_version_seen = fresh_state.state_version
+                            print(f"[HARNESS SYNC] Novo runtime_state v{fresh_state.state_version} aplicado. Trading={fresh_state.trading_enabled}, CB={fresh_state.circuit_breaker.lockout_active}")
+
+                        harness.gatekeeper.update_runtime_state(fresh_state)
+                    else:
+                        harness.gatekeeper.update_runtime_state(None)
+                except Exception as ex:
+                    # Em caso de falha de leitura ou JSON temporariamente inconsistente, aplica Fail-Closed
+                    harness.gatekeeper.update_runtime_state(None)
+
+            time.sleep(0.5)
 
     except KeyboardInterrupt:
         print("\n[HARNESS] Encerrando monitoramento a pedido do operador.")

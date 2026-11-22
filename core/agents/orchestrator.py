@@ -2,8 +2,8 @@
 core/agents/orchestrator.py
 Agente Orquestrador ("O Gestor de Mesa").
 Consolida os pareceres dos Agentes Especialistas (Macro, Cesta/DI e Sentinela),
-calcula o Score de Confiança consolidado, resolve conflitos e atualiza
-atomicamente o arquivo 'data/runtime_state.json' lido pelo Execution Harness.
+calcula o Score de Confiança consolidado, resolve conflitos, verifica TTLs e atualiza
+atomicamente o arquivo 'data/runtime_state.json' com versionamento estruturado.
 """
 
 import os
@@ -32,7 +32,8 @@ class Orchestrator:
         basket_agent: Optional[BasketAgent] = None,
         sentinel_agent: Optional[SentinelAgent] = None,
         output_state_path: str = "data/runtime_state.json",
-        execution_mode: ExecutionMode = ExecutionMode.COPILOT
+        execution_mode: ExecutionMode = ExecutionMode.COPILOT,
+        ttl_seconds: float = 120.0
     ):
         self.macro_agent = macro_agent or MacroAgent()
         self.basket_agent = basket_agent or BasketAgent()
@@ -40,8 +41,10 @@ class Orchestrator:
         
         self.output_state_path = output_state_path
         self.execution_mode = execution_mode
+        self.ttl_seconds = ttl_seconds
         self.daily_stops_count = 0
         self.max_daily_stops = 2
+        self.state_version = 0
 
     def record_stop_loss(self):
         """Registra um stop acionado no dia para o Circuit Breaker."""
@@ -51,17 +54,26 @@ class Orchestrator:
 
     def run_cycle(self, current_time: Optional[datetime] = None) -> RuntimeStateContract:
         """
-        Executa um ciclo completo de consolidação de inteligência dos agentes
-        e grava o runtime_state.json atualizado.
+        Executa um ciclo completo de consolidação de inteligência dos agentes,
+        valida frescor dos dados e grava o runtime_state.json atualizado.
         """
         now = current_time or datetime.now()
+        self.state_version += 1
 
         # 1. Coleta parecer de cada especialista
         op_macro = self.macro_agent.evaluate(now)
         op_basket = self.basket_agent.evaluate(now)
         op_sentinel = self.sentinel_agent.evaluate(now)
 
-        # 2. Resolução de Travas Rígidas (Lockouts de Segurança)
+        # 2. Validação de TTL e integridade dos pareceres
+        macro_stale = op_macro.is_expired(now) or op_macro.data_quality == "STALE"
+        basket_stale = op_basket.is_expired(now) or op_basket.data_quality == "STALE"
+        data_quality = "INTEGRITY_OK"
+
+        if macro_stale or basket_stale:
+            data_quality = "DEGRADED"
+
+        # 3. Resolução de Travas Rígidas (Lockouts de Segurança)
         is_circuit_breaker_active = self.daily_stops_count >= self.max_daily_stops
         is_lockout_active = (
             op_sentinel.lockout or
@@ -72,7 +84,7 @@ class Orchestrator:
 
         trading_enabled = not is_lockout_active
 
-        # 3. Resolução de Direção Permitida (Vetos Cruzados)
+        # 4. Resolução de Direção Permitida (Vetos Cruzados)
         veto_buy = op_macro.veto_buy or op_basket.veto_buy or op_sentinel.veto_buy
         veto_sell = op_macro.veto_sell or op_basket.veto_sell or op_sentinel.veto_sell
 
@@ -85,7 +97,7 @@ class Orchestrator:
         else:
             allowed_dir = TradingDirection.BOTH
 
-        # 4. Cálculo Ponderado do Score de Confiança
+        # 5. Cálculo Ponderado do Score de Confiança
         # Pesos: Macro (0.35) + Cesta/DI (0.45) + Sentinela (0.20)
         base_confidence = (
             op_macro.confidence * 0.35 +
@@ -98,12 +110,16 @@ class Orchestrator:
            (op_macro.bias == "BEARISH" and op_basket.bias == "BULLISH"):
             base_confidence -= 0.20
 
+        # Penalidade por dados degradados
+        if data_quality == "DEGRADED":
+            base_confidence -= 0.15
+
         confidence_score = max(0.10, min(1.0, round(base_confidence, 2)))
 
         if is_lockout_active:
             confidence_score = 0.0
 
-        # 5. Montagem do Contrato RuntimeStateContract
+        # 6. Montagem do Contrato RuntimeStateContract
         macro_state = MacroRegimeState(
             status=op_macro.bias,
             sp500_bias="BULLISH" if self.macro_agent.sp500_change_pct > 0 else "BEARISH",
@@ -126,6 +142,9 @@ class Orchestrator:
 
         runtime_state = RuntimeStateContract(
             timestamp=now.isoformat(),
+            state_version=self.state_version,
+            ttl_seconds=self.ttl_seconds,
+            data_quality=data_quality,
             execution_mode=self.execution_mode,
             trading_enabled=trading_enabled,
             allowed_direction=allowed_dir,
@@ -137,7 +156,7 @@ class Orchestrator:
             basket_regime=basket_state
         )
 
-        # 6. Gravação Atômica do Arquivo (Evita colisão de leitura no Harness)
+        # 7. Gravação Atômica do Arquivo (Evita colisão de leitura no Harness)
         self._write_state_atomic(runtime_state)
 
         return runtime_state
@@ -145,14 +164,15 @@ class Orchestrator:
     def _write_state_atomic(self, state: RuntimeStateContract):
         """Grava o JSON usando arquivo temporário e replace atômico."""
         try:
-            os.makedirs(os.path.dirname(os.path.abspath(self.output_state_path)), exist_ok=True)
-            temp_dir = os.path.dirname(os.path.abspath(self.output_state_path))
+            target_path = os.path.abspath(self.output_state_path)
+            temp_dir = os.path.dirname(target_path)
+            os.makedirs(temp_dir, exist_ok=True)
             
             with tempfile.NamedTemporaryFile("w", dir=temp_dir, delete=False, encoding="utf-8") as tf:
                 json.dump(state.model_dump(), tf, indent=2, ensure_ascii=False)
                 temp_name = tf.name
             
             # Substituição atômica no sistema de arquivos do Windows
-            os.replace(temp_name, os.path.abspath(self.output_state_path))
+            os.replace(temp_name, target_path)
         except Exception as e:
             print(f"[ORQUESTRADOR ERRO] Falha ao gravar {self.output_state_path}: {e}")

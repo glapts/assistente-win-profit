@@ -1,0 +1,7 @@
+# Core Dependencies (Offline Research & Execution Harness)
+pydantic>=2.7.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Optional Live Feed Dependencies (Nelogica DDE / Windows COM)
+# comtypes>=1.4.0

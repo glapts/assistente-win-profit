@@ -15,8 +15,9 @@ from core.agents.base_agent import BaseAgent, AgentOpinion
 
 
 class BasketAgent(BaseAgent):
-    def __init__(self):
+    def __init__(self, ttl_seconds: float = 120.0):
         super().__init__(name="Agente_Cesta_Arbitragem")
+        self.ttl_seconds = ttl_seconds
         # Monitoramento das Blue Chips (pesos dominantes no IBOV)
         self.stocks: Dict[str, float] = {
             "VALE3": 0.0,  # ~13%
@@ -30,22 +31,26 @@ class BasketAgent(BaseAgent):
             "DI1F29": 0.0, # Médio
             "DI1F31": 0.0  # Longo
         }
+        self.last_update_time: Optional[datetime] = None
 
-    def update_stock(self, ticker: str, change_pct: float):
+    def update_stock(self, ticker: str, change_pct: float, timestamp: Optional[datetime] = None):
         t_clean = ticker.upper().strip()
         self.stocks[t_clean] = change_pct
+        self.last_update_time = timestamp or datetime.now()
 
-    def update_di(self, contract: str, change_bps: float):
+    def update_di(self, contract: str, change_bps: float, timestamp: Optional[datetime] = None):
         c_clean = contract.upper().strip()
         self.di_rates[c_clean] = change_bps
+        self.last_update_time = timestamp or datetime.now()
 
     def evaluate(self, current_time: Optional[datetime] = None) -> AgentOpinion:
         now = current_time or datetime.now()
         t = now.time()
+        origin_ts = self.last_update_time or now
 
         # 1. Checagem de Horário do Mercado à Vista (P4: 09h00 às 10h00)
         if time(9, 0) <= t < time(10, 0):
-            return AgentOpinion(
+            opinion = AgentOpinion(
                 agent_name=self.name,
                 bias="LOCKOUT",
                 confidence=1.0,
@@ -53,12 +58,26 @@ class BasketAgent(BaseAgent):
                 veto_buy=True,
                 veto_sell=True,
                 reason="MERCADO À VISTA FECHADO (P4): Blue Chips em leilão. WIN operando no escuro sem formação de preço real.",
-                metadata={"time": t.strftime("%H:%M:%S")}
+                metadata={"time": t.strftime("%H:%M:%S")},
+                timestamp=now,
+                origin_timestamp=origin_ts,
+                received_timestamp=now,
+                ttl_seconds=self.ttl_seconds,
+                data_quality="INTEGRITY_OK",
+                source="B3_SCHEDULE"
             )
+            self.last_opinion = opinion
+            return opinion
 
         veto_buy = False
         veto_sell = False
         reasons = []
+
+        # Verificar dados obsoletos
+        data_quality = "INTEGRITY_OK"
+        if self.last_update_time and (now - self.last_update_time).total_seconds() > self.ttl_seconds:
+            data_quality = "STALE"
+            reasons.append(f"Aviso: Dados de Blue Chips/DI sem atualização há {(now - self.last_update_time).total_seconds():.0f}s.")
 
         # 2. Concentração de Blue Chips (P5: VALE3 e PETR4)
         vale = self.stocks.get("VALE3", 0.0)
@@ -113,7 +132,13 @@ class BasketAgent(BaseAgent):
             metadata={
                 "stocks": self.stocks.copy(),
                 "di_rates": self.di_rates.copy()
-            }
+            },
+            timestamp=now,
+            origin_timestamp=origin_ts,
+            received_timestamp=now,
+            ttl_seconds=self.ttl_seconds,
+            data_quality=data_quality,
+            source="BASKET_DI"
         )
         self.last_opinion = opinion
         return opinion

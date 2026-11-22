@@ -1,6 +1,7 @@
 """
 core/agents/base_agent.py
 Classe base e contrato padrão de parecer para os Agentes Especialistas de Contexto.
+Inclui rastreabilidade de dados: timestamps de origem/recepção, TTL e qualidade do dado.
 """
 
 from abc import ABC, abstractmethod
@@ -13,14 +14,25 @@ from typing import Dict, Any, Optional
 class AgentOpinion:
     """Parecer estruturado emitido por cada agente especialista."""
     agent_name: str
-    bias: str                      # "BULLISH", "BEARISH", "NEUTRAL", "LOCKOUT"
-    confidence: float              # 0.0 a 1.0
-    veto_buy: bool = False         # Veto explícito de compra
-    veto_sell: bool = False        # Veto explícito de venda
-    lockout: bool = False          # Trava total de operações
+    bias: str                                # "BULLISH", "BEARISH", "NEUTRAL", "LOCKOUT"
+    confidence: float                        # 0.0 a 1.0
+    veto_buy: bool = False                   # Veto explícito de compra
+    veto_sell: bool = False                  # Veto explícito de venda
+    lockout: bool = False                    # Trava total de operações
     reason: str = ""
     metadata: Dict[str, Any] = field(default_factory=dict)
     timestamp: datetime = field(default_factory=datetime.now)
+    origin_timestamp: Optional[datetime] = None      # Timestamp da geração do dado na fonte
+    received_timestamp: Optional[datetime] = None    # Timestamp de recebimento pelo agente
+    ttl_seconds: float = 120.0                       # Validade máxima do parecer
+    data_quality: str = "INTEGRITY_OK"               # "INTEGRITY_OK", "STALE", "DEGRADED", "SYNTHETIC"
+    source: str = "DEFAULT"
+
+    def is_expired(self, current_time: Optional[datetime] = None) -> bool:
+        """Verifica se o parecer ultrapassou o Time-To-Live (TTL)."""
+        ref_time = current_time or datetime.now()
+        ts = self.origin_timestamp or self.timestamp
+        return (ref_time - ts).total_seconds() > self.ttl_seconds
 
 
 class BaseAgent(ABC):

@@ -12,7 +12,7 @@ import threading
 from datetime import datetime, timedelta
 from typing import Optional, Dict
 
-from feeds.base_feed import BaseMarketFeed, FeedHealth
+from feeds.base_feed import BaseMarketFeed, FeedHealth, FeedConnectionStatus
 from core.models import Candle, Trade, AggressorSide
 from core.contract import TZ_BRASILIA, round_to_tick
 
@@ -70,6 +70,7 @@ class ProfitDDEFeed(BaseMarketFeed):
     def connect(self) -> bool:
         """Marca conexão como pronta para a thread."""
         self.health.connected = True
+        self.health.status = FeedConnectionStatus.CONNECTING
         return True
 
     def subscribe_symbol(self, symbol: str) -> bool:
@@ -100,6 +101,7 @@ class ProfitDDEFeed(BaseMarketFeed):
         res = self.user32.DdeInitializeW(ctypes.byref(id_inst), cb_func, 0, 0)
         if res != 0:
             self.health.connected = False
+            self.health.status = FeedConnectionStatus.DISCONNECTED
             self.health.error_message = f"DdeInitializeW falhou na thread: {res}"
             return
 
@@ -113,12 +115,14 @@ class ProfitDDEFeed(BaseMarketFeed):
             if not hconv:
                 err = self.user32.DdeGetLastError(id_inst.value)
                 self.health.connected = False
+                self.health.status = FeedConnectionStatus.RECONNECTING
                 self.health.error_message = (
                     f"Aguardando transmissão DDE do Profit Pro ('{self.service_name}|{self.topic_name}')..."
                 )
                 time.sleep(1.5)
             else:
                 self.health.connected = True
+                self.health.status = FeedConnectionStatus.CONNECTED
                 self.health.error_message = ""
 
         if not self.running or not hconv:
@@ -367,3 +371,4 @@ class ProfitDDEFeed(BaseMarketFeed):
         if self.worker_thread and self.worker_thread.is_alive():
             self.worker_thread.join(timeout=2.0)
         self.health.connected = False
+        self.health.status = FeedConnectionStatus.DISCONNECTED
