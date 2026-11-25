@@ -786,6 +786,12 @@ class WhaleNYMonitor:
                 di_bias = macro.get("di_curve_bias", "STABLE")
                 self.cross_market.di1f29_change_bps = 5.0 if di_bias == "STRESSED" else -2.0
                 self.cross_market.blue_chips_alignment = "BEARISH" if sp_bias == "BEARISH" else "BULLISH"
+
+                # Sincroniza Circuit Breaker / Trava de Negociação
+                cb = st.get("circuit_breaker", {})
+                self.circuit_breaker_active = bool(
+                    not st.get("trading_enabled", True) or cb.get("lockout_active", False)
+                )
             except Exception:
                 pass
 
@@ -842,6 +848,14 @@ class WhaleNYMonitor:
             return alerts
 
         if not parsed_records:
+            return alerts
+
+        # Trava de Segurança: Circuit Breaker Ativo
+        if getattr(self, "circuit_breaker_active", False):
+            print(
+                f"\n{ANSI_BOLD}{ANSI_RED}🛑 [CIRCUIT BREAKER ATIVO — OPERAÇÃO BLOQUEADA]{ANSI_RESET} "
+                f"Limite diário de stops atingido. Novos alertas operacionais bloqueados hoje para proteção de capital.\n"
+            )
             return alerts
 
         # Ordenação cronológica (do mais antigo para o mais recente)

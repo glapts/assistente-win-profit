@@ -73,6 +73,16 @@ class Orchestrator:
         if macro_stale or basket_stale:
             data_quality = "DEGRADED"
 
+        # 2.1 Sincroniza stops persistidos em disco (data/circuit_breaker.json)
+        cb_file = os.path.join(os.path.dirname(os.path.abspath(self.output_state_path)), "circuit_breaker.json")
+        if os.path.exists(cb_file):
+            try:
+                with open(cb_file, "r", encoding="utf-8") as f:
+                    cb_data = json.load(f)
+                    self.daily_stops_count = max(self.daily_stops_count, cb_data.get("daily_stops_count", 0))
+            except Exception:
+                pass
+
         # 3. Resolução de Travas Rígidas (Lockouts de Segurança)
         is_circuit_breaker_active = self.daily_stops_count >= self.max_daily_stops
         is_lockout_active = (
