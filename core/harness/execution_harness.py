@@ -11,7 +11,7 @@ import os
 import json
 import uuid
 import winsound
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
 from core.harness.contracts import (
@@ -203,8 +203,17 @@ class ExecutionHarness:
             # Salva em disco para trilha de auditoria
             self._persist_signals()
             
-            # Marca a zona como EXHAUSTED somente após emissão e persistência confirmadas
-            zone.status = ZoneStatus.EXHAUSTED
+            # Trata o ciclo de vida multi-toque com Cooldown Inteligente (10 min + 150 pts afastamento)
+            zone.touch_count += 1
+            if zone.touch_count < zone.max_touches:
+                zone.status = ZoneStatus.COOLDOWN
+                zone.cooldown_until = timestamp + timedelta(minutes=10)
+                zone.max_clearance_reached = 0.0
+                print(f"[HARNESS] ⏳ Zona {zone.id} em COOLDOWN INTELIGENTE (10 min + 150 pts afastamento). Toque {zone.touch_count}/{zone.max_touches}.")
+            else:
+                zone.status = ZoneStatus.EXHAUSTED
+                print(f"[HARNESS] 🛑 Zona {zone.id} ESGOTADA definitivamente ({zone.touch_count}/{zone.max_touches} toques diários).")
+
             self.state_machine.save_session()
 
         except Exception as e:

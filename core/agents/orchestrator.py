@@ -94,8 +94,26 @@ class Orchestrator:
 
         trading_enabled = not is_lockout_active
 
+        # 3.1 Detector de Descolamento Macro (Prevalência de Commodities / Blue Chips)
+        # Se o S&P 500 gerar veto de compra, mas as Blue Chips domésticas estiverem fortes:
+        # Vale >= +2.0%, Petrobras >= +1.5% e (Dólar < 0.0% ou DI1F29 <= 0.0 bps)
+        vale_pct = self.basket_agent.stocks.get("VALE3", 0.0)
+        petr_pct = self.basket_agent.stocks.get("PETR4", 0.0)
+        di29_bps = self.basket_agent.di_rates.get("DI1F29", 0.0)
+        dxy_pct = getattr(self.macro_agent, "dxy_change_pct", 0.0)
+
+        is_decoupled = (
+            op_macro.veto_buy and
+            not op_basket.veto_buy and
+            vale_pct >= 2.0 and
+            petr_pct >= 1.5 and
+            (di29_bps <= 0.0 or dxy_pct <= 0.0)
+        )
+
+        macro_veto_buy = False if is_decoupled else op_macro.veto_buy
+
         # 4. Resolução de Direção Permitida (Vetos Cruzados)
-        veto_buy = op_macro.veto_buy or op_basket.veto_buy or op_sentinel.veto_buy
+        veto_buy = macro_veto_buy or op_basket.veto_buy or op_sentinel.veto_buy
         veto_sell = op_macro.veto_sell or op_basket.veto_sell or op_sentinel.veto_sell
 
         if veto_buy and veto_sell:
@@ -117,6 +135,12 @@ class Orchestrator:
             active_vetos.append(f"MACRO: {op_macro.reason}")
         if op_basket.lockout and op_basket.reason:
             active_vetos.append(f"CESTA/HORÁRIO: {op_basket.reason}")
+
+        if is_decoupled:
+            active_vetos.append(
+                f"DESCOLAMENTO MACRO ATIVO: Força de Blue Chips (VALE3 {vale_pct:+.2f}%, PETR4 {petr_pct:+.2f}%) "
+                f"e alívio doméstico anulam veto externo do S&P 500 ({self.macro_agent.sp500_change_pct:+.2f}%)."
+            )
 
         if not is_lockout_active:
             if veto_buy and veto_sell:

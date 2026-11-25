@@ -92,6 +92,47 @@ class FVGStateMachine:
                         "timestamp": timestamp
                     })
 
+            elif zone.status == ZoneStatus.COOLDOWN:
+                # Calcula afastamento da zona (clearance)
+                if current_price > zone.top:
+                    clearance = current_price - zone.top
+                elif current_price < zone.bottom:
+                    clearance = zone.bottom - current_price
+                else:
+                    clearance = 0.0
+
+                if clearance > zone.max_clearance_reached:
+                    zone.max_clearance_reached = clearance
+
+                # Condição de Rearme Inteligente: Tempo (>= cooldown_until) E Afastamento (>= min_clearance_required)
+                time_ok = (zone.cooldown_until is None or timestamp >= zone.cooldown_until)
+                clearance_ok = (zone.max_clearance_reached >= zone.min_clearance_required)
+
+                if time_ok and clearance_ok:
+                    # Rearma a zona para novo teste
+                    if inside_zone:
+                        zone.status = ZoneStatus.TESTING_CONTINUATION
+                    else:
+                        zone.status = ZoneStatus.UNMITIGATED
+
+                    events.append({
+                        "type": "ZONE_REARMED",
+                        "zone_id": zone.id,
+                        "price": current_price,
+                        "status": zone.status,
+                        "touch_count": zone.touch_count,
+                        "max_touches": zone.max_touches,
+                        "clearance_reached": zone.max_clearance_reached,
+                        "timestamp": timestamp,
+                        "message": (
+                            f"🔄 ZONA REARMADA: {zone.id} cumpriu 10m de repouso e afastamento de "
+                            f"{zone.max_clearance_reached:.0f} pts (Toque {zone.touch_count}/{zone.max_touches})."
+                        )
+                    })
+                    zone.cooldown_until = None
+                    zone.max_clearance_reached = 0.0
+                    self.save_session()
+
             elif zone.status == ZoneStatus.INVERTED_PENDING_RETEST:
                 # Preço voltou para retestar a zona rompida (iFVG)
                 if inside_zone:
@@ -161,7 +202,16 @@ class FVGStateMachine:
             os.makedirs(os.path.dirname(os.path.abspath(target_path)), exist_ok=True)
             payload = {
                 "updated_at": datetime.now().isoformat(),
-                "zones": {z_id: z.status.value for z_id, z in self.zones.items()}
+                "zones": {
+                    z_id: {
+                        "status": z.status.value,
+                        "touch_count": getattr(z, "touch_count", 0),
+                        "max_touches": getattr(z, "max_touches", 3),
+                        "cooldown_until": z.cooldown_until.isoformat() if getattr(z, "cooldown_until", None) else None,
+                        "max_clearance_reached": getattr(z, "max_clearance_reached", 0.0)
+                    }
+                    for z_id, z in self.zones.items()
+                }
             }
             with open(target_path, "w", encoding="utf-8") as f:
                 json.dump(payload, f, indent=2)
@@ -177,9 +227,20 @@ class FVGStateMachine:
                 data = json.load(f)
             zone_states = data.get("zones", {})
             restored = 0
-            for z_id, st_str in zone_states.items():
+            for z_id, st_val in zone_states.items():
                 if z_id in self.zones:
-                    self.zones[z_id].status = ZoneStatus(st_str)
+                    if isinstance(st_val, dict):
+                        self.zones[z_id].status = ZoneStatus(st_val.get("status", "UNMITIGATED"))
+                        self.zones[z_id].touch_count = st_val.get("touch_count", 0)
+                        self.zones[z_id].max_touches = st_val.get("max_touches", 3)
+                        self.zones[z_id].max_clearance_reached = st_val.get("max_clearance_reached", 0.0)
+                        if st_val.get("cooldown_until"):
+                            try:
+                                self.zones[z_id].cooldown_until = datetime.fromisoformat(st_val["cooldown_until"])
+                            except Exception:
+                                self.zones[z_id].cooldown_until = None
+                    else:
+                        self.zones[z_id].status = ZoneStatus(st_val)
                     restored += 1
             return True
         except Exception as e:

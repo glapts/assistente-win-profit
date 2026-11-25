@@ -123,6 +123,14 @@ def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroA
             macro.update_sp500(price=ult_sp or 6000.0, change_pct=pct_sp)
             break
 
+    # Dólar Futuro (WDO / DOL)
+    for wdo_sym in ["WDOZ26", "WDO", "DOLZ26", "DOL"]:
+        raw_wdo = poller.query(f"{wdo_sym}.VAR")
+        pct_wdo = parse_pct(raw_wdo)
+        if pct_wdo is not None:
+            macro.update_dxy(dxy_val=104.0, change_pct=pct_wdo)
+            break
+
 
 def main():
     parser = argparse.ArgumentParser(description="Daemon do Comitê de Agentes e Orquestrador")

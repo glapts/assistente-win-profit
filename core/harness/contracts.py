@@ -37,6 +37,7 @@ class ZoneStatus(str, Enum):
     TESTING_CONTINUATION = "TESTING_CONTINUATION"
     INVERTED_PENDING_RETEST = "INVERTED_PENDING_RETEST"
     TRIGGER_IFVG = "TRIGGER_IFVG"
+    COOLDOWN = "COOLDOWN"
     CANDIDATE = "CANDIDATE"
     VALIDATED = "VALIDATED"
     EMITTING = "EMITTING"
@@ -99,6 +100,11 @@ class FVGZone(BaseModel):
     status: ZoneStatus = ZoneStatus.UNMITIGATED
     inversion_level: Optional[float] = None
     notes: Optional[str] = None
+    touch_count: int = 0
+    max_touches: int = 3
+    cooldown_until: Optional[datetime] = None
+    max_clearance_reached: float = 0.0
+    min_clearance_required: float = 150.0
 
     @model_validator(mode="after")
     def validate_bounds(self):
