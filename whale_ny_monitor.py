@@ -918,6 +918,9 @@ class WhaleNYMonitor:
 
                 if content and content != self.last_clipboard_content:
                     self.last_clipboard_content = content
+                    ingest_ts = datetime.now()
+                    num_lines = len(content.strip().splitlines())
+                    print(f" {ANSI_DIM}⚡ [WHALE TAPE] {num_lines} negócios ingeridos às {ingest_ts.strftime('%H:%M:%S')} (Tape fresco){ANSI_RESET}")
                     self.process_text_payload(content, check_staleness=True)
 
                 time.sleep(self.interval)

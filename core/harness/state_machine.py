@@ -32,6 +32,16 @@ class FVGStateMachine:
     def get_all_zones(self) -> List[FVGZone]:
         return list(self.zones.values())
 
+    def update_zones(self, new_zones: List[FVGZone]):
+        """Atualiza ou adiciona zonas em tempo de execução preservando o status das já existentes."""
+        for z in new_zones:
+            if z.id in self.zones:
+                prev_status = self.zones[z.id].status
+                self.zones[z.id] = z
+                self.zones[z.id].status = prev_status
+            else:
+                self.zones[z.id] = z
+
     def get_active_zones(self) -> List[FVGZone]:
         return [z for z in self.zones.values() if z.status not in (ZoneStatus.EXHAUSTED, ZoneStatus.INVALIDATED)]
 

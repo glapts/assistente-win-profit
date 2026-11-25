@@ -91,13 +91,14 @@ class HarnessGatekeeper:
         if time(9, 0) <= t < time(10, 0):
             return False, "TRAVA DE HORÁRIO (09:00 - 10:00): Modo OBSERVATION_ONLY ativo enquanto mercado à vista está em leilão."
 
-        # 8. Trava de Horário: Abertura de Nova York (P11 - Fakeouts de NY)
-        # Janela 1: 10h28 às 10h35 (quando NY abre 10h30)
-        if time(10, 28) <= t <= time(10, 35):
-            return False, "TRAVA ABERTURA NY (10:28 - 10:35): Volume anormal e fakeouts de abertura da NYSE."
-        # Janela 2: 11h28 às 11h35 (quando NY abre 11h30 no horário de verão)
-        if time(11, 28) <= t <= time(11, 35):
-            return False, "TRAVA ABERTURA NY (11:28 - 11:35): Volume anormal e fakeouts de abertura da NYSE."
+        # 8. Trava de Horário: Abertura de Nova York (P11 - Leilão NYSE e Arbitragem ADRs)
+        # Sincronizado estritamente com o Whale Flow (libera fluxo direcional às 10h33:01 / 11h33:01)
+        # Janela 1: 10h28 às 10h33 (quando NY abre 10h30)
+        if time(10, 28) <= t <= time(10, 33):
+            return False, "TRAVA ABERTURA NY (10:28 - 10:33): Volume anormal e leilão de abertura da NYSE."
+        # Janela 2: 11h28 às 11h33 (quando NY abre 11h30 no horário de inverno dos EUA)
+        if time(11, 28) <= t <= time(11, 33):
+            return False, "TRAVA ABERTURA NY (11:28 - 11:33): Volume anormal e leilão de abertura da NYSE."
 
         # 9. Regra de Ouro SMC: Quebra de Estrutura (BOS) vs Premium & Discount (P10)
         if is_structural_break:

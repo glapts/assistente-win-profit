@@ -252,6 +252,8 @@ class ExecutionHarness:
   Ação do Trader   : {bold}Posicione ou confirme a ordem no SuperDOM do Profit Pro{reset}
 {color}{bold}╚════════════════════════════════════════════════════════════════════════════════════════╝{reset}
 """
+        # Alerta acústico híbrido de terminal (funciona em fones Bluetooth, caixas USB e Windows nativo)
+        print("\a", end="", flush=True)
         print(card)
 
         try:

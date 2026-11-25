@@ -111,12 +111,30 @@ def main():
         
         last_state_check = 0.0
         last_version_seen = state.state_version
+        niveis_path = os.path.join(base_dir, "data", "niveis_60m.json")
+        last_niveis_mtime = os.path.getmtime(niveis_path) if os.path.exists(niveis_path) else 0.0
 
         while True:
             t_now = time.time()
             if t_now - last_state_check >= 1.0:
                 last_state_check = t_now
-                # Hot-reload de runtime_state com Fail-Closed imediato
+                # 1. Hot-reload de niveis_60m.json em tempo real (sem reiniciar o processo)
+                try:
+                    if os.path.exists(niveis_path):
+                        mtime_now = os.path.getmtime(niveis_path)
+                        if mtime_now > last_niveis_mtime:
+                            last_niveis_mtime = mtime_now
+                            with open(niveis_path, "r", encoding="utf-8") as f:
+                                fresh_niveis_data = json.load(f)
+                            fresh_niveis = Niveis60mContract(**fresh_niveis_data)
+                            harness.niveis = fresh_niveis
+                            harness.state_machine.update_zones(fresh_niveis.zonas_fvg)
+                            harness.gatekeeper.update_dealing_range(fresh_niveis.dealing_range)
+                            print(f"[HARNESS SYNC] 🔄 Zonas SMC atualizadas em tempo real! Total: {len(fresh_niveis.zonas_fvg)} zonas ativas.")
+                except Exception as ex_niveis:
+                    pass
+
+                # 2. Hot-reload de runtime_state com Fail-Closed imediato
                 try:
                     if os.path.exists(state_path):
                         with open(state_path, "r", encoding="utf-8") as f:
