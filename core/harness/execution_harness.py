@@ -248,7 +248,7 @@ class ExecutionHarness:
   Regime SMC       : {bold}{signal.regime.value}{reset} (50% Eq: {p_eq})
   Zona de 60m      : {signal.zone_id} ({signal.setup_name})
   Absorção Tape    : {bold}{vol_tape} contratos institucionais{reset}
-  Score Confiança  : {bold}{signal.confidence_score * 100:.0f}%{reset}
+  {bold}{green}SCORE DE CONFIANÇA:{reset} {bold}{green}{signal.confidence_score * 100:.0f}%{reset}
   Ação do Trader   : {bold}Posicione ou confirme a ordem no SuperDOM do Profit Pro{reset}
 {color}{bold}╚════════════════════════════════════════════════════════════════════════════════════════╝{reset}
 """
