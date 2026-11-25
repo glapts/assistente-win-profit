@@ -720,7 +720,7 @@ class VisualConsoleRenderer:
         print(f"  {ANSI_BOLD}Lote Executado  :{ANSI_RESET} {ANSI_BOLD}{ANSI_YELLOW}{alert.quantity:,} contratos{ANSI_RESET} [{alert.magnitude}]")
         print(f"  {ANSI_BOLD}Configuração SMC:{ANSI_RESET} {alert.setup_type} (Zona: {alert.zone_id})")
         print(f"  {ANSI_BOLD}Ação / Direção  :{ANSI_RESET} {ANSI_BOLD}{dir_bg}{ANSI_WHITE} {alert.direction} {ANSI_RESET}")
-        print(f"  {ANSI_BOLD}Preço de Entrada:{ANSI_RESET} {ANSI_BOLD}{alert.entry_price:,.0f}{ANSI_RESET}")
+        print(f"  {ANSI_BOLD}{ANSI_CYAN}PREÇO DE ENTRADA:{ANSI_RESET} {ANSI_BOLD}{ANSI_CYAN}{alert.entry_price:,.0f}{ANSI_RESET}")
         print(f"  {ANSI_BOLD}Stop Loss       :{ANSI_RESET} {ANSI_RED}{alert.stop_loss:,.0f} (-{abs(alert.entry_price - alert.stop_loss):.0f} pts){ANSI_RESET}")
         print(f"  {ANSI_BOLD}Alvo de Ganho   :{ANSI_RESET} {ANSI_GREEN}{alert.take_profit:,.0f} (+{abs(alert.take_profit - alert.entry_price):.0f} pts){ANSI_RESET}")
         print(f"  {ANSI_BOLD}R:R Teórico     :{ANSI_RESET} 1.60 (Stop {abs(alert.entry_price - alert.stop_loss):.0f} / Alvo {abs(alert.take_profit - alert.entry_price):.0f})")
