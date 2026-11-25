@@ -164,6 +164,7 @@ class RuntimeStateContract(BaseModel):
     circuit_breaker: CircuitBreakerState = Field(default_factory=CircuitBreakerState)
     macro_regime: MacroRegimeState = Field(default_factory=MacroRegimeState)
     basket_regime: BasketRegimeState = Field(default_factory=BasketRegimeState)
+    active_vetos: List[str] = Field(default_factory=list, description="Lista de vetos e travas ativas no ciclo")
 
     @model_validator(mode="after")
     def validate_confidence_range(self):

@@ -97,6 +97,27 @@ class Orchestrator:
         else:
             allowed_dir = TradingDirection.BOTH
 
+        # Coleta de vetos e travas ativas
+        active_vetos = []
+        if is_circuit_breaker_active:
+            active_vetos.append(f"CIRCUIT BREAKER: Limite diário de stops atingido ({self.daily_stops_count}/{self.max_daily_stops}).")
+        if op_sentinel.lockout and op_sentinel.reason:
+            active_vetos.append(f"SENTINELA: {op_sentinel.reason}")
+        if op_macro.lockout and op_macro.reason:
+            active_vetos.append(f"MACRO: {op_macro.reason}")
+        if op_basket.lockout and op_basket.reason:
+            active_vetos.append(f"CESTA/HORÁRIO: {op_basket.reason}")
+
+        if not is_lockout_active:
+            if veto_buy and veto_sell:
+                active_vetos.append("VETO DUPLO: Compras e Vendas vetadas simultaneamente.")
+            elif veto_buy:
+                reasons = [op.reason for op in [op_macro, op_basket, op_sentinel] if op.veto_buy and op.reason]
+                active_vetos.append(f"VETO DE COMPRA: {'; '.join(reasons) if reasons else 'Veto de compra ativo'}")
+            elif veto_sell:
+                reasons = [op.reason for op in [op_macro, op_basket, op_sentinel] if op.veto_sell and op.reason]
+                active_vetos.append(f"VETO DE VENDA: {'; '.join(reasons) if reasons else 'Veto de venda ativo'}")
+
         # 5. Cálculo Ponderado do Score de Confiança
         # Pesos: Macro (0.35) + Cesta/DI (0.45) + Sentinela (0.20)
         base_confidence = (
@@ -153,7 +174,8 @@ class Orchestrator:
             confidence_score=confidence_score,
             circuit_breaker=circuit_breaker,
             macro_regime=macro_state,
-            basket_regime=basket_state
+            basket_regime=basket_state,
+            active_vetos=active_vetos
         )
 
         # 7. Gravação Atômica do Arquivo (Evita colisão de leitura no Harness)

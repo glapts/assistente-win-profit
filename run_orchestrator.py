@@ -168,8 +168,18 @@ def main():
             status_symbol = "🟢 OPERAÇÃO LIBERADA" if state.trading_enabled else "🔴 OPERAÇÃO BLOQUEADA"
             opinion_summary = f"Dir: {state.allowed_direction.value} | Confiança: {state.confidence_score*100:.0f}%"
             print(f"[{now.strftime('%H:%M:%S')}] Ciclo #{cycle_count:04d} | {status_symbol} | {opinion_summary}")
-            if not state.trading_enabled and state.active_vetos:
-                print(f"   -> Motivo do Bloqueio: {state.active_vetos[0]}")
+            if not state.trading_enabled:
+                vetos = getattr(state, "active_vetos", [])
+                if vetos:
+                    for v in vetos:
+                        print(f"   -> Motivo do Bloqueio: {v}")
+                elif getattr(state.macro_regime, "lockout_reason", None):
+                    print(f"   -> Motivo do Bloqueio: {state.macro_regime.lockout_reason}")
+                else:
+                    print(f"   -> Motivo do Bloqueio: Operação desabilitada pelas travas do sistema.")
+            elif getattr(state, "active_vetos", []):
+                for v in state.active_vetos:
+                    print(f"   -> Alerta/Restrição: {v}")
             
             time.sleep(args.interval)
 
