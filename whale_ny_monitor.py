@@ -912,8 +912,9 @@ class WhaleNYMonitor:
         except Exception:
             self.last_clipboard_content = ""
 
-        try:
-            while True:
+        last_interrupt_ts: Optional[datetime] = None
+        while True:
+            try:
                 self.update_cross_market_from_runtime()
                 
                 # Leitura do Clipboard via PowerShell
@@ -939,8 +940,19 @@ class WhaleNYMonitor:
 
                 time.sleep(self.interval)
 
-        except KeyboardInterrupt:
-            print(f"\n{ANSI_YELLOW}[WHALE MONITOR] Monitoramento encerrado pelo operador.{ANSI_RESET}")
+            except KeyboardInterrupt:
+                now_ts = datetime.now()
+                if last_interrupt_ts and (now_ts - last_interrupt_ts).total_seconds() < 2.5:
+                    print(f"\n{ANSI_YELLOW}[WHALE MONITOR] Monitoramento encerrado pelo operador (confirmação recebida).{ANSI_RESET}")
+                    break
+                else:
+                    last_interrupt_ts = now_ts
+                    print(
+                        f"\n{ANSI_BOLD}{ANSI_YELLOW}⚠️ [AVISO — CTRL+C DETECTADO NO TERMINAL]{ANSI_RESET} "
+                        f"Se você pretendia copiar do Times & Trades, clique primeiro na janela do Profit Pro! "
+                        f"(Para realmente fechar o monitor, tecle Ctrl+C novamente em 2 segundos).\n"
+                    )
+                    time.sleep(0.5)
 
 
 # ---------------------------------------------------------------------------
