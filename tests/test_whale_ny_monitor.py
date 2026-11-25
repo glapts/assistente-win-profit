@@ -151,6 +151,25 @@ class TestWhaleNYMonitor(unittest.TestCase):
         self.assertEqual(alert.stop_loss, 165700.0 + 250.0)
         self.assertEqual(alert.take_profit, 165700.0 - 400.0)
 
+    def test_07_reverse_order_payload_chronological_processing(self):
+        """Valida que ordens em ordem decrescente (mais recente no topo, padrão Profit) são ordenadas e disparam alerta."""
+        from whale_ny_monitor import WhaleNYMonitor
+        monitor = WhaleNYMonitor(mode="LIVE_CLIPBOARD")
+        now = datetime(2026, 11, 25, 11, 33, 15)
+
+        # Dados fatiados invertidos (como vem do Profit Pro: mais recente no topo)
+        # Três fatias de 150 + 150 + 200 = 500 contratos em 3 segundos
+        reverse_payload = f"""
+11:33:14.800\tMorgan\t165.700*\t200\tXP\tComprador
+11:33:13.450\tMorgan\t165.700*\t150\tBTG\tComprador
+11:33:12.100\tMorgan\t165.700*\t150\tIdeal\tComprador
+"""
+        alerts = monitor.process_text_payload(reverse_payload, ref_date=now)
+        self.assertEqual(len(alerts), 1)
+        self.assertEqual(alerts[0].broker, "Morgan")
+        self.assertEqual(alerts[0].quantity, 500)
+        self.assertEqual(alerts[0].direction, "SHORT")
+
 
 if __name__ == "__main__":
     unittest.main()

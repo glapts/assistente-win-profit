@@ -534,6 +534,13 @@ class WhaleDecisionEngine:
         if score < 80:
             return None
 
+        # Cooldown / Deduplicação de Alerta (mesma zona e direção nos últimos 30 segundos)
+        # Evita flood de cards repetidos quando múltiplos lotes entram em sequência no tape
+        for prev in reversed(self.recent_alerts):
+            if abs((now - prev.timestamp).total_seconds()) < 30.0:
+                if prev.zone_id == zone.zone_id and prev.direction == direction:
+                    return None
+
         alert = WhaleSignalAlert(
             alert_id=f"ALERT_WHALE_{now.strftime('%H%M%S')}_{cluster.broker}",
             timestamp=now,
@@ -684,6 +691,9 @@ class VisualConsoleRenderer:
 
     @staticmethod
     def print_alert(alert: WhaleSignalAlert):
+        # Alerta sonoro no terminal do Windows (beep padrão)
+        print("\a", end="", flush=True)
+
         dir_color = ANSI_GREEN if alert.direction == "LONG" else ANSI_RED
         dir_bg = ANSI_BG_GREEN if alert.direction == "LONG" else ANSI_BG_RED
         border_color = ANSI_YELLOW if alert.score >= 90 else ANSI_CYAN
@@ -758,6 +768,7 @@ class WhaleNYMonitor:
         alerts = []
         lines = text.strip().splitlines()
 
+        parsed_records: List[TTRecord] = []
         for line in lines:
             line_clean = line.strip()
             if not line_clean:
@@ -770,19 +781,28 @@ class WhaleNYMonitor:
             self.processed_signatures.add(sig)
 
             # Limita tamanho do cache de assinaturas
-            if len(self.processed_signatures) > 10000:
+            if len(self.processed_signatures) > 20000:
                 self.processed_signatures.clear()
 
             record = TimesTradesParser.parse_line(line_clean, ref_date)
-            if not record:
-                continue
+            if record:
+                parsed_records.append(record)
 
+        if not parsed_records:
+            return alerts
+
+        # Ordenação cronológica (do mais antigo para o mais recente)
+        # Garante agregação correta de blocos fatiados e que o sinal mais recente ocorra por último
+        parsed_records.sort(key=lambda r: r.timestamp)
+
+        for record in parsed_records:
             # Agregação em janela de 3s
             cluster = self.aggregator.add_trade(record)
             if cluster:
+                # 1. Imprime o log de fluxo fatiado primeiro
                 VisualConsoleRenderer.print_cluster_log(cluster, record.price)
 
-                # Avalia gatilho no motor de decisão
+                # 2. Avalia gatilho no motor de decisão
                 alert = self.decision_engine.evaluate_cluster(
                     cluster=cluster,
                     current_price=record.price,
@@ -791,8 +811,11 @@ class WhaleNYMonitor:
                 )
 
                 if alert:
-                    VisualConsoleRenderer.print_alert(alert)
                     alerts.append(alert)
+
+        # 3. Imprime os alertas institucionais AO FINAL (no rodapé visível do PowerShell)
+        for alert in alerts:
+            VisualConsoleRenderer.print_alert(alert)
 
         return alerts
 
