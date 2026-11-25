@@ -115,13 +115,13 @@ class TestWhaleNYMonitor(unittest.TestCase):
         self.assertFalse(blocked)
 
     def test_06_smc_proximity_and_decision_score(self):
-        """Cálculo do Score de Assertividade na zona SMC."""
+        """Cálculo do Score de Assertividade na zona SMC de resistência (165.600)."""
         zones_mgr = SMCZonesManager()
         engine = WhaleDecisionEngine(zones_mgr)
         cross = CrossMarketState(wsp_change_pct=-1.90, wdo_change_pct=0.30, di1f29_change_bps=5.0, blue_chips_alignment="BEARISH")
 
         t_trade = datetime(2026, 11, 25, 11, 33, 15)
-        # Cluster Mega Clímax de 1.400 cts do Morgan no topo (165.700)
+        # Cluster Mega Clímax de 1.400 cts do Morgan na resistência de 165.600 (ZONA_02 CONTINUATION_SELL)
         cluster = WhaleCluster(
             cluster_id="TEST_01",
             start_time=t_trade,
@@ -131,8 +131,63 @@ class TestWhaleNYMonitor(unittest.TestCase):
             side="COMPRA",
             total_quantity=1400,
             trades_count=1,
-            vwap_price=165700.0,
+            vwap_price=165600.0,
             magnitude="MEGA_CLIMAX"
+        )
+
+        alert = engine.evaluate_cluster(
+            cluster=cluster,
+            current_price=165600.0,
+            cross_market=cross,
+            choch_confirmed=True,
+            delta_inverting=True,
+            current_time=t_trade
+        )
+
+        self.assertIsNotNone(alert)
+        self.assertEqual(alert.direction, "SHORT")
+        self.assertEqual(alert.setup_type, "EXAUSTAO_TOPO")
+        self.assertGreaterEqual(alert.score, 80)
+        self.assertEqual(alert.stop_loss, 165600.0 + 250.0)
+        self.assertEqual(alert.take_profit, 165600.0 - 400.0)
+
+    def test_07_reverse_order_payload_chronological_processing(self):
+        """Valida que ordens em ordem decrescente (mais recente no topo, padrão Profit) são ordenadas e disparam alerta."""
+        from whale_ny_monitor import WhaleNYMonitor
+        monitor = WhaleNYMonitor(mode="LIVE_CLIPBOARD")
+        now = datetime(2026, 11, 25, 11, 33, 15)
+
+        # Dados fatiados invertidos na resistência de 165.600
+        # Três fatias de 150 + 150 + 200 = 500 contratos em 3 segundos
+        reverse_payload = f"""
+11:33:14.800\tMorgan\t165.600*\t200\tXP\tComprador
+11:33:13.450\tMorgan\t165.600*\t150\tBTG\tComprador
+11:33:12.100\tMorgan\t165.600*\t150\tIdeal\tComprador
+"""
+        alerts = monitor.process_text_payload(reverse_payload, ref_date=now)
+        self.assertEqual(len(alerts), 1)
+        self.assertEqual(alerts[0].broker, "Morgan")
+        self.assertEqual(alerts[0].quantity, 500)
+        self.assertEqual(alerts[0].direction, "SHORT")
+
+    def test_08_inversion_buy_at_165700(self):
+        """Valida que a ZONA_01 (165.700 iFVG Base) é classificada como DEMAND_SUPORTE (LONG) para pullback."""
+        zones_mgr = SMCZonesManager()
+        engine = WhaleDecisionEngine(zones_mgr)
+        cross = CrossMarketState(wsp_change_pct=0.80, wdo_change_pct=-0.40, di1f29_change_bps=-3.0, blue_chips_alignment="BULLISH")
+
+        t_trade = datetime(2026, 11, 25, 11, 45, 0)
+        cluster = WhaleCluster(
+            cluster_id="TEST_BUY_01",
+            start_time=t_trade,
+            last_time=t_trade,
+            broker="UBS",
+            tier="TIER_2_GLOBAL",
+            side="COMPRA",
+            total_quantity=500,
+            trades_count=2,
+            vwap_price=165700.0,
+            magnitude="WHALE_BLOCK"
         )
 
         alert = engine.evaluate_cluster(
@@ -145,30 +200,10 @@ class TestWhaleNYMonitor(unittest.TestCase):
         )
 
         self.assertIsNotNone(alert)
-        self.assertEqual(alert.direction, "SHORT")
-        self.assertEqual(alert.setup_type, "EXAUSTAO_TOPO")
-        self.assertGreaterEqual(alert.score, 80)
-        self.assertEqual(alert.stop_loss, 165700.0 + 250.0)
-        self.assertEqual(alert.take_profit, 165700.0 - 400.0)
-
-    def test_07_reverse_order_payload_chronological_processing(self):
-        """Valida que ordens em ordem decrescente (mais recente no topo, padrão Profit) são ordenadas e disparam alerta."""
-        from whale_ny_monitor import WhaleNYMonitor
-        monitor = WhaleNYMonitor(mode="LIVE_CLIPBOARD")
-        now = datetime(2026, 11, 25, 11, 33, 15)
-
-        # Dados fatiados invertidos (como vem do Profit Pro: mais recente no topo)
-        # Três fatias de 150 + 150 + 200 = 500 contratos em 3 segundos
-        reverse_payload = f"""
-11:33:14.800\tMorgan\t165.700*\t200\tXP\tComprador
-11:33:13.450\tMorgan\t165.700*\t150\tBTG\tComprador
-11:33:12.100\tMorgan\t165.700*\t150\tIdeal\tComprador
-"""
-        alerts = monitor.process_text_payload(reverse_payload, ref_date=now)
-        self.assertEqual(len(alerts), 1)
-        self.assertEqual(alerts[0].broker, "Morgan")
-        self.assertEqual(alerts[0].quantity, 500)
-        self.assertEqual(alerts[0].direction, "SHORT")
+        self.assertEqual(alert.direction, "LONG")
+        self.assertEqual(alert.setup_type, "APOIO_PULLBACK_COMPRA")
+        self.assertEqual(alert.stop_loss, 165700.0 - 250.0)
+        self.assertEqual(alert.take_profit, 165700.0 + 400.0)
 
 
 if __name__ == "__main__":

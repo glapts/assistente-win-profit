@@ -291,8 +291,22 @@ class SMCZonesManager:
                 bot_p = float(z.get("bottom", 0.0))
                 ce_p = float(z.get("ce_50", (top_p + bot_p) / 2.0))
 
-                # Classificar se atua como Topo (Oferta/Resistência) ou Fundo (Demanda/Suporte)
-                if tipo in ("BEARISH", "BREAKER") or "SELL" in setup or ce_p >= self.dealing_range_eq:
+                setup_upper = (setup or "").upper()
+                tipo_upper = (tipo or "").upper()
+
+                # Classificar se atua como Suporte/Demanda (COMPRA) ou Resistência/Oferta (VENDA)
+                # Prioridade 1: Setup primário explícito da zona (BUY vs SELL)
+                if "BUY" in setup_upper:
+                    z_type = "DEMAND_SUPORTE"
+                elif "SELL" in setup_upper:
+                    z_type = "SUPPLY_RESISTENCIA"
+                # Prioridade 2: Tipo de FVG ou Estrutura original
+                elif tipo_upper in ("BULLISH", "SWEEP_SSL"):
+                    z_type = "DEMAND_SUPORTE"
+                elif tipo_upper in ("BEARISH", "BREAKER", "SWEEP_BSL"):
+                    z_type = "SUPPLY_RESISTENCIA"
+                # Prioridade 3: Posição relativa ao Equilibrium (Abaixo do 50% = Desconto/Suporte, Acima = Prêmio/Resistência)
+                elif ce_p >= self.dealing_range_eq:
                     z_type = "SUPPLY_RESISTENCIA"
                 else:
                     z_type = "DEMAND_SUPORTE"
@@ -500,21 +514,19 @@ class WhaleDecisionEngine:
         alvo_pts = zone.alvo_pts
 
         if zone.zone_type == "SUPPLY_RESISTENCIA":
-            # Testando Topo:
+            # Testando Topo / Resistência de Oferta:
             # - Clímax Comprador absorvido (compras >= 400 sem romper) OU Agressão Vendedora Institucional
-            if cluster.side == "COMPRA" or cluster.side == "VENDA":
-                setup_type = "EXAUSTAO_TOPO"
-                direction = "SHORT"
-                stop_loss = entry_price + stop_pts
-                take_profit = entry_price - alvo_pts
+            direction = "SHORT"
+            setup_type = "EXAUSTAO_TOPO" if cluster.side == "COMPRA" else "AGRESSAO_REJEICAO_VENDA"
+            stop_loss = entry_price + stop_pts
+            take_profit = entry_price - alvo_pts
         else: # DEMAND_SUPORTE
-            # Testando Fundo:
+            # Testando Fundo / Suporte / Apoio no Pullback de Demanda:
             # - Clímax Vendedor absorvido OU Agressão Compradora Institucional
-            if cluster.side == "VENDA" or cluster.side == "COMPRA":
-                setup_type = "DEFESA_FUNDO"
-                direction = "LONG"
-                stop_loss = entry_price - stop_pts
-                take_profit = entry_price + alvo_pts
+            direction = "LONG"
+            setup_type = "DEFESA_FUNDO" if cluster.side == "VENDA" else "APOIO_PULLBACK_COMPRA"
+            stop_loss = entry_price - stop_pts
+            take_profit = entry_price + alvo_pts
 
         if not direction:
             return None
