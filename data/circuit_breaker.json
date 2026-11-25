@@ -1,0 +1,7 @@
+{
+  "daily_stops_count": 0,
+  "max_daily_stops": 2,
+  "lockout_active": false,
+  "reason": "CIRCUIT BREAKER RESETADO: Stops zerados pelo operador.",
+  "updated_at": "2026-11-25T14:07:20.332948"
+}
