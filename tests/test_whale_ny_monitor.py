@@ -7,7 +7,7 @@ Valida todas as premissas da @ESPECIFICACAO_WHALE_FLOW_NY_1130.md
 """
 
 import unittest
-from datetime import datetime, time as dtime
+from datetime import datetime, timedelta, time as dtime
 
 from whale_ny_monitor import (
     sanitize_price,
@@ -204,6 +204,19 @@ class TestWhaleNYMonitor(unittest.TestCase):
         self.assertEqual(alert.setup_type, "APOIO_PULLBACK_COMPRA")
         self.assertEqual(alert.stop_loss, 165700.0 - 250.0)
         self.assertEqual(alert.take_profit, 165700.0 + 400.0)
+
+    def test_09_staleness_filter_rejection(self):
+        """Valida que ordens defasadas (antigas no tempo real) são bloqueadas com check_staleness=True."""
+        from whale_ny_monitor import WhaleNYMonitor
+        monitor = WhaleNYMonitor(mode="LIVE_CLIPBOARD")
+
+        # Ordem com carimbo de 10 minutos atrás
+        old_time = (datetime.now() - timedelta(minutes=10)).strftime("%H:%M:%S.000")
+        stale_payload = f"""
+{old_time}\tMorgan\t165.600*\t500\tXP\tComprador
+"""
+        alerts = monitor.process_text_payload(stale_payload, check_staleness=True, max_staleness_sec=180.0)
+        self.assertEqual(len(alerts), 0)
 
 
 if __name__ == "__main__":

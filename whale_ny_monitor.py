@@ -776,11 +776,20 @@ class WhaleNYMonitor:
             except Exception:
                 pass
 
-    def process_text_payload(self, text: str, ref_date: Optional[datetime] = None) -> List[WhaleSignalAlert]:
+    def process_text_payload(
+        self,
+        text: str,
+        ref_date: Optional[datetime] = None,
+        check_staleness: bool = False,
+        max_staleness_sec: float = 180.0
+    ) -> List[WhaleSignalAlert]:
         alerts = []
         lines = text.strip().splitlines()
 
         parsed_records: List[TTRecord] = []
+        stale_records_count = 0
+        latest_stale_time: Optional[datetime] = None
+
         for line in lines:
             line_clean = line.strip()
             if not line_clean:
@@ -798,7 +807,26 @@ class WhaleNYMonitor:
 
             record = TimesTradesParser.parse_line(line_clean, ref_date)
             if record:
+                # Checagem de caducidade temporal (staleness) para proteção do trader
+                if check_staleness:
+                    age_sec = (datetime.now() - record.timestamp).total_seconds()
+                    if age_sec > max_staleness_sec:
+                        stale_records_count += 1
+                        latest_stale_time = record.timestamp
+                        continue
+
                 parsed_records.append(record)
+
+        if stale_records_count > 0 and not parsed_records:
+            time_str = latest_stale_time.strftime('%H:%M:%S') if latest_stale_time else "passado"
+            age_min = int((datetime.now() - latest_stale_time).total_seconds() / 60) if latest_stale_time else 0
+            print(
+                f"\n{ANSI_BOLD}{ANSI_YELLOW}⚠️ [AVISO WHALE FLOW — SINAL EXPIRADO]{ANSI_RESET} "
+                f"Os dados copiados são das {ANSI_BOLD}{time_str}{ANSI_RESET} (há ~{age_min} min). "
+                f"Alerta operacional cancelado para proteger sua conta contra entrada tardia. "
+                f"Selecione os negócios mais recentes no topo do Times & Trades e tecle Ctrl+C.\n"
+            )
+            return alerts
 
         if not parsed_records:
             return alerts
@@ -836,9 +864,26 @@ class WhaleNYMonitor:
         VisualConsoleRenderer.print_header("WHALE FLOW US & NY CASH OPEN (11:30 BRT) — MONITOR ATIVO")
         print(f" {ANSI_BOLD}Modo Operacional :{ANSI_RESET} Leitura Contínua da Área de Transferência (Clipboard)")
         print(f" {ANSI_BOLD}Instrução ao Trader:{ANSI_RESET} Selecione negócios na aba 'Ordem Original' e use Ctrl+C.")
+        print(f" {ANSI_BOLD}Filtro Anti-Atraso :{ANSI_RESET} Bloqueio automático de trades com mais de 3 minutos de defasagem.")
         print(f" {ANSI_BOLD}Zonas Mapeadas   :{ANSI_RESET} {len(self.zones_mgr.zones)} zonas SMC carregadas de data/niveis_60m.json")
         print(f" {ANSI_BOLD}Abertura NY      :{ANSI_RESET} 11h30 BRT (Trava de leilão 11:30–11:33 / Fluxo livre 11:33–12:30)")
         print(f"{ANSI_CYAN}{'─' * 80}{ANSI_RESET}\n")
+
+        # Inicialização: ignora o conteúdo que já estava no clipboard antes de iniciar
+        try:
+            res_init = subprocess.run(
+                ["powershell", "-NoProfile", "-Command", "Get-Clipboard -Raw"],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=5
+            )
+            self.last_clipboard_content = res_init.stdout or ""
+            if self.last_clipboard_content:
+                print(f" {ANSI_DIM}[WHALE MONITOR] Histórico prévio na área de transferência inicializado. Aguardando nova cópia...{ANSI_RESET}\n")
+        except Exception:
+            self.last_clipboard_content = ""
 
         try:
             while True:
@@ -860,7 +905,7 @@ class WhaleNYMonitor:
 
                 if content and content != self.last_clipboard_content:
                     self.last_clipboard_content = content
-                    self.process_text_payload(content)
+                    self.process_text_payload(content, check_staleness=True)
 
                 time.sleep(self.interval)
 
