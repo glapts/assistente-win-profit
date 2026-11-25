@@ -761,7 +761,10 @@ class WhaleNYMonitor:
         self.processed_signatures = set()
 
     def update_cross_market_from_runtime(self):
-        """Lê o runtime_state.json atual gerado pelo Orquestrador se disponível."""
+        """Lê o runtime_state.json e recarrega niveis_60m.json se disponível."""
+        # Recarrega zonas ativas do disco
+        self.zones_mgr.load_zones()
+
         state_path = os.path.join(BASE_DIR, "data", "runtime_state.json")
         if os.path.exists(state_path):
             try:

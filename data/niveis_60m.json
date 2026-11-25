@@ -3,13 +3,97 @@
   "ativo": "WINZ26",
   "data_referencia": "2026-11-25",
   "dealing_range": {
-    "topo_estrutural": 167000.0,
-    "fundo_estrutural": 164200.0,
-    "equilibrium_50": 165600.0
+    "topo_estrutural": 167500.0,
+    "fundo_estrutural": 164100.0,
+    "equilibrium_50": 165800.0
   },
   "zonas_fvg": [
     {
-      "id": "ZONA_01_IFVG_BASE_165700",
+      "id": "ZONA_01_TOPO_ROMPIMENTO_167350",
+      "tipo_original": "BULLISH",
+      "top": 167400.0,
+      "ce_50": 167350.0,
+      "bottom": 167300.0,
+      "setup_primario": "CONTINUATION_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "COMPRA em 167.350: Rompimento do topo estrutural (Stop: 167.100 | Gain: 167.750)"
+    },
+    {
+      "id": "ZONA_02_TOPO_EXAUSTAO_167250",
+      "tipo_original": "BEARISH",
+      "top": 167300.0,
+      "ce_50": 167250.0,
+      "bottom": 167200.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "VENDA em 167.250: Rejeição do topo estrutural (Stop: 167.500 | Gain: 166.850)"
+    },
+    {
+      "id": "ZONA_03_IFVG_12H_166850",
+      "tipo_original": "BULLISH",
+      "top": 166900.0,
+      "ce_50": 166850.0,
+      "bottom": 166800.0,
+      "setup_primario": "INVERSION_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "COMPRA em 166.850 (Opcao B - iFVG 12h): Se fechar candle cheio de 5m acima de 166.850 e apoiar no pullback por cima (Stop: 166.600 | Gain: 167.250)"
+    },
+    {
+      "id": "ZONA_04_RESISTENCIA_IFVG_166750",
+      "tipo_original": "BEARISH",
+      "top": 166750.0,
+      "ce_50": 166715.0,
+      "bottom": 166680.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "VENDA em 166.750: Rejeição da base do iFVG 12h (Stop: 167.000 | Gain: 166.350)"
+    },
+    {
+      "id": "ZONA_05_MAXIMA_NY_166480",
+      "tipo_original": "BEARISH",
+      "top": 166545.0,
+      "ce_50": 166480.0,
+      "bottom": 166405.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "VENDA em 166.480 (Clímax NY): Rejeição da máxima intradiária (Stop: 166.730 | Gain: 166.080)"
+    },
+    {
+      "id": "ZONA_06_RESISTENCIA_MORGAN_166180",
+      "tipo_original": "BEARISH",
+      "top": 166300.0,
+      "ce_50": 166180.0,
+      "bottom": 166150.0,
+      "setup_primario": "CONTINUATION_SELL",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "VENDA em 166.180 (MORGAN): Rejeição na linha institucional do Morgan e 100% Fibo (Stop: 166.430 | Gain: 165.780)"
+    },
+    {
+      "id": "ZONA_07_EQUILIBRIO_165880",
+      "tipo_original": "BULLISH",
+      "top": 165930.0,
+      "ce_50": 165880.0,
+      "bottom": 165830.0,
+      "setup_primario": "CONTINUATION_BUY",
+      "stop_sugerido_pts": 250.0,
+      "alvo_sugerido_pts": 400.0,
+      "status": "UNMITIGATED",
+      "notes": "COMPRA em 165.880: Sustentação de pullback no 50% Equilibrium (Stop: 165.630 | Gain: 166.280)"
+    },
+    {
+      "id": "ZONA_08_IFVG_BASE_165700",
       "tipo_original": "BULLISH",
       "top": 165750.0,
       "ce_50": 165700.0,
@@ -18,10 +102,10 @@
       "stop_sugerido_pts": 250.0,
       "alvo_sugerido_pts": 400.0,
       "status": "UNMITIGATED",
-      "notes": "COMPRA em 165.700 (Opcao B - iFVG Base): Se fechar candle cheio de 5m acima de 165.700 e apoiar no pullback por cima (Stop: 165.450 | Ganho: 166.100)"
+      "notes": "COMPRA em 165.700 (Opcao B - iFVG Base): Se fechar candle cheio de 5m acima de 165.700 e apoiar no pullback por cima (Stop: 165.450 | Gain: 166.100)"
     },
     {
-      "id": "ZONA_02_BASE_ROMPIDA_165600",
+      "id": "ZONA_09_BASE_ROMPIDA_165600",
       "tipo_original": "BEARISH",
       "top": 165650.0,
       "ce_50": 165600.0,
@@ -30,22 +114,22 @@
       "stop_sugerido_pts": 250.0,
       "alvo_sugerido_pts": 400.0,
       "status": "UNMITIGATED",
-      "notes": "VENDA em 165.600 (Opcao A - Base Rompida): Se rejeitar acima do Ajuste (165.397) até 165.600 sem fechar 5m acima de 165.700 e fizer CHoCH de baixa no 2m (Stop: 165.850 | Ganho: 165.200)"
+      "notes": "VENDA em 165.600 (Opcao A - Base Rompida): Se rejeitar acima do Ajuste (165.397) até 165.600 sem fechar 5m acima de 165.700 e fizer CHoCH de baixa no 2m (Stop: 165.850 | Gain: 165.200)"
     },
     {
-      "id": "ZONA_03_SWEEP_MINIMA_165200",
+      "id": "ZONA_10_SWEEP_MINIMA_165200",
       "tipo_original": "SWEEP_SSL",
       "top": 165250.0,
       "ce_50": 165200.0,
-      "bottom": 165150.0,
+      "bottom": 165100.0,
       "setup_primario": "LIQUIDITY_SWEEP_BUY",
       "stop_sugerido_pts": 250.0,
       "alvo_sugerido_pts": 400.0,
       "status": "UNMITIGATED",
-      "notes": "COMPRA em 165.200 (Opcao A - Sweep Minima): Se testar a minima de 24/nov (165.180) sem fechar 5m abaixo de 165.100 e fizer CHoCH de alta no 2m (Stop: 164.950 | Ganho: 165.600)"
+      "notes": "COMPRA em 165.200 (Opcao A - Sweep Minima): Se testar a minima de 24/nov (165.180) sem fechar 5m abaixo de 165.100 e fizer CHoCH de alta no 2m (Stop: 164.950 | Gain: 165.600)"
     },
     {
-      "id": "ZONA_04_EXAUSTAO_164700",
+      "id": "ZONA_11_EXAUSTAO_164700",
       "tipo_original": "BULLISH",
       "top": 164750.0,
       "ce_50": 164700.0,
@@ -54,10 +138,10 @@
       "stop_sugerido_pts": 250.0,
       "alvo_sugerido_pts": 400.0,
       "status": "UNMITIGATED",
-      "notes": "COMPRA em 164.700 (Opcao A - Exaustao): Se cair ate 164.700 sem fechar 5m abaixo de 164.600, absorver vendas (>=100) e fizer CHoCH de alta no 2m (Stop: 164.450 | Ganho: 165.100)"
+      "notes": "COMPRA em 164.700 (Opcao A - Exaustao): Se cair ate 164.700 sem fechar 5m abaixo de 164.600, absorver vendas (>=100) e fizer CHoCH de alta no 2m (Stop: 164.450 | Gain: 165.100)"
     },
     {
-      "id": "ZONA_05_BREAKDOWN_164600",
+      "id": "ZONA_12_BREAKDOWN_164600",
       "tipo_original": "BEARISH",
       "top": 164650.0,
       "ce_50": 164600.0,
@@ -66,7 +150,7 @@
       "stop_sugerido_pts": 250.0,
       "alvo_sugerido_pts": 400.0,
       "status": "UNMITIGATED",
-      "notes": "VENDA em 164.600 (Opcao B - Breakdown): Se romper a base com candle cheio de 5m abaixo de 164.600 e rejeitar o reteste por baixo (Stop: 164.850 | Ganho: 164.200)"
+      "notes": "VENDA em 164.600 (Opcao B - Breakdown): Se romper a base com candle cheio de 5m abaixo de 164.600 e rejeitar o reteste por baixo (Stop: 164.850 | Gain: 164.200)"
     }
   ]
 }
