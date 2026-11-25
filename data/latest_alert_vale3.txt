@@ -1,0 +1,43 @@
+======================================================================
+[RADAR FVG ANTECIPADO] - VALE S.A. (AÇÕES B3) SE APROXIMANDO DE ZONA DE LIQUIDEZ
+======================================================================
+ Preço Atual       : 63,89
+ Timeframe do FVG  : 5 Minutos (Aberto / Não Liquidado)
+ Direção / Ação    : [1;92m[COMPRA - SUPORTE][0m
+ Início da Zona    : 63,91 (Testando Zona | Faltam 0.19 reais p/ 50% CE)
+ [1;93mPonto de 50% (CE)[0m : [1;92m63,70 (COMPRA)[0m
+ Fim da Zona       : 63,49
+ Objetivo Estimado : Reversão de 0.35 a 0.56 reais
+======================================================================
+
+[36m[2m==================================================================[0m
+[37m[1mDATA/HORA:[0m 06/11/2026 17:38:32 (America/Sao_Paulo)
+[37m[1mATIVO/VENCIMENTO:[0m VALE3 (Vale S.A. (Ações B3))
+[37m[1mFONTE:[0m Nelogica ProfitPro (DDE)
+[37m[1mATRASO E QUALIDADE:[0m 1.0ms | Qualidade: ÍNTEGRO (FLUXO + ESTRUTURA)
+[37m[1mSTATUS:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mREGIME:[0m
+240m: [31m[1mBAIXA[0m
+60m : [32m[1mALTA[0m
+30m : [32m[1mALTA[0m
+15m : [32m[1mALTA[0m
+10m : [33mCONSOLIDAÇÃO[0m
+5m  : [31m[1mBAIXA[0m
+2m  : [32m[1mALTA[0m
+1m  : [33mCONSOLIDAÇÃO[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mTIMES & TRADES:[0m
+[32m[1m- Agressão compradora: 2,100 ações[0m
+[31m[1m- Agressão vendedora: 41,700 ações[0m
+- Janela de cálculo: 300 segundos
+- [34m[1mDELTA[0m: [31m[1m-39600 ações[0m
+- Grandes execuções: [31m[1m3,900 ações @ R$ 63.88 (SELL)[0m, [31m[1m19,700 ações @ R$ 63.91 (SELL)[0m, [31m[1m9,300 ações @ R$ 63.90 (SELL)[0m
+- Reação do preço: Deslocamento de R$ +0.03
+- Possível absorção: [32m[1mPossível Absorção Compradora (Forte venda absorvida passivamente sem deslocamento de baixa)[0m
+- Agentes, quando disponíveis: Identificados nos negócios registrados
+- Origem institucional: não confirmada, salvo evidência específica.
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mDIAGNÓSTICO:[0m Sem confluência determinística para os setups canônicos.
+[37m[1mDECISÃO DETERMINÍSTICA:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR.[0m
+[36m[2m==================================================================[0m

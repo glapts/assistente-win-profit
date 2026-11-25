@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging / PyInstaller
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+PACOTE_PARA_O_CLIENTE/
+*.zip
+*.tar.gz
+*.7z
+
+# Large Logs and Rotated Files (>100MB)
+data/*.log
+data/*.log.*
+live_alerts*.log*
+*.log
+*.log.*
+
+# Temporary / Scratch
+scratch/
+*.tmp
+
+# Licenses & Local credentials
+licenca.key
+
+# OS & IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

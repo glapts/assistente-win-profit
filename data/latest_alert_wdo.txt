@@ -1,0 +1,81 @@
+======================================================================
+[RADAR FVG ANTECIPADO] - MINI-DÓLAR B3 SE APROXIMANDO DE ZONA DE LIQUIDEZ
+======================================================================
+ Preço Atual       : 5.515,50
+ Timeframe do FVG  : 15 Minutos (Aberto / Não Liquidado)
+ Direção / Ação    : [1;91m[VENDA - RESISTÊNCIA][0m
+ Início da Zona    : 5.519,00 (Faltam 3.50 pts)
+ [1;93mPonto de 50% (CE)[0m : [1;91m5.527,50 (VENDA)[0m
+ Fim da Zona       : 5.536,00
+ Objetivo Estimado : Reversão de 5.00 a 8.00 pontos
+======================================================================
+
+[36m[2m==================================================================[0m
+[37m[1mDATA/HORA:[0m 06/11/2026 17:38:30 (America/Sao_Paulo)
+[37m[1mATIVO/VENCIMENTO:[0m WDOZ26
+[37m[1mFONTE:[0m Nelogica ProfitPro (DDE)
+[37m[1mATRASO E QUALIDADE:[0m 2.6ms | ÍNTEGRO (FLUXO + ESTRUTURA)
+[37m[1mSTATUS:[0m [30m[42m[1m CONFIRMADO [0m
+[37m[1mAÇÃO NO SUPERDOM:[0m [32m[1m>>> COMPRA <<<[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mENTRADA:[0m [36m[1m5.515,50[0m
+[37m[1mGATILHO PENDENTE OU CONFIRMADO:[0m CONFIRMADO
+[37m[1mSTOP EM PREÇO E PONTOS:[0m [31m[1m5.510,50 (5.00 pontos)[0m
+[37m[1mALVOS EM PREÇO E PONTOS:[0m [32m[1m5.523,50 (8.00 pontos)[0m
+[37m[1mRETORNO/RISCO:[0m [37m[1m1.60[0m
+[37m[1mOBSTÁCULOS:[0m Nenhum obstáculo técnico intermediário mapeado
+[37m[1mVALIDADE:[0m Até 17:41:30
+[37m[1mINVALIDAÇÃO:[0m Superação do nível 5.510,50 ou quebra da premissa estrutural.
+[37m[1mFATOS OBSERVADOS:[0m
+  * Preço atual: 5.515,50
+  * Estrutura: Recuo em FVG de 1m (5515.00-5516.50)
+  * Modo de cálculo: FIXO (Stop: 5.00 pts | Alvo: 8.00 pts)
+  * Fluxo recente: DELTA=+143 | Padrão=Fluxo em Equilíbrio / Sem Predomínio Conclusivo
+[37m[1mINTERPRETAÇÕES:[0m
+  * Setup a favor em relação ao contexto macro.
+  * Relação Retorno/Risco bruto: 1.60 (R$ 50.00 de risco / R$ 80.00 de retorno por contrato).
+[37m[1mLIMITAÇÕES:[0m
+  * Não há garantia de execução nos preços exatos (sujeito a slippage e latência).
+  * Níveis estruturais não comprovam localização de stops institucionais.
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mREGIME:[0m
+240m: [32m[1mALTA[0m
+60m : [32m[1mALTA[0m
+30m : [32m[1mALTA[0m
+15m : [32m[1mALTA[0m
+10m : [31m[1mBAIXA[0m
+5m  : [32m[1mALTA[0m
+2m  : [32m[1mALTA[0m
+1m  : [31m[1mBAIXA[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mCONTEXTO:[0m Alinhado com Contexto Macro
+[37m[1mSETUP:[0m [35m[1mCompra de Continuidade em Tendência de Alta[0m
+[37m[1mDIREÇÃO:[0m [32m[1m>>> COMPRA <<<[0m
+[37m[1mA FAVOR OU CONTRA O CONTEXTO:[0m A FAVOR
+[37m[1mNÍVEL E HORÁRIO DO SWEEP:[0m Não aplicável
+[37m[1mFVG:[0m [33m[1m5515.00 - 5516.50 (FVG de 1m)[0m
+[37m[1mCHoCH/BOS:[0m Recuo em FVG de 1m (5515.00-5516.50)
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mBOOK:[0m
+- Comportamento observado: Nenhum snapshot de livro recebido até o momento
+- Métricas: Spread: N/D pts | Imbalance Top5: N/D
+- Possível blefe ou evidência insuficiente: Análise indisponível por limitação dos dados
+- Limitações: Feed de profundidade de mercado L2 ausente ou não configurado; Impossível verificar ordens individuais sem identificador estável; Cancelamentos rápidos não rastreáveis sem eventos atômicos da B3
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mTIMES & TRADES:[0m
+[32m[1m- Agressão compradora: 762 contratos[0m
+[31m[1m- Agressão vendedora: 619 contratos[0m
+- Janela de cálculo: 300 segundos
+- [34m[1mDELTA[0m: [32m[1m+143 contratos[0m
+- Grandes execuções: [31m[1m345ct@5514 (SELL)[0m, [32m[1m160ct@5514 (BUY)[0m, [32m[1m166ct@5514 (BUY)[0m
+- Reação do preço: Deslocamento de +0 pontos
+- Possível absorção: [33mFluxo em Equilíbrio / Sem Predomínio Conclusivo[0m
+- Agentes, quando disponíveis: Identificados nos negócios registrados
+- Origem institucional: não confirmada, salvo evidência específica.
+[36m[2m==================================================================[0m
+[37m[1m>>> EXECUÇÃO RÁPIDA NO SUPERDOM <<<[0m
+AÇÃO:    [32m[1m>>> COMPRA <<<[0m
+ENTRADA: [36m[1m5.515,50[0m
+STOP:    [31m[1m5.510,50 (5.00 pontos)[0m
+ALVO:    [32m[1m5.523,50 (8.00 pontos)[0m
+[36m[2m==================================================================[0m

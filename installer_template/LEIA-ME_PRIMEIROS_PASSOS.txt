@@ -1,0 +1,45 @@
+======================================================================
+ASSISTENTE DE TRADING INSTITUCIONAL WIN — MINI-ÍNDICE B3
+Smart Money Concepts (SMC) & Tape Reading Algorítmico — Cenário 3
+======================================================================
+
+BEM-VINDO(A)!
+Siga os 3 passos simples abaixo para começar a utilizar seu Assistente:
+
+PASSO 1: INSTALAÇÃO AUTOMATIZADA
+- Dê dois cliques no arquivo "instalar.bat".
+- A instalação criará automaticamente o atalho "Assistente WIN - Profit Pro"
+  na sua Área de Trabalho e disponibilizará o Guia Oficial de Instalação em PDF.
+
+PASSO 2: ATIVAÇÃO DA SUA LICENÇA
+1. Abra o atalho "Assistente WIN - Profit Pro" na Área de Trabalho.
+2. Na tela que se abrirá, será exibido o seu CÓDIGO DA MÁQUINA (HWID).
+3. Copie esse código e envie para o suporte/vendedor.
+4. O suporte lhe enviará a sua CHAVE DE ATIVAÇÃO exclusiva vinculada ao seu PC.
+5. Cole a chave na janela do programa e pressione Enter.
+6. Pronto! Sua licença estará ativada de forma vitalícia ou pelo período contratado.
+
+PASSO 3: CONECTAR COM O PROFIT PRO (NELOGICA)
+1. Abra seu Profit Pro no computador.
+2. Vá no menu superior: "Ferramentas" -> "Exportar em tempo real (DDE / RTD)".
+3. Adicione o ativo vigente do Mini-Índice (ex: WINZ26).
+4. Deixe a janelinha de exportação aberta ou minimizada.
+5. No Assistente WIN, selecione a Opção [1] (Iniciar Monitoramento ao Vivo).
+6. O sistema começará a ler os dados da B3 milissegundo a milissegundo!
+
+======================================================================
+BLINDAGEM OPERACIONAL — CENÁRIO 3 OFICIAL (PARÂMETROS AUDITADOS)
+======================================================================
+- Alvo Fixo Institucional : +400 pontos (R$ 80,00/contrato | R$ 400,00 com 5 contratos)
+- Stop Fixo Institucional : -250 pontos (R$ 50,00/contrato | R$ 250,00 com 5 contratos)
+- Relação Risco/Retorno   : 1,60 : 1 (Breakeven matemático em apenas 38,46%)
+- Radar de FVG MTF       : Bloqueio automático de trades contra barreiras institucionais
+                           (silencia apitos e exibe alerta de proteção no SuperDOM)
+- Mitigação SMC          : Elimina rompimentos secos de 1 minuto (evita compras de topo)
+- Simulações Disponíveis : Opções [3] e [4] no menu para validar o bloqueio e a liberação!
+
+Consulte o arquivo "Guia_Instalacao_Profit_RTD_DDE_ultimo.pdf" para o manual completo.
+
+======================================================================
+Suporte e Dúvidas: Entre em contato diretamente com o vendedor/suporte.
+======================================================================

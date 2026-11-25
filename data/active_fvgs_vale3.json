@@ -1,0 +1,83 @@
+{
+  "5": [
+    {
+      "timeframe": 5,
+      "direction": "BULLISH",
+      "top": 62.81,
+      "bottom": 62.63,
+      "ce_50": 62.72,
+      "formed_time": "2026-11-06T11:50:32.418544-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "timeframe": 5,
+      "direction": "BULLISH",
+      "top": 63.91,
+      "bottom": 63.49,
+      "ce_50": 63.7,
+      "formed_time": "2026-11-06T12:35:36.362258-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    }
+  ],
+  "10": [
+    {
+      "timeframe": 10,
+      "direction": "BULLISH",
+      "top": 63.02,
+      "bottom": 62.63,
+      "ce_50": 62.825,
+      "formed_time": "2026-11-06T12:00:01.457100-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    },
+    {
+      "timeframe": 10,
+      "direction": "BEARISH",
+      "top": 63.88,
+      "bottom": 63.74,
+      "ce_50": 63.81,
+      "formed_time": "2026-11-06T15:00:16.331312-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    }
+  ],
+  "15": [
+    {
+      "timeframe": 15,
+      "direction": "BULLISH",
+      "top": 63.26,
+      "bottom": 62.88,
+      "ce_50": 63.07,
+      "formed_time": "2026-11-06T12:30:51.689446-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    }
+  ],
+  "30": [
+    {
+      "timeframe": 30,
+      "direction": "BULLISH",
+      "top": 63.68,
+      "bottom": 63.41,
+      "ce_50": 63.545,
+      "formed_time": "2026-11-06T13:30:09.251885-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    }
+  ],
+  "60": [
+    {
+      "timeframe": 60,
+      "direction": "BULLISH",
+      "top": 63.6,
+      "bottom": 63.41,
+      "ce_50": 63.504999999999995,
+      "formed_time": "2026-11-06T15:00:16.331312-03:00",
+      "is_liquidated": false,
+      "tested_count": 0
+    }
+  ],
+  "240": []
+}

@@ -1,0 +1,20 @@
+[36m[2m==================================================================[0m
+[37m[1mDATA/HORA:[0m 06/11/2026 23:16:25 (America/Sao_Paulo)
+[37m[1mATIVO/VENCIMENTO:[0m WINZ26 (Mini-Índice B3)
+[37m[1mFONTE:[0m B3 Historical Replay / Test Simulator
+[37m[1mATRASO E QUALIDADE:[0m 0.5ms | Qualidade: ÍNTEGRO (FLUXO + ESTRUTURA)
+[37m[1mSTATUS:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mREGIME:[0m
+240m: [37mTRANSIÇÃO[0m
+60m : [37mTRANSIÇÃO[0m
+30m : [37mTRANSIÇÃO[0m
+15m : [37mTRANSIÇÃO[0m
+10m : [37mTRANSIÇÃO[0m
+5m  : [37mTRANSIÇÃO[0m
+2m  : [37mTRANSIÇÃO[0m
+1m  : [37mTRANSIÇÃO[0m
+[36m[2m------------------------------------------------------------------[0m
+[37m[1mDIAGNÓSTICO:[0m Sem confluência determinística para os setups canônicos.
+[37m[1mDECISÃO DETERMINÍSTICA:[0m [33m[1mSEM OPERAÇÃO — AGUARDAR.[0m
+[36m[2m==================================================================[0m
