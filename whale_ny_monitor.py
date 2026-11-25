@@ -715,15 +715,25 @@ class VisualConsoleRenderer:
         print(f"{ANSI_BOLD}{border_color}║ {header_text.center(76)} ║{ANSI_RESET}")
         print(f"{ANSI_BOLD}{border_color}╠{'═' * 78}╣{ANSI_RESET}")
 
+        def fmt_dot(val: float) -> str:
+            return f"{val:,.0f}".replace(",", ".")
+
+        p_entry = fmt_dot(alert.entry_price)
+        p_stop = fmt_dot(alert.stop_loss)
+        p_alvo = fmt_dot(alert.take_profit)
+        p_risk = fmt_dot(abs(alert.entry_price - alert.stop_loss))
+        p_gain = fmt_dot(abs(alert.take_profit - alert.entry_price))
+        p_qty = fmt_dot(alert.quantity)
+
         print(f"  {ANSI_BOLD}Horário         :{ANSI_RESET} {alert.timestamp.strftime('%H:%M:%S.%f')[:-3]}")
         print(f"  {ANSI_BOLD}Corretora       :{ANSI_RESET} {ANSI_BOLD}{ANSI_WHITE}{alert.broker}{ANSI_RESET} ({alert.tier})")
-        print(f"  {ANSI_BOLD}Lote Executado  :{ANSI_RESET} {ANSI_BOLD}{ANSI_YELLOW}{alert.quantity:,} contratos{ANSI_RESET} [{alert.magnitude}]")
+        print(f"  {ANSI_BOLD}Lote Executado  :{ANSI_RESET} {ANSI_BOLD}{ANSI_YELLOW}{p_qty} contratos{ANSI_RESET} [{alert.magnitude}]")
         print(f"  {ANSI_BOLD}Configuração SMC:{ANSI_RESET} {alert.setup_type} (Zona: {alert.zone_id})")
         print(f"  {ANSI_BOLD}Ação / Direção  :{ANSI_RESET} {ANSI_BOLD}{dir_bg}{ANSI_WHITE} {alert.direction} {ANSI_RESET}")
-        print(f"  {ANSI_BOLD}{ANSI_CYAN}PREÇO DE ENTRADA:{ANSI_RESET} {ANSI_BOLD}{ANSI_CYAN}{alert.entry_price:,.0f}{ANSI_RESET}")
-        print(f"  {ANSI_BOLD}Stop Loss       :{ANSI_RESET} {ANSI_RED}{alert.stop_loss:,.0f} (-{abs(alert.entry_price - alert.stop_loss):.0f} pts){ANSI_RESET}")
-        print(f"  {ANSI_BOLD}Alvo de Ganho   :{ANSI_RESET} {ANSI_GREEN}{alert.take_profit:,.0f} (+{abs(alert.take_profit - alert.entry_price):.0f} pts){ANSI_RESET}")
-        print(f"  {ANSI_BOLD}R:R Teórico     :{ANSI_RESET} 1.60 (Stop {abs(alert.entry_price - alert.stop_loss):.0f} / Alvo {abs(alert.take_profit - alert.entry_price):.0f})")
+        print(f"  {ANSI_BOLD}{ANSI_CYAN}PREÇO DE ENTRADA:{ANSI_RESET} {ANSI_BOLD}{ANSI_CYAN}{p_entry}{ANSI_RESET}")
+        print(f"  {ANSI_BOLD}Stop Loss       :{ANSI_RESET} {ANSI_BOLD}{ANSI_RED}{p_stop} (-{p_risk} pts){ANSI_RESET}")
+        print(f"  {ANSI_BOLD}Alvo de Ganho   :{ANSI_RESET} {ANSI_BOLD}{ANSI_GREEN}{p_alvo} (+{p_gain} pts){ANSI_RESET}")
+        print(f"  {ANSI_BOLD}R:R Teórico     :{ANSI_RESET} 1.60 (Stop {p_risk} / Alvo {p_gain})")
         print(f"  {ANSI_BOLD}Regime NY 11:30 :{ANSI_RESET} {ANSI_CYAN}{alert.ny_regime}{ANSI_RESET}")
         print(f"  {ANSI_BOLD}Confluências    :{ANSI_RESET}")
         for r in alert.reasons:

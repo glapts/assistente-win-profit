@@ -220,6 +220,20 @@ class ExecutionHarness:
         color = "\033[92m" if signal.direction == TradingDirection.LONG else "\033[91m"
         reset = "\033[0m"
         bold = "\033[1m"
+        cyan = "\033[96m"
+        red = "\033[91m"
+        green = "\033[92m"
+
+        def fmt_dot(val: float) -> str:
+            return f"{val:,.0f}".replace(",", ".")
+
+        p_entry = fmt_dot(signal.entry_price)
+        p_stop = fmt_dot(signal.stop_loss)
+        p_alvo = fmt_dot(signal.take_profit)
+        p_eq = fmt_dot(self.niveis.dealing_range.equilibrium_50)
+        p_risk = fmt_dot(signal.risk_points)
+        p_gain = fmt_dot(signal.gain_points)
+        vol_tape = fmt_dot(signal.institutional_volume_detected)
 
         card = f"""
 {color}{bold}╔════════════════════════════════════════════════════════════════════════════════════════╗
@@ -227,13 +241,13 @@ class ExecutionHarness:
 ╠════════════════════════════════════════════════════════════════════════════════════════╣{reset}
   Ativo            : {bold}{signal.ativo}{reset}
   Direção Sugerida : {color}{bold}{signal.direction.value}{reset}
-  Preço de Entrada : {bold}{signal.entry_price:.0f}{reset}
-  Stop Loss        : {bold}{signal.stop_loss:.0f} (-{signal.risk_points:.0f} pts){reset}
-  Alvo (Take)      : {bold}{signal.take_profit:.0f} (+{signal.gain_points:.0f} pts){reset}
+  {bold}{cyan}PREÇO DE ENTRADA :{reset} {bold}{cyan}{p_entry}{reset}
+  Stop Loss        : {bold}{red}{p_stop} (-{p_risk} pts){reset}
+  Alvo (Take)      : {bold}{green}{p_alvo} (+{p_gain} pts){reset}
   Relação R:R      : {bold}{signal.rr_ratio:.2f}{reset}
-  Regime SMC       : {bold}{signal.regime.value}{reset} (50% Eq: {self.niveis.dealing_range.equilibrium_50:.0f})
+  Regime SMC       : {bold}{signal.regime.value}{reset} (50% Eq: {p_eq})
   Zona de 60m      : {signal.zone_id} ({signal.setup_name})
-  Absorção Tape    : {bold}{signal.institutional_volume_detected} contratos institucionais{reset}
+  Absorção Tape    : {bold}{vol_tape} contratos institucionais{reset}
   Score Confiança  : {bold}{signal.confidence_score * 100:.0f}%{reset}
   Ação do Trader   : {bold}Posicione ou confirme a ordem no SuperDOM do Profit Pro{reset}
 {color}{bold}╚════════════════════════════════════════════════════════════════════════════════════════╝{reset}
