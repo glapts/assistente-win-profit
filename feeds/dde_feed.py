@@ -414,13 +414,12 @@ class ProfitDDEFeed(BaseMarketFeed):
                                 time.sleep(0.02)
                                 continue
 
-                        raw_vol = query_item_fast(f"{self.symbol}.VOL")
                         raw_max = query_item_fast(f"{self.symbol}.MAX")
                         raw_min = query_item_fast(f"{self.symbol}.MIN")
 
-                        vol = float(raw_vol.replace('.', '').replace(',', '.')) if raw_vol else 0.0
                         high_p = float(raw_max.replace('.', '').replace(',', '.')) if raw_max else price
                         low_p = float(raw_min.replace('.', '').replace(',', '.')) if raw_min else price
+                        vol = float(trades_count)
 
                         # 2. Agregação determinística minuto a minuto
                         min_tag = (now.hour * 60) + now.minute

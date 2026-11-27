@@ -164,8 +164,8 @@ def run_live(symbol: str, open_time_str: str = "09:03"):
     def on_candle_event(candle):
         tf = str(candle.timeframe).lower()
         if tf in ("1", "1m"):
-            ts = getattr(candle, "close_time", getattr(candle, "timestamp", datetime.now()))
-            scalper.on_candle_closed(
+            ts = getattr(candle, "open_time", getattr(candle, "close_time", datetime.now()))
+            sigs = scalper.on_candle_closed(
                 timestamp=ts,
                 open_price=candle.open,
                 high_price=candle.high,
@@ -173,6 +173,14 @@ def run_live(symbol: str, open_time_str: str = "09:03"):
                 close_price=candle.close,
                 volume=candle.volume
             )
+            # Feedback visual em tempo real a cada virada de minuto (quando nenhum FVG novo for emitido)
+            if not sigs:
+                bar_num = scalper.candle_counter
+                time_str = ts.strftime("%H:%M")
+                c_fmt = f"{candle.close:,.0f}".replace(",", ".")
+                trend_col = ANSI_GREEN if scalper.trend_day == "ALTA" else ANSI_RED if scalper.trend_day == "BAIXA" else ANSI_YELLOW
+                print(f"[{time_str}] Barra #{bar_num} fechada em {c_fmt} | Tendência: {trend_col}{scalper.trend_day}{ANSI_RESET} | Monitorando microestrutura SMC...")
+                sys.stdout.flush()
 
     feed.set_callbacks(on_candle=on_candle_event)
 
