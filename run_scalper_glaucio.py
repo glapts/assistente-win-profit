@@ -179,7 +179,8 @@ def run_live(symbol: str, open_time_str: str = "09:03"):
                 time_str = ts.strftime("%H:%M")
                 c_fmt = f"{candle.close:,.0f}".replace(",", ".")
                 trend_col = ANSI_GREEN if scalper.trend_day == "ALTA" else ANSI_RED if scalper.trend_day == "BAIXA" else ANSI_YELLOW
-                print(f"[{time_str}] Barra #{bar_num} fechada em {c_fmt} | Tendência: {trend_col}{scalper.trend_day}{ANSI_RESET} | Monitorando microestrutura SMC...")
+                bar_colored = f"{ANSI_YELLOW}{ANSI_BOLD}#{bar_num}{ANSI_RESET}"
+                print(f"[{time_str}] Barra {bar_colored} fechada em {c_fmt} | Tendência: {trend_col}{scalper.trend_day}{ANSI_RESET} | Monitorando microestrutura SMC...")
                 sys.stdout.flush()
 
     feed.set_callbacks(on_candle=on_candle_event)

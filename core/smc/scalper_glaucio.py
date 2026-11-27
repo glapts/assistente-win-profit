@@ -473,16 +473,19 @@ class ScalperGlaucio:
         target_diff = abs(sig.target_price - sig.ce_50)
         stop_diff = abs(sig.stop_price - sig.ce_50)
 
-        # Notação Dupla: Candles [HH:MM, HH:MM e HH:MM] (Barras #X, #Y e #Z)
+        # Notação Dupla com Numeração de Candles em Cor Destacada (Amarelo Ouro)
         if len(sig.candle_times) >= 3:
             c_times_str = f"[{sig.candle_times[0]}, {sig.candle_times[1]} e {sig.candle_times[2]}]"
         else:
             c_times_str = f"[{time_str}]"
 
         if len(sig.candle_ids) >= 3:
-            c_ids_str = f"(Barras #{sig.candle_ids[0]}, #{sig.candle_ids[1]} e #{sig.candle_ids[2]})"
+            c1_num = f"{ANSI_YELLOW}{ANSI_BOLD}#{sig.candle_ids[0]}{ANSI_RESET}"
+            c2_num = f"{ANSI_YELLOW}{ANSI_BOLD}#{sig.candle_ids[1]}{ANSI_RESET}"
+            c3_num = f"{ANSI_YELLOW}{ANSI_BOLD}#{sig.candle_ids[2]}{ANSI_RESET}"
+            c_ids_str = f"(Barras {c1_num}, {c2_num} e {c3_num})"
         else:
-            c_ids_str = f"(Barra #{sig.candle_ids[0]})" if sig.candle_ids else ""
+            c_ids_str = f"(Barra {ANSI_YELLOW}{ANSI_BOLD}#{sig.candle_ids[0]}{ANSI_RESET})" if sig.candle_ids else ""
 
         estrutura_display = f"Candles {c_times_str} {c_ids_str}: FVG Formado"
 
@@ -500,7 +503,8 @@ class ScalperGlaucio:
         # Preço formatado com pontuação de milhar e cor destacada (Azul Ciano) na frase do SuperDOM
         price_highlight = f"{ANSI_CYAN}{ANSI_BOLD}{ce_fmt}{ANSI_RESET}{ANSI_YELLOW}{ANSI_BOLD}"
         trigger_time_display = f"DAS {sig.trigger_candle_time} " if sig.trigger_candle_time else ""
-        action_superdom = f"PENDURAR {order_action} LIMITADA EM {price_highlight} NO CANDLE {trigger_time_display}(#{sig.trigger_candle_id})"
+        trigger_id_colored = f"{ANSI_CYAN}{ANSI_BOLD}#{sig.trigger_candle_id}{ANSI_RESET}{ANSI_YELLOW}{ANSI_BOLD}"
+        action_superdom = f"PENDURAR {order_action} LIMITADA EM {price_highlight} NO CANDLE {trigger_time_display}({trigger_id_colored})"
 
         print(f"\n{color}{'='*88}{ANSI_RESET}")
         print(f"{color}{ANSI_BOLD}[ScalperGlaucio] - SINAL SMC 1-MINUTO | TENDÊNCIA DO DIA: [{sig.trend_day}]{ANSI_RESET}")
