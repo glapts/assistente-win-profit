@@ -24,6 +24,7 @@ from core.agents.basket_agent import BasketAgent
 from core.agents.sentinel_agent import SentinelAgent
 from core.agents.orchestrator import Orchestrator
 from core.harness.contracts import ExecutionMode
+from core.smc import DynamicRangeManager, DynamicRangeState, M5CandleBuilder
 
 
 class ProfitDDEPoller:
@@ -88,8 +89,8 @@ class ProfitDDEPoller:
             return None
 
 
-def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroAgent):
-    """Lê variações percentuais em tempo real e atualiza os agentes."""
+def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroAgent) -> Optional[float]:
+    """Lê variações percentuais em tempo real, atualiza os agentes e retorna o último preço de WIN."""
     def parse_pct(val_str: Optional[str]) -> Optional[float]:
         if not val_str:
             return None
@@ -98,6 +99,25 @@ def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroA
             return float(clean)
         except ValueError:
             return None
+
+    def parse_price(val_str: Optional[str]) -> Optional[float]:
+        if not val_str:
+            return None
+        try:
+            # ex: "178.960,00" ou "178960,00" -> 178960.0
+            clean = val_str.replace('.', '').replace(',', '.').strip()
+            return float(clean)
+        except ValueError:
+            return None
+
+    # Mini-Índice B3 (WIN)
+    ult_win = None
+    for win_sym in ["WINZ26", "WIN", "INDZ26", "IND"]:
+        raw_win = poller.query(f"{win_sym}.ULT")
+        p = parse_price(raw_win)
+        if p is not None and p > 1000.0:
+            ult_win = p
+            break
 
     # Blue Chips da Cesta
     for stock in ["VALE3", "PETR4", "ITUB4"]:
@@ -118,7 +138,7 @@ def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroA
         raw_sp = poller.query(f"{sp_sym}.VAR")
         raw_sp_ult = poller.query(f"{sp_sym}.ULT")
         pct_sp = parse_pct(raw_sp)
-        ult_sp = parse_pct(raw_sp_ult)
+        ult_sp = parse_price(raw_sp_ult)
         if pct_sp is not None:
             macro.update_sp500(price=ult_sp or 6000.0, change_pct=pct_sp)
             break
@@ -130,6 +150,8 @@ def poll_profit_feed(poller: ProfitDDEPoller, basket: BasketAgent, macro: MacroA
         if pct_wdo is not None:
             macro.update_dxy(dxy_val=104.0, change_pct=pct_wdo)
             break
+
+    return ult_win
 
 
 def main():
@@ -162,20 +184,46 @@ def main():
         execution_mode=ExecutionMode(args.mode.upper())
     )
 
+    dynamic_range_mgr = DynamicRangeManager()
+    candle_builder = M5CandleBuilder()
+
     cycle_count = 0
     try:
         while True:
             cycle_count += 1
             now = datetime.now()
             
-            # Atualiza Cesta e Macro via DDE se Profit Pro estiver transmitindo
-            poll_profit_feed(poller, basket, macro)
+            # Atualiza Cesta, Macro e cotação de WIN via DDE
+            ult_win = poll_profit_feed(poller, basket, macro)
+
+            # Atualiza agregador M5 e avalia expansão de Dealing Range / Breakers
+            if ult_win is not None:
+                closed_m5 = candle_builder.update_tick(price=ult_win, timestamp=now)
+                if closed_m5:
+                    macro_op = macro.evaluate(now)
+                    delta_est = 3500.0 if macro_op.bias == "BULLISH" else (-3500.0 if macro_op.bias == "BEARISH" else 0.0)
+                    dynamic_range_mgr.on_candle_closed(
+                        candle=closed_m5,
+                        delta_15m=delta_est,
+                        macro_veto_buy=macro_op.veto_buy,
+                        macro_veto_sell=macro_op.veto_sell
+                    )
             
             state = orchestrator.run_cycle(current_time=now)
             
             status_symbol = "🟢 OPERAÇÃO LIBERADA" if state.trading_enabled else "🔴 OPERAÇÃO BLOQUEADA"
             opinion_summary = f"Dir: {state.allowed_direction.value} | Confiança: {state.confidence_score*100:.0f}%"
             print(f"[{now.strftime('%H:%M:%S')}] Ciclo #{cycle_count:04d} | {status_symbol} | {opinion_summary}")
+
+            # Log informativo do DynamicRangeManager
+            niveis_atual = dynamic_range_mgr.cached_niveis
+            if niveis_atual:
+                dr = niveis_atual.dealing_range
+                st_dr = dynamic_range_mgr.state.value
+                standby_count = sum(1 for z in niveis_atual.zonas_fvg if getattr(z.status, 'value', str(z.status)) == "STANDBY_DEEP_PULLBACK")
+                active_count = len(niveis_atual.zonas_fvg) - standby_count
+                color_tag = "\033[1;36m" if st_dr == "EXPANSION_ACTIVE" else ("\033[1;33m" if st_dr == "BREAKER_PROMOTED" else "\033[1;32m")
+                print(f"   {color_tag}[DYNAMIC RANGE: {st_dr}]\033[0m DR: Topo {dr.topo_estrutural:.0f} / Fundo {dr.fundo_estrutural:.0f} | 50% Eq: {dr.equilibrium_50:.0f} | Zonas Ativas: {active_count} (Standby: {standby_count})")
             if not state.trading_enabled:
                 vetos = getattr(state, "active_vetos", [])
                 if vetos:

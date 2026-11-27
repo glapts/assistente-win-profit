@@ -35,10 +35,19 @@ class ProfitDDEFeed(BaseMarketFeed):
     Garante que a inicialização e o loop DDEML residam na mesma thread Win32.
     """
 
-    def __init__(self, service_name: str = "profitchart", topic_name: str = "cot"):
+    def __init__(
+        self,
+        service_name: str = "profitchart",
+        topic_name: str = "cot",
+        lightweight_mode: bool = False,
+        market_open_time: Optional[time] = None
+    ):
         super().__init__(source_name="Nelogica ProfitPro (DDE)")
         self.service_name = service_name
         self.topic_name = topic_name
+        self.lightweight_mode = lightweight_mode
+        self.market_open_time = market_open_time
+        self.actual_market_open: Optional[time] = market_open_time
         
         self.symbol: Optional[str] = None
         self.running: bool = False
@@ -129,6 +138,11 @@ class ProfitDDEFeed(BaseMarketFeed):
             self.user32.DdeFreeStringHandle(id_inst.value, hsz_srv)
             self.user32.DdeFreeStringHandle(id_inst.value, hsz_top)
             self.user32.DdeUninitialize(id_inst.value)
+            return
+
+        # ROTA DEDICADA LEVE: Price Action 1M para o ScalperGlaucio (< 50ms)
+        if self.lightweight_mode:
+            self._worker_thread_run_light(id_inst, hconv, hsz_srv, hsz_top)
             return
 
         def query_item(item_name: str) -> Optional[str]:
@@ -319,6 +333,152 @@ class ProfitDDEFeed(BaseMarketFeed):
                 self.health.error_message = f"Erro no poll DDE: {e}"
 
             time.sleep(1.0)
+
+        # Encerramento na thread
+        self.user32.DdeDisconnect(hconv)
+        self.user32.DdeFreeStringHandle(id_inst.value, hsz_srv)
+        self.user32.DdeFreeStringHandle(id_inst.value, hsz_top)
+        self.user32.DdeUninitialize(id_inst.value)
+        self.health.connected = False
+
+    def _worker_thread_run_light(self, id_inst, hconv, hsz_srv, hsz_top):
+        """
+        Rota DDE leve e dedicada exclusivamente para o motor ScalperGlaucio (Price Action 1M).
+        Consulta apenas .ULT, .ABE, .MAX, .MIN, .VOL e .NEG com timeout mínimo (< 50ms).
+        Implementa filtro de leilão estrito (NEG > 0 pós-09:00 e descarte de preços pré-abertura).
+        """
+        TIMEOUT_LIGHT_MS = 100
+
+        def query_item_fast(item_name: str) -> Optional[str]:
+            hsz_item = self.user32.DdeCreateStringHandleW(id_inst.value, item_name, CP_WINUNICODE)
+            pdw_res = wintypes.DWORD(0)
+            hdata = self.user32.DdeClientTransaction(
+                None, 0, hconv, hsz_item, CF_TEXT, XTYP_REQUEST, TIMEOUT_LIGHT_MS, ctypes.byref(pdw_res)
+            )
+            val = None
+            if hdata:
+                size = self.user32.DdeGetData(hdata, None, 0, 0)
+                if size > 0:
+                    buf = ctypes.create_string_buffer(size)
+                    self.user32.DdeGetData(hdata, buf, size, 0)
+                    val = buf.value.decode('latin-1', errors='replace').strip()
+                self.user32.DdeFreeDataHandle(hdata)
+            self.user32.DdeFreeStringHandle(id_inst.value, hsz_item)
+            return val
+
+        active_1m_candle: Optional[Candle] = None
+        current_minute_tag: Optional[int] = None
+        session_started: bool = False
+
+        while self.running:
+            try:
+                t0 = time.perf_counter()
+                now = datetime.now(TZ_BRASILIA)
+
+                # Consulta apenas as tags essenciais permitidas
+                val_str = query_item_fast(f"{self.symbol}.ULT")
+
+                t1 = time.perf_counter()
+                cycle_ms = (t1 - t0) * 1000.0
+                self.health.latency_ms = cycle_ms
+                self.health.last_received_time = now
+
+                if val_str:
+                    try:
+                        clean_val = val_str.replace('.', '').replace(',', '.')
+                        price = float(clean_val)
+                        self.last_price = price
+                        self.health.last_event_time = now
+                        self.health.error_message = ""
+
+                        # 1. Filtro de Leilão de Abertura (Pilar 4)
+                        raw_neg = query_item_fast(f"{self.symbol}.NEG")
+                        trades_count = int(float(raw_neg.replace('.', '').replace(',', '.'))) if raw_neg else 0
+
+                        # Se antes das 09h00, ignora completamente
+                        if now.hour < 9:
+                            time.sleep(0.02)
+                            continue
+
+                        # Detecta transição real de saída do leilão
+                        if not session_started:
+                            if trades_count > 0:
+                                session_started = True
+                                if self.actual_market_open is None:
+                                    if now.hour == 9 and now.minute <= 15:
+                                        self.actual_market_open = now.time().replace(second=0, microsecond=0)
+                                    else:
+                                        self.actual_market_open = time(9, 3)
+                            else:
+                                # Em leilão (NEG == 0): descarta preços teóricos
+                                time.sleep(0.02)
+                                continue
+
+                        raw_vol = query_item_fast(f"{self.symbol}.VOL")
+                        raw_max = query_item_fast(f"{self.symbol}.MAX")
+                        raw_min = query_item_fast(f"{self.symbol}.MIN")
+
+                        vol = float(raw_vol.replace('.', '').replace(',', '.')) if raw_vol else 0.0
+                        high_p = float(raw_max.replace('.', '').replace(',', '.')) if raw_max else price
+                        low_p = float(raw_min.replace('.', '').replace(',', '.')) if raw_min else price
+
+                        # 2. Agregação determinística minuto a minuto
+                        min_tag = (now.hour * 60) + now.minute
+                        if current_minute_tag is None:
+                            current_minute_tag = min_tag
+                            active_1m_candle = Candle(
+                                timeframe=1,
+                                open_time=now,
+                                close_time=now,
+                                open=price,
+                                high=price,
+                                low=price,
+                                close=price,
+                                volume=vol,
+                                trades_count=trades_count,
+                                is_closed=False
+                            )
+                        elif min_tag != current_minute_tag:
+                            # O minuto encerrou no relógio exato! Fechar e despachar barra
+                            if active_1m_candle is not None:
+                                active_1m_candle.is_closed = True
+                                active_1m_candle.close_time = now
+                                if self.on_candle_callback:
+                                    self.on_candle_callback(active_1m_candle)
+
+                            # Iniciar novo candle de 1m para o minuto atual
+                            current_minute_tag = min_tag
+                            active_1m_candle = Candle(
+                                timeframe=1,
+                                open_time=now,
+                                close_time=now,
+                                open=price,
+                                high=price,
+                                low=price,
+                                close=price,
+                                volume=vol,
+                                trades_count=trades_count,
+                                is_closed=False
+                            )
+                        else:
+                            # Atualização contínua intra-minuto com latência sub-50ms
+                            if active_1m_candle is not None:
+                                active_1m_candle.high = max(active_1m_candle.high, price)
+                                active_1m_candle.low = min(active_1m_candle.low, price)
+                                active_1m_candle.close = price
+                                active_1m_candle.close_time = now
+                                active_1m_candle.volume = vol
+                                active_1m_candle.trades_count = trades_count
+
+                    except ValueError:
+                        pass
+                else:
+                    self.health.error_message = "Aguardando transmissão do ativo pelo Profit Pro."
+
+            except Exception as e:
+                self.health.error_message = f"Erro no poll DDE Light: {e}"
+
+            time.sleep(0.02)  # 20ms descanso: ciclo total < 50ms com CPU desprezível
 
         # Encerramento na thread
         self.user32.DdeDisconnect(hconv)

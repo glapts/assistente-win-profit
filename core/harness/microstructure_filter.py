@@ -38,8 +38,17 @@ class MicrostructureFilter:
                 "qty": qty
             }
 
+        # Normaliza agressor (suporta BUY/SELL e COMPRADOR/VENDEDOR)
+        aggr_upper = aggressor.upper()
+        if any(k in aggr_upper for k in ["BUY", "COMPR"]):
+            aggr_norm = "BUY"
+        elif any(k in aggr_upper for k in ["SELL", "VEND"]):
+            aggr_norm = "SELL"
+        else:
+            aggr_norm = aggr_upper
+
         # Armazena trade institucional
-        self.trades_history.append((timestamp, price, qty, aggressor.upper()))
+        self.trades_history.append((timestamp, price, qty, aggr_norm))
 
         # Purga trades mais velhos que a janela
         cutoff = timestamp - timedelta(seconds=self.window_seconds)
@@ -48,10 +57,10 @@ class MicrostructureFilter:
 
         # Atualiza métricas por nível de preço
         p_round = round(price, -1) # Agrupa em clusters de 10 pts
-        if aggressor.upper() == "BUY":
+        if aggr_norm == "BUY":
             self.buy_volume_by_price[p_round] = self.buy_volume_by_price.get(p_round, 0) + qty
             self.delta_by_price[p_round] = self.delta_by_price.get(p_round, 0) + qty
-        elif aggressor.upper() == "SELL":
+        elif aggr_norm == "SELL":
             self.sell_volume_by_price[p_round] = self.sell_volume_by_price.get(p_round, 0) + qty
             self.delta_by_price[p_round] = self.delta_by_price.get(p_round, 0) - qty
 
@@ -59,7 +68,7 @@ class MicrostructureFilter:
             "filtered": False,
             "price": price,
             "qty": qty,
-            "aggressor": aggressor.upper(),
+            "aggressor": aggr_norm,
             "timestamp": timestamp
         }
 

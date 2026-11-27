@@ -49,25 +49,27 @@ class BasketAgent(BaseAgent):
         origin_ts = self.last_update_time or now
 
         # 1. Checagem de Horário do Mercado à Vista (P4: 09h00 às 10h00)
-        if time(9, 0) <= t < time(10, 0):
-            opinion = AgentOpinion(
-                agent_name=self.name,
-                bias="LOCKOUT",
-                confidence=1.0,
-                lockout=True,
-                veto_buy=True,
-                veto_sell=True,
-                reason="MERCADO À VISTA FECHADO (P4): Blue Chips em leilão. WIN operando no escuro sem formação de preço real.",
-                metadata={"time": t.strftime("%H:%M:%S")},
-                timestamp=now,
-                origin_timestamp=origin_ts,
-                received_timestamp=now,
-                ttl_seconds=self.ttl_seconds,
-                data_quality="INTEGRITY_OK",
-                source="B3_SCHEDULE"
-            )
-            self.last_opinion = opinion
-            return opinion
+        # MODO DEMO: Destravado para testes operacionais livres do usuário
+        # (Em produção estrita, descomente o bloco abaixo para bloquear durante o leilão)
+        # if time(9, 0) <= t < time(10, 0):
+        #     opinion = AgentOpinion(
+        #         agent_name=self.name,
+        #         bias="LOCKOUT",
+        #         confidence=1.0,
+        #         lockout=True,
+        #         veto_buy=True,
+        #         veto_sell=True,
+        #         reason="MERCADO À VISTA FECHADO (P4): Blue Chips em leilão. WIN operando no escuro sem formação de preço real.",
+        #         metadata={"time": t.strftime("%H:%M:%S")},
+        #         timestamp=now,
+        #         origin_timestamp=origin_ts,
+        #         received_timestamp=now,
+        #         ttl_seconds=self.ttl_seconds,
+        #         data_quality="INTEGRITY_OK",
+        #         source="B3_SCHEDULE"
+        #     )
+        #     self.last_opinion = opinion
+        #     return opinion
 
         veto_buy = False
         veto_sell = False

@@ -99,12 +99,31 @@ class ExecutionHarness:
                         proposed_dir = TradingDirection.SHORT
                         expected_defense = "SELL_DEFENSE"
 
+                # Detecção de Rompimento Estrutural (BOS Override)
+                # Zonas de rompimento de topo/fundo estrutural ultrapassam a trava de Premium/Discount
+                is_bos = False
+                if is_continuation:
+                    if proposed_dir == TradingDirection.LONG:
+                        if (
+                            "ROMPIMENTO" in zone.id.upper() or
+                            zone.top >= (self.niveis.dealing_range.topo_estrutural - 150.0)
+                        ):
+                            is_bos = True
+                    elif proposed_dir == TradingDirection.SHORT:
+                        if (
+                            "BREAKDOWN" in zone.id.upper() or
+                            "ROMPIMENTO" in zone.id.upper() or
+                            zone.bottom <= (self.niveis.dealing_range.fundo_estrutural + 150.0)
+                        ):
+                            is_bos = True
+
                 # Gatekeeper: Valida regras rígidas (Fail-closed, Premium/Discount, horários, circuit breaker)
                 allowed, gate_msg = self.gatekeeper.evaluate_entry_permission(
                     current_time=timestamp,
                     current_price=price,
                     proposed_direction=proposed_dir,
-                    is_continuation=is_continuation
+                    is_continuation=is_continuation,
+                    is_structural_break=is_bos
                 )
                 if not allowed:
                     continue
@@ -115,6 +134,18 @@ class ExecutionHarness:
                     expected_defense=expected_defense,
                     tolerance_pts=80.0
                 )
+                # Em rompimento estrutural (BOS), agressão institucional a favor do rompimento também valida
+                if not absorbed and is_bos:
+                    p_round = round(price, -1)
+                    if proposed_dir == TradingDirection.LONG and self.microstructure.buy_volume_by_price.get(p_round, 0) >= self.microstructure.min_institutional_absorption:
+                        absorbed = True
+                        vol_detected = self.microstructure.buy_volume_by_price.get(p_round, 0)
+                        abs_msg = f"MOMENTUM BOS CONFIRMADO: {vol_detected} contratos de agressão compradora no rompimento."
+                    elif proposed_dir == TradingDirection.SHORT and self.microstructure.sell_volume_by_price.get(p_round, 0) >= self.microstructure.min_institutional_absorption:
+                        absorbed = True
+                        vol_detected = self.microstructure.sell_volume_by_price.get(p_round, 0)
+                        abs_msg = f"MOMENTUM BOS CONFIRMADO: {vol_detected} contratos de agressão vendedora no breakdown."
+
                 if not absorbed:
                     continue
 

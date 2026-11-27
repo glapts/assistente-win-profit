@@ -86,19 +86,20 @@ class HarnessGatekeeper:
             reason = self.runtime_state.macro_regime.lockout_reason or "Evento Macro de Alto Impacto"
             return False, f"EVENT LOCKOUT ATIVO: {reason}"
 
-        # 7. Trava de Horário Rígida: 09h00 às 10h00 (P4 - Abertura no Escuro)
+        # 7. Trava de Horário: 09h00 às 10h00 (P4 - Abertura no Escuro)
         t = current_time.time()
-        if time(9, 0) <= t < time(10, 0):
-            return False, "TRAVA DE HORÁRIO (09:00 - 10:00): Modo OBSERVATION_ONLY ativo enquanto mercado à vista está em leilão."
+        # MODO DEMO: Destravado para testes operacionais livres do usuário
+        # if time(9, 0) <= t < time(10, 0):
+        #     return False, "TRAVA DE HORÁRIO (09:00 - 10:00): Modo OBSERVATION_ONLY ativo enquanto mercado à vista está em leilão."
 
         # 8. Trava de Horário: Abertura de Nova York (P11 - Leilão NYSE e Arbitragem ADRs)
-        # Sincronizado estritamente com o Whale Flow (libera fluxo direcional às 10h33:01 / 11h33:01)
+        # Sincronizado com o Whale Flow - Destravado para testes e feriado de Thanksgiving
         # Janela 1: 10h28 às 10h33 (quando NY abre 10h30)
-        if time(10, 28) <= t <= time(10, 33):
-            return False, "TRAVA ABERTURA NY (10:28 - 10:33): Volume anormal e leilão de abertura da NYSE."
+        # if time(10, 28) <= t <= time(10, 33):
+        #     return False, "TRAVA ABERTURA NY (10:28 - 10:33): Volume anormal e leilão de abertura da NYSE."
         # Janela 2: 11h28 às 11h33 (quando NY abre 11h30 no horário de inverno dos EUA)
-        if time(11, 28) <= t <= time(11, 33):
-            return False, "TRAVA ABERTURA NY (11:28 - 11:33): Volume anormal e leilão de abertura da NYSE."
+        # if time(11, 28) <= t <= time(11, 33):
+        #     return False, "TRAVA ABERTURA NY (11:28 - 11:33): Volume anormal e leilão de abertura da NYSE."
 
         # 9. Regra de Ouro SMC: Quebra de Estrutura (BOS) vs Premium & Discount (P10)
         if is_structural_break:

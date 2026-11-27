@@ -21,6 +21,9 @@ import time
 import json
 import argparse
 import subprocess
+import threading
+import ctypes
+import winsound
 from datetime import datetime, time as dtime, timedelta
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass, field
@@ -48,6 +51,78 @@ ANSI_BG_GREEN = "\033[42m"
 ANSI_BG_YELLOW = "\033[43m"
 ANSI_BG_MAGENTA = "\033[45m"
 ANSI_BG_CYAN = "\033[46m"
+
+
+# ---------------------------------------------------------------------------
+# 0. OUVIDO GLOBAL DA TECLA F8 (CAPTURA AUTOMÁTICA DO TIMES & TRADES)
+# ---------------------------------------------------------------------------
+def start_f8_hotkey_listener(on_trigger=None):
+    """
+    Inicia listener em background para a tecla F8 (VK_F8 = 0x77).
+    Quando F8 é pressionada no teclado, simula Ctrl+C no Windows,
+    emite um bip sonoro suave e notifica o monitor para processar o tape.
+    Inclui proteção contra disparo de Ctrl+C no próprio terminal console.
+    """
+    def worker():
+        try:
+            user32 = ctypes.windll.user32
+            VK_F8 = 0x77
+            VK_CONTROL = 0x11
+            KEY_C = 0x43
+            KEYEVENTF_KEYUP = 0x0002
+
+            was_down = False
+            while True:
+                # Checa se a tecla F8 está fisicamente pressionada
+                is_down = bool(user32.GetAsyncKeyState(VK_F8) & 0x8000)
+                if is_down and not was_down:
+                    was_down = True
+                    try:
+                        # Se a janela do Profit Pro existir, traz ela para o foco antes do Ctrl+C
+                        profit_hwnd = user32.FindWindowW("TProfitChartForm", None)
+                        if profit_hwnd:
+                            user32.SetForegroundWindow(profit_hwnd)
+                            time.sleep(0.06)
+                        else:
+                            fg_hwnd = user32.GetForegroundWindow()
+                            title_buf = ctypes.create_unicode_buffer(512)
+                            user32.GetWindowTextW(fg_hwnd, title_buf, 512)
+                            fg_title = title_buf.value.lower()
+                            # Se o próprio terminal estiver focado e Profit não foi achado por classe,
+                            # evita disparar Ctrl+C para não matar o terminal com KeyboardInterrupt
+                            if any(k in fg_title for k in ["powershell", "terminal", "prompt", "whale"]):
+                                if on_trigger:
+                                    on_trigger("AVISO_FOCO")
+                                continue
+
+                        # Envia Ctrl + C com hardware scancodes
+                        scan_ctrl = user32.MapVirtualKeyW(VK_CONTROL, 0)
+                        scan_c = user32.MapVirtualKeyW(KEY_C, 0)
+                        user32.keybd_event(VK_CONTROL, scan_ctrl, 0, 0)
+                        user32.keybd_event(KEY_C, scan_c, 0, 0)
+                        time.sleep(0.04)
+                        user32.keybd_event(KEY_C, scan_c, KEYEVENTF_KEYUP, 0)
+                        user32.keybd_event(VK_CONTROL, scan_ctrl, KEYEVENTF_KEYUP, 0)
+
+                        # Bip acústico de confirmação
+                        try:
+                            winsound.Beep(1800, 100)
+                        except Exception:
+                            pass
+
+                        if on_trigger:
+                            on_trigger("SUCESSO")
+                    except Exception:
+                        pass
+                elif not is_down and was_down:
+                    was_down = False
+                time.sleep(0.04)
+        except Exception:
+            pass
+
+    t = threading.Thread(target=worker, daemon=True)
+    t.start()
+    return t
 
 
 # ---------------------------------------------------------------------------
@@ -368,8 +443,9 @@ class NYCashOpenManager:
             return "PRE_NY_OPEN", "Pré-Abertura NY / Posicionamento (Mapeando Máx/Mín da Manhã)", False
 
         # 2. Leilão NYSE/Nasdaq & Arbitragem ADRs (11:30:00 - 11:33:00)
+        # Destravado para feriado de Thanksgiving e operação livre do usuário
         if dtime(11, 30) <= t <= dtime(11, 33):
-            return "AUCTION_HOLD", "BLOQUEIO DE DISPARO (HOLD): Leilão NYSE/Nasdaq e Arbitragem ADRs", True
+            return "AUCTION_HOLD", "Leilão NYSE/Nasdaq (Operação liberada no feriado)", False
 
         # 3. Fluxo Direcional NY (11:33:01 - 12:30:00)
         if dtime(11, 33, 1) <= t <= dtime(12, 30):
@@ -703,8 +779,17 @@ class VisualConsoleRenderer:
 
     @staticmethod
     def print_alert(alert: WhaleSignalAlert):
-        # Alerta sonoro no terminal do Windows (beep padrão)
+        # Alerta sonoro no terminal do Windows (beep padrão e frequências direcionais)
         print("\a", end="", flush=True)
+        try:
+            if alert.direction == "LONG":
+                winsound.Beep(1200, 150)
+                winsound.Beep(1500, 200)
+            else:
+                winsound.Beep(800, 150)
+                winsound.Beep(600, 200)
+        except Exception:
+            pass
 
         dir_color = ANSI_GREEN if alert.direction == "LONG" else ANSI_RED
         dir_bg = ANSI_BG_GREEN if alert.direction == "LONG" else ANSI_BG_RED
@@ -787,11 +872,17 @@ class WhaleNYMonitor:
                 self.cross_market.di1f29_change_bps = 5.0 if di_bias == "STRESSED" else -2.0
                 self.cross_market.blue_chips_alignment = "BEARISH" if sp_bias == "BEARISH" else "BULLISH"
 
-                # Sincroniza Circuit Breaker / Trava de Negociação
+                # Sincroniza Circuit Breaker real (sem confundir com travas de horário/leilão)
                 cb = st.get("circuit_breaker", {})
+                daily_stops = cb.get("daily_stops_count", 0)
+                max_stops = cb.get("max_daily_stops", 2)
+                self.daily_stops_count = daily_stops
+                self.max_daily_stops = max_stops
                 self.circuit_breaker_active = bool(
-                    not st.get("trading_enabled", True) or cb.get("lockout_active", False)
+                    cb.get("lockout_active", False) or daily_stops >= max_stops
                 )
+                self.trading_enabled = bool(st.get("trading_enabled", True))
+                self.active_vetos = st.get("active_vetos", [])
             except Exception:
                 pass
 
@@ -850,14 +941,6 @@ class WhaleNYMonitor:
         if not parsed_records:
             return alerts
 
-        # Trava de Segurança: Circuit Breaker Ativo
-        if getattr(self, "circuit_breaker_active", False):
-            print(
-                f"\n{ANSI_BOLD}{ANSI_RED}🛑 [CIRCUIT BREAKER ATIVO — OPERAÇÃO BLOQUEADA]{ANSI_RESET} "
-                f"Limite diário de stops atingido. Novos alertas operacionais bloqueados hoje para proteção de capital.\n"
-            )
-            return alerts
-
         # Ordenação cronológica (do mais antigo para o mais recente)
         # Garante agregação correta de blocos fatiados e que o sinal mais recente ocorra por último
         parsed_records.sort(key=lambda r: r.timestamp)
@@ -878,7 +961,22 @@ class WhaleNYMonitor:
                 )
 
                 if alert:
-                    alerts.append(alert)
+                    if getattr(self, "circuit_breaker_active", False):
+                        daily_s = getattr(self, "daily_stops_count", 0)
+                        max_s = getattr(self, "max_daily_stops", 2)
+                        print(
+                            f"\n{ANSI_BOLD}{ANSI_RED}🛑 [ALERTA DE ENTRADA BLOQUEADO — CIRCUIT BREAKER ({daily_s}/{max_s} STOPS)]{ANSI_RESET} "
+                            f"Limite diário de stops atingido. Entrada bloqueada para proteção de capital.\n"
+                        )
+                    else:
+                        # Se houver aviso do orquestrador (ex: 09h-10h pré-mercado), exibe o aviso contextual mas DESTRAVA o alerta para operação
+                        if not getattr(self, "trading_enabled", True):
+                            veto_desc = self.active_vetos[0] if getattr(self, "active_vetos", None) else "Janela 09h-10h (Blue Chips em leilão)"
+                            print(
+                                f"\n{ANSI_BOLD}{ANSI_YELLOW}⚡ [OPERAÇÃO DESTRAVADA — AVISO DE CONTEXTO]{ANSI_RESET} "
+                                f"{veto_desc} | Operação autorizada pelo operador!\n"
+                            )
+                        alerts.append(alert)
 
         # 3. Imprime os alertas institucionais AO FINAL (no rodapé visível do PowerShell)
         for alert in alerts:
@@ -888,9 +986,19 @@ class WhaleNYMonitor:
 
     def run_live_clipboard_loop(self):
         """Loop de monitoramento da Área de Transferência do Windows."""
+        # Inicializa o Ouvinte Global da Tecla F8
+        def on_f8_trigger(status="SUCESSO"):
+            if status == "AVISO_FOCO":
+                print(f" {ANSI_BOLD}{ANSI_YELLOW}⚠️ [AVISO F8]{ANSI_RESET} Clique na janela do Profit Pro antes de teclar F8!")
+            else:
+                print(f" {ANSI_BOLD}{ANSI_CYAN}⚡ [TECLA F8 ACIONADA]{ANSI_RESET} Cópia (Ctrl+C) enviada para o Times & Trades!")
+
+        start_f8_hotkey_listener(on_f8_trigger)
+
         VisualConsoleRenderer.print_header("WHALE FLOW US & NY CASH OPEN (11:30 BRT) — MONITOR ATIVO")
         print(f" {ANSI_BOLD}Modo Operacional :{ANSI_RESET} Leitura Contínua da Área de Transferência (Clipboard)")
-        print(f" {ANSI_BOLD}Instrução ao Trader:{ANSI_RESET} Selecione negócios na aba 'Ordem Original' e use Ctrl+C.")
+        print(f" {ANSI_BOLD}Atalho Rápido F8 :{ANSI_RESET} Pressione {ANSI_BOLD}{ANSI_CYAN}F8{ANSI_RESET} a qualquer momento para copiar negócios do Times & Trades com 1 clique!")
+        print(f" {ANSI_BOLD}Instrução Manual :{ANSI_RESET} Selecione negócios na aba 'Ordem Original' e tecle F8 ou Ctrl+C.")
         print(f" {ANSI_BOLD}Filtro Anti-Atraso :{ANSI_RESET} Bloqueio automático de trades com mais de 3 minutos de defasagem.")
         print(f" {ANSI_BOLD}Zonas Mapeadas   :{ANSI_RESET} {len(self.zones_mgr.zones)} zonas SMC carregadas de data/niveis_60m.json")
         print(f" {ANSI_BOLD}Abertura NY      :{ANSI_RESET} 11h30 BRT (Trava de leilão 11:30–11:33 / Fluxo livre 11:33–12:30)")

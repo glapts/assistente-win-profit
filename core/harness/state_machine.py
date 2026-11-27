@@ -43,7 +43,10 @@ class FVGStateMachine:
                 self.zones[z.id] = z
 
     def get_active_zones(self) -> List[FVGZone]:
-        return [z for z in self.zones.values() if z.status not in (ZoneStatus.EXHAUSTED, ZoneStatus.INVALIDATED)]
+        return [
+            z for z in self.zones.values()
+            if z.status not in (ZoneStatus.EXHAUSTED, ZoneStatus.INVALIDATED, ZoneStatus.STANDBY_DEEP_PULLBACK)
+        ]
 
     def evaluate_price_tick(self, current_price: float, timestamp: datetime) -> List[Dict[str, Any]]:
         """
@@ -225,6 +228,18 @@ class FVGStateMachine:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
+
+            # Validação de data: se a sessão for de dia anterior, reseta para o novo pregão
+            updated_at_str = data.get("updated_at")
+            if updated_at_str:
+                try:
+                    updated_date = datetime.fromisoformat(updated_at_str).date()
+                    if updated_date != datetime.now().date():
+                        print(f"[STATE MACHINE] Sessão gravada é de {updated_date} (dia anterior). Resetando zonas limpas para o pregão de hoje ({datetime.now().date()}).")
+                        return False
+                except Exception:
+                    pass
+
             zone_states = data.get("zones", {})
             restored = 0
             for z_id, st_val in zone_states.items():

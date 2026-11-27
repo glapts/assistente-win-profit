@@ -152,6 +152,46 @@ class TestCooldownAndDecoupling(unittest.TestCase):
         self.assertEqual(st2.allowed_direction, TradingDirection.BOTH)
         self.assertTrue(any("DESCOLAMENTO MACRO ATIVO" in v for v in st2.active_vetos))
 
+    def test_structural_break_bos_override(self):
+        """Valida que uma zona de rompimento de topo (BOS) autoriza compra mesmo em região Premium."""
+        bos_zone = FVGZone(
+            id="ZONA_01_TOPO_ROMPIMENTO",
+            tipo_original=ZoneType.BULLISH,
+            top=167400.0,
+            ce_50=167350.0,
+            bottom=167300.0,
+            setup_primario=PrimarySetup.CONTINUATION_BUY,
+            stop_sugerido_pts=250.0,
+            alvo_sugerido_pts=400.0,
+            status=ZoneStatus.TESTING_CONTINUATION
+        )
+        harness = ExecutionHarness(
+            niveis_contract=Niveis60mContract(
+                versao_contrato="2.0",
+                ativo="WINZ26",
+                data_referencia="2026-11-25",
+                dealing_range=self.dealing_range, # Eq: 166000. Preço 167350 está em PREMIUM!
+                zonas_fvg=[bos_zone]
+            ),
+            runtime_state=RuntimeStateContract(
+                timestamp=datetime.now().isoformat(),
+                state_version=1,
+                ttl_seconds=120.0,
+                data_quality="INTEGRITY_OK",
+                execution_mode="COPILOT",
+                trading_enabled=True,
+                allowed_direction="BOTH",
+                confidence_score=0.85
+            ),
+            session_storage_path=None
+        )
+        # Preenche absorção institucional compradora na defesa
+        harness.on_trade(167350.0, 200, "COMPRA", datetime(2026, 11, 25, 14, 0, 0))
+        sig = harness.on_tick(167350.0, datetime(2026, 11, 25, 14, 0, 0))
+        self.assertIsNotNone(sig)
+        self.assertEqual(sig.direction, TradingDirection.LONG)
+        self.assertEqual(sig.entry_price, 167350.0)
+
 
 if __name__ == "__main__":
     unittest.main()

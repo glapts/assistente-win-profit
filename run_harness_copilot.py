@@ -95,7 +95,8 @@ def main():
         harness.on_tick(trade.price, trade.timestamp)
 
     def on_candle_event(candle):
-        harness.on_candle_closed(candle.timeframe, candle.open, candle.high, candle.low, candle.close, candle.timestamp)
+        ts = getattr(candle, "close_time", getattr(candle, "timestamp", datetime.now()))
+        harness.on_candle_closed(candle.timeframe, candle.open, candle.high, candle.low, candle.close, ts)
 
     feed.set_callbacks(
         on_trade=on_trade_event,

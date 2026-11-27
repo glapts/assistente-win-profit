@@ -83,26 +83,11 @@ class MacroAgent(BaseAgent):
                 return opinion
 
         # 2. Checagem de Janela de Transição NY (P11: 10h28-10h35 e 11h28-11h35)
-        t = now.time()
-        if (time(10, 28) <= t <= time(10, 35)) or (time(11, 28) <= t <= time(11, 35)):
-            opinion = AgentOpinion(
-                agent_name=self.name,
-                bias="LOCKOUT",
-                confidence=0.95,
-                lockout=True,
-                veto_buy=True,
-                veto_sell=True,
-                reason="ABERTURA DE WALL STREET (P11): Janela de volatilidade extrema e fluxo institucional de Nova York na B3.",
-                metadata={"time": t.strftime("%H:%M:%S")},
-                timestamp=now,
-                origin_timestamp=origin_ts,
-                received_timestamp=now,
-                ttl_seconds=self.ttl_seconds,
-                data_quality="INTEGRITY_OK",
-                source="NY_SCHEDULE"
-            )
-            self.last_opinion = opinion
-            return opinion
+        # MODO LIVRE: Destravado para Thanksgiving e testes operacionais
+        # t = now.time()
+        # if (time(10, 28) <= t <= time(10, 35)) or (time(11, 28) <= t <= time(11, 35)):
+        #     opinion = AgentOpinion(...)
+        #     return opinion
 
         # 3. Análise de Correlação S&P 500 e Treasuries (P6)
         veto_buy = False

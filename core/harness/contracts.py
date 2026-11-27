@@ -44,6 +44,7 @@ class ZoneStatus(str, Enum):
     EMITTED = "EMITTED"
     EXHAUSTED = "EXHAUSTED"
     INVALIDATED = "INVALIDATED"
+    STANDBY_DEEP_PULLBACK = "STANDBY_DEEP_PULLBACK"
 
 
 class PrimarySetup(str, Enum):

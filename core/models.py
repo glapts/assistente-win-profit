@@ -59,6 +59,10 @@ class Candle:
         return self.high - self.low
 
     @property
+    def timestamp(self) -> datetime:
+        return self.close_time
+
+    @property
     def body(self) -> float:
         return abs(self.close - self.open)
 
